@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const mainRouter = Router();
 
-mainRouter.use("/juegos", (request, response) => {
-  response.status(200).send(":D");
-});
+// RUTAS
+const gamesRouter= require("./gamesRoute");
+
+mainRouter.use("/juegos", gamesRouter);
 
 module.exports = mainRouter;
