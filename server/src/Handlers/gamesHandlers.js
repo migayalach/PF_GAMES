@@ -1,6 +1,10 @@
 const SUCCESS = 200;
 const ERROR = 400;
-const { allGetGames, getGameName } = require("../Controllers/gamesController");
+const {
+  allGetGames,
+  getGameName,
+  getGameIdApi,
+} = require("../Controllers/gamesController");
 
 const getGames = async (request, response) => {
   const { name } = request.query;
@@ -12,4 +16,14 @@ const getGames = async (request, response) => {
   }
 };
 
-module.exports = { getGames };
+const getGameId = async (request, response) => {
+  const { idGame } = request.params;
+  try {
+    const game = await getGameIdApi(idGame);
+    response.status(SUCCESS).json(game);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+module.exports = { getGames, getGameId };
