@@ -35,8 +35,8 @@ const { platForms, genders, game, level, userInfo, sale, detail } =
 platForms.hasMany(game, { foreignKey: "idPlatforms" });
 game.belongsTo(platForms, { foreignKey: "idPlatforms" });
 
-genders.hasMany(game, { foreignKey: "idGenders" });
-game.belongsTo(genders, { foreignKey: "idGenders" });
+genders.belongsToMany(game, { through: "GenderGames", timestamps: false  });
+game.belongsToMany(genders, { through: "GenderGames", timestamps: false  });
 
 level.hasMany(userInfo, { foreignKey: "idLevel" });
 userInfo.belongsTo(level, { foreignKey: "idLevel" });

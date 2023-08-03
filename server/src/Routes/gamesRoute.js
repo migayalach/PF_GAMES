@@ -10,7 +10,7 @@ const gamesRouter = Router();
 
 gamesRouter.get("/", getGames);
 gamesRouter.get("/:idGame", getGameId);
-gamesRouter.post("/", postGame);
+gamesRouter.post("/", postGame);            //OK
 gamesRouter.put("/", putGame);
 gamesRouter.delete("/:idGame", deleteGame);
 

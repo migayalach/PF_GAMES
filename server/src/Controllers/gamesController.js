@@ -1,3 +1,4 @@
+const { game, genders } = require("../DataBase/dataBase");
 const axios = require("axios");
 const { API_KEY, URL_GAMES, URL_GAME } = require("../Utils/url");
 const { newArrGames, searchApi } = require("../Utils/gamesUtils");
@@ -21,4 +22,31 @@ const getGameIdApi = async (idGame) => {
   return newArrGames([response]);
 };
 
-module.exports = { allGetGames, getGameName, getGameIdApi };
+const createGame = async (
+  idPlatforms,
+  nameGame,
+  image,
+  cost,
+  description,
+  nameGender
+) => {
+  const newGame = await game.create({
+    idPlatforms,
+    nameGame,
+    image,
+    cost,
+    description,
+  });
+  if (nameGender && nameGender.length > 0) {
+    const itemGender = await genders.findAll({
+      where: {
+        nameGenders: nameGender,
+      },
+    });
+    await newGame.addGenders(itemGender);
+  }
+  //ORDENAR EL RESULTADO EN UN SOLO OBJETO
+  return {newGame, ...nameGender};
+};
+
+module.exports = { createGame, allGetGames, getGameName, getGameIdApi };
