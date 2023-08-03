@@ -3,7 +3,6 @@ require("dotenv").config();
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 // MODELS
-const systemGameModel = require("../Models/systemGame");
 const platformsModel = require("../Models/platforms");
 const gendersModel = require("../Models/genders");
 const gamesModel = require("../Models/games");
@@ -20,7 +19,6 @@ const sequelize = new Sequelize(
   }
 );
 
-systemGameModel(sequelize);
 platformsModel(sequelize);
 gendersModel(sequelize);
 gamesModel(sequelize);
@@ -29,18 +27,16 @@ userInfoModel(sequelize);
 saleModel(sequelize);
 detailModel(sequelize);
 
-const { systemGame, platForms, genders, game, level, userInfo, sale, detail } =
+const { platForms, genders, game, level, userInfo, sale, detail } =
   sequelize.models;
 
 // RELATION
-systemGame.hasMany(genders, { foreignKey: "idSystem" });
-genders.belongsTo(systemGame, { foreignKey: "idSystem" });
 
-platForms.hasMany(systemGame, { foreignKey: "idPlatforms" });
-systemGame.belongsTo(platForms, { foreignKey: "idPlatforms" });
+platForms.hasMany(game, { foreignKey: "idPlatforms" });
+game.belongsTo(platForms, { foreignKey: "idPlatforms" });
 
-game.hasMany(systemGame, { foreignKey: "idGenders" });
-systemGame.belongsTo(game, { foreignKey: "idGenders" });
+genders.hasMany(game, { foreignKey: "idGenders" });
+game.belongsTo(genders, { foreignKey: "idGenders" });
 
 level.hasMany(userInfo, { foreignKey: "idLevel" });
 userInfo.belongsTo(level, { foreignKey: "idLevel" });
