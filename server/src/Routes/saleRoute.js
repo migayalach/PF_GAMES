@@ -1,8 +1,17 @@
 const { Router } = require("express");
+const {
+  postSale,
+  getSale,
+  getSaleId,
+  putSale,
+  deleteSale,
+} = require("../Handlers/saleHandlers");
 const saleRouter = Router();
 
-saleRouter.get("/",(request, response) => {
-    response.status(200).send("sale");
-  });
+saleRouter.get("/", getSale);
+saleRouter.get("/:idSale", getSaleId);      
+saleRouter.post("/", postSale);
+saleRouter.put("/", putSale);
+saleRouter.delete("/:idSale", deleteSale);
 
 module.exports = saleRouter;
