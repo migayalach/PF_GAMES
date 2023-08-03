@@ -12,10 +12,10 @@ const gamesRouter = require("./gamesRoute");
 
 mainRouter.use("/level", levelRouter);             //OK
 mainRouter.use("/user", userRouter);               //OK
-mainRouter.use("/sale", saleRouter);               //IN PROGRESS
+mainRouter.use("/sale", saleRouter);               //OK
 mainRouter.use("/detail", detailRouter);
 mainRouter.use("/plataforms", platformsRouter);    //OK
 mainRouter.use("/genders", gendersRoute);          //OK
-mainRouter.use("/games", gamesRouter);
+mainRouter.use("/games", gamesRouter);             //IN PROCESS
 
 module.exports = mainRouter;
