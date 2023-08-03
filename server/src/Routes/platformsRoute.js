@@ -16,3 +16,4 @@ platformsRouter.put("/", putPlatforms);
 platformsRouter.delete("/:idPlatforms", deletePlatforms);
 
 module.exports = platformsRouter;
+
