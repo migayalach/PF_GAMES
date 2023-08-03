@@ -84,3 +84,4 @@ module.exports = {
   updateGenders,
   deleteGenders,
 };
+

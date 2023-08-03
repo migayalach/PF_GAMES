@@ -15,3 +15,4 @@ gendersRoute.put("/", putGenders);
 gendersRoute.delete("/:idGenders", deleteGender);
 
 module.exports = gendersRoute;
+
