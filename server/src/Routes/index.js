@@ -11,8 +11,8 @@ const gendersRoute = require("./gendersRoute");
 const gamesRouter = require("./gamesRoute");
 
 mainRouter.use("/level", levelRouter);             //OK
-mainRouter.use("/user", userRouter);               //IN PROGRESS
-mainRouter.use("/sale", saleRouter);
+mainRouter.use("/user", userRouter);               //OK
+mainRouter.use("/sale", saleRouter);               //IN PROGRESS
 mainRouter.use("/detail", detailRouter);
 mainRouter.use("/plataforms", platformsRouter);    //OK
 mainRouter.use("/genders", gendersRoute);          //OK
