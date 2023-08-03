@@ -1,6 +1,7 @@
 const SUCCESS = 200;
 const ERROR = 400;
 const {
+  createGame,
   allGetGames,
   getGameName,
   getGameIdApi,
@@ -26,4 +27,40 @@ const getGameId = async (request, response) => {
   }
 };
 
-module.exports = { getGames, getGameId };
+const postGame = async (request, response) => {
+  const { idPlatforms, nameGenders, nameGame, image, cost, description } =
+    request.body;
+    try {
+    const newGame = await createGame(
+      idPlatforms,
+      nameGame,
+      image,
+      cost,
+      description,
+      nameGenders,
+    );
+    response.status(SUCCESS).json(newGame);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const putGame = (request, response) => {
+  try {
+    response.status(SUCCESS).send("editando game");
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+const deleteGame = (request, response) => {
+  try {
+    response.status(SUCCESS).send("eliminando game");
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+};
+
+module.exports = { getGames, getGameId, postGame, putGame, deleteGame };
+
+

@@ -6,18 +6,16 @@ const levelRouter = require("./levelRoute");
 const userRouter = require("./userRoute");
 const saleRouter = require("./saleRoute");
 const detailRouter = require("./detailRoute");
-const systemGameRoute = require("./systemGameRoute");
-const plataformsRoute = require("./plataformsRoute");
+const platformsRouter = require("./platformsRoute");
 const gendersRoute = require("./gendersRoute");
 const gamesRouter = require("./gamesRoute");
 
-mainRouter.use("/level", levelRouter);
-mainRouter.use("/user", userRouter);
-mainRouter.use("/sale", saleRouter);
+mainRouter.use("/level", levelRouter);             //OK
+mainRouter.use("/user", userRouter);               //OK
+mainRouter.use("/sale", saleRouter);               //OK
 mainRouter.use("/detail", detailRouter);
-mainRouter.use("/systemGame", systemGameRoute);
-mainRouter.use("/plataforms", plataformsRoute);
-mainRouter.use("/genders", gendersRoute);
-mainRouter.use("/games", gamesRouter);
+mainRouter.use("/plataforms", platformsRouter);    //OK
+mainRouter.use("/genders", gendersRoute);          //OK
+mainRouter.use("/games", gamesRouter);             //IN PROCESS
 
 module.exports = mainRouter;
