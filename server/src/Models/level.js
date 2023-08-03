@@ -1,12 +1,12 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, INTEGER } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define(
     "level",
     {
       idLevel: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
+        autoIncrement: true,
       },
       nameLevel: {
         type: DataTypes.STRING,
