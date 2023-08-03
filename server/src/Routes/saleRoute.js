@@ -15,3 +15,4 @@ saleRouter.put("/", putSale);
 saleRouter.delete("/:idSale", deleteSale);
 
 module.exports = saleRouter;
+
