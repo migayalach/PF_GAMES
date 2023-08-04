@@ -1,8 +1,17 @@
-const { game, genders, GenderGames } = require("../DataBase/dataBase");
+const {
+  game,
+  genders,
+  platForms,
+  GenderGames,
+} = require("../DataBase/dataBase");
 const { Op } = require("sequelize");
 const axios = require("axios");
 const { API_KEY, URL_GAMES, URL_GAME } = require("../Utils/url");
-const { newArrGames, searchApi } = require("../Utils/gamesUtils");
+const {
+  newArrGames,
+  searchApi,
+  resCreateGame,
+} = require("../Utils/gamesUtils");
 
 const allGetGames = async () => {
   const apiResult = (await axios.get(`${URL_GAMES}`)).data.results;
@@ -75,8 +84,16 @@ const createGame = async (
     });
     await newGame.addGenders(itemGender);
   }
-  //ORDENAR EL RESULTADO EN UN SOLO OBJETO
-  return { newGame, ...nameGender };
+
+  const namePlatform = await platForms.findAll({
+    attributes: ["namePlatforms"],
+    where: {
+      idPlatforms,
+    },
+  });
+
+  const namePlatf = namePlatform[0].dataValues.namePlatforms;
+  return resCreateGame(newGame, namePlatf, nameGender);
 };
 
 const updateGame = async (
