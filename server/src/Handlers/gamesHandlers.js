@@ -5,6 +5,9 @@ const {
   getGameName,
   getGameIdApi,
 } = require("../Controllers/gamesController");
+const { Sequelize } = require("sequelize");
+const {Game} = require('../DataBase/dataBase');
+
 
 const getGames = async (request, response) => {
   const { name } = request.query;
@@ -25,5 +28,15 @@ const getGameId = async (request, response) => {
     response.status(ERROR).json({ error: error.message });
   }
 };
+
+const getGameBySearch = async(req, res) => {
+  try {
+    const {search} = req.query
+    
+  } catch (error) {
+    res.status(ERROR).json({error: error.message})
+  }
+}
+
 
 module.exports = { getGames, getGameId };
