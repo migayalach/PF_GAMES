@@ -2,9 +2,11 @@ const SUCCESS = 200;
 const ERROR = 400;
 const {
   createGame,
+  updateGame,
   allGetGames,
   getGameName,
-  getGameIdApi,
+  getGamesId,
+  delGame,
 } = require("../Controllers/gamesController");
 
 const getGames = async (request, response) => {
@@ -19,8 +21,9 @@ const getGames = async (request, response) => {
 
 const getGameId = async (request, response) => {
   const { idGame } = request.params;
+  const typeData = isNaN(+idGame) ? "string" : "number";
   try {
-    const game = await getGameIdApi(idGame);
+    const game = await getGamesId(idGame, typeData);
     response.status(SUCCESS).json(game);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -30,14 +33,14 @@ const getGameId = async (request, response) => {
 const postGame = async (request, response) => {
   const { idPlatforms, nameGenders, nameGame, image, cost, description } =
     request.body;
-    try {
+  try {
     const newGame = await createGame(
       idPlatforms,
       nameGame,
       image,
       cost,
       description,
-      nameGenders,
+      nameGenders
     );
     response.status(SUCCESS).json(newGame);
   } catch (error) {
@@ -45,17 +48,37 @@ const postGame = async (request, response) => {
   }
 };
 
-const putGame = (request, response) => {
+const putGame = async (request, response) => {
+  const {
+    idGame,
+    idPlatforms,
+    nameGame,
+    image,
+    cost,
+    description,
+    nameGenders,
+  } = request.body;
   try {
-    response.status(SUCCESS).send("editando game");
+    const editInfoGame = await updateGame(
+      idGame,
+      idPlatforms,
+      nameGame,
+      image,
+      cost,
+      description,
+      nameGenders,
+    );
+    response.status(SUCCESS).json(editInfoGame);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
 };
 
-const deleteGame = (request, response) => {
+const deleteGame = async (request, response) => {
+  const { idGame } = request.params;
   try {
-    response.status(SUCCESS).send("eliminando game");
+    const dataResponse = await delGame(idGame);
+    response.status(SUCCESS).json(dataResponse);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }
@@ -64,3 +87,11 @@ const deleteGame = (request, response) => {
 module.exports = { getGames, getGameId, postGame, putGame, deleteGame };
 
 
+// {
+//   "idPlatforms": "d0649d94-b29b-4015-a423-c55f33f97fe1", 
+//   "nameGame":"Aventuras de vida", 
+//   "image":"http:google.com", 
+//   "cost":"50", 
+//   "description":"es un juego de aventuras",
+//   "nameGenders": ["actions", "arcade", "shooter"]
+// }
