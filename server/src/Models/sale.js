@@ -8,17 +8,19 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      namnumFaceUser: {
+      numVoucher: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       dataSale: {
         type: DataTypes.DATE,
-        allowNull: false,
       },
     },
     {
       timestamps: false,
     }
-  );
-};
+    );
+  };
+
+  //agregar valor unico
+  //que solo muestre la fecha no horas
