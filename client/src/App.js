@@ -1,5 +1,7 @@
 import { Route, Routes} from "react-router-dom"
 import axios from "axios";
+import React from 'react';
+import NavBar from './components/NavBar/NavBar';
 import Home from "./views/home/home";
 import './StyleSheets/App.css';
 
