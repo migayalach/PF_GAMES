@@ -16,4 +16,4 @@ const rootReducer = (state = initialState, { type, payload }) => {
     }
 };
 
-export default rootReducer;
+export default rootReducer; 

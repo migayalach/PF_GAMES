@@ -10,4 +10,4 @@ export const getGames = () => {
             console.log(error)
         }
     }
-};
+}; 

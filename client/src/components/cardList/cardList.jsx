@@ -16,5 +16,5 @@ const CardList = ({ gamesList }) => {
       </div>
     );
   }
-  export default CardList;
+  export default CardList; 
 
