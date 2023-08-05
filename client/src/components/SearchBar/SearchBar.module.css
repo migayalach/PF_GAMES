@@ -11,9 +11,20 @@
 }
 
 .btnSearch{
-    background-image: url(../assets/icons8-search-35.png);
+    background-image: url(../../assets/icons8-search-35.png);
     height: 35px;
     width: 35px;
+    cursor: pointer;
+    border-radius: 2px;
+    background-color: transparent;
+    border: none;
+    padding: 2px;
+}
+
+.btnClear{
+    background-image: url(../../assets/icons8-x-30.png);
+    height: 30px;
+    width: 30px;
     cursor: pointer;
     border-radius: 2px;
     background-color: transparent;

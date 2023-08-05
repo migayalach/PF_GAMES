@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getGameByName, getGames } from "../../redux/actions";
 import estilo from './SearchBar.module.css'
-
+import Swal from "sweetalert2"; //Importación de la libreria sweetalert2 que permite mostrar alertas bien GG's
 
 const SearchBar = () => {
 
     const [name, setName] = useState("");
+    const [busqueda, setBusqueda] = useState(false);
     const dispatch = useDispatch();
+    const juegos = useSelector((state) => state.games)
+
+    console.log("SEARCH", juegos);
 
     const handleChange = (event) => {
         event.preventDefault();
@@ -16,8 +21,23 @@ const SearchBar = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         setName("");
-        //dispatch(getByNameTag(name));
+        if (!name.length) {
+            Swal.fire({
+              text: "Debes ingresar un parametro de busqueda.",
+              icon: "info",
+              confirmButtonText: "ok",
+            });
+        } else{
+            dispatch(getGameByName(name));
+            setBusqueda(true);
+        }
     };
+
+    const handleClear = (event) => {
+        event.preventDefault();
+        setBusqueda(false)
+        dispatch(getGames());
+    }
 
     return (
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -34,6 +54,15 @@ const SearchBar = () => {
                     onClick={(event) => handleSubmit(event)}
                     className={estilo.btnSearch}
                 />
+                {
+                    busqueda ?
+                        <button
+                            type="submit"
+                            onClick={(event) => handleClear(event)}
+                            className={estilo.btnClear}
+                        />
+                    : <></>
+                }
             </form>
         </div>
     )

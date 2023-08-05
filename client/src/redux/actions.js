@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {GET_GAMES, GET_GENDERS} from "./action-type"
+import {GET_GAMES, GET_GAME_BY_NAME, GET_GENDERS} from "./action-type"
+
 
 export const getGames = () => {
     return async function (dispatch) {
@@ -10,7 +11,19 @@ export const getGames = () => {
             console.log(error)
         }
     }
-};
+}; 
+
+
+export const getGameByName = (payload) => {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get(`/games?name=${payload}`)
+            dispatch({ type: GET_GAME_BY_NAME, payload: data })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}; 
 
 export const getGenders = () => {
     return async function (dispatch) {
