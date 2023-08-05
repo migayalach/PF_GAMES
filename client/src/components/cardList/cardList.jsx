@@ -8,7 +8,8 @@ const CardList = ({ gamesList }) => {
       <div className={styles.cardList}>
         {gamesList?.map((game) => (
           <Card
-          key={game.id}
+          key={game.idGame}
+          id={game.idGame}
           name={game.nameGame}
           image={game.image}
           />

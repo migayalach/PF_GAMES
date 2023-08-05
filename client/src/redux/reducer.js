@@ -1,7 +1,8 @@
-import { GET_GAMES, GET_BY_ID} from "./action-type";
+import { GET_GAMES, GET_BY_ID, GET_GENDERS} from "./action-type";
 
 const initialState = {
     users: [],
+    game: {},
     games: [], 
     genres: [],
     searched: [],
@@ -23,12 +24,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 games: payload,
             };
-        
-            case GET_BY_ID:
-                return {
-                    ...state,
-                    games: payload,
-          };
+        case GET_GENDERS:
+            return {
+                ...state,
+                genres: payload
+            }
+        case GET_BY_ID:
+            return {
+                ...state,
+                game: payload,
+            };
         default: 
             return state;
     }
