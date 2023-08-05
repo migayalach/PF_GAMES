@@ -12,19 +12,23 @@ const Detail = () => {
     dispatch(getById(id));
   }, [dispatch, id]);
 
-  const games = useSelector((state) => state.games);
-  const game = games[0]; // Obtener el primer juego del array
+  const game = useSelector((state) => state.game);
 
   return (
     <div className="container">
       {game && (
         <div key={game.id}>
-          <h1>{game?.name}</h1>
-          <img src={game?.background_image} alt="imagen allGame"/>
-          <p>{game?.detail}</p>
-          <p>{game?.released}</p>
-          <p>{game?.rating}</p>
-          <h2>{game?.genders.join(" ")}</h2>
+          <h1>{game?.nameGame}</h1>
+          <img src={game?.image} alt="imagen allGame"/>
+          <p>{game?.description}</p>
+          <p>{game?.cost}</p>
+          <ul>
+            {
+              game.genders?.map(gm => (
+                <li>{gm.nameGenders}</li>
+              ))
+            }
+          </ul>
         </div>
       )}
 

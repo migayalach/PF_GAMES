@@ -9,7 +9,7 @@ const Card = (props) => {
                 <img src={props.image} alt={props.name} className={styles.imageContainer}/>
                 </div>
                 <Link
-                        to={``}
+                        to={`/detail/${props.id}`}
                         style={{ textDecoration: "none", color: "#0ccac4" }}
                     >
                     <h3>{props.name}</h3> 
