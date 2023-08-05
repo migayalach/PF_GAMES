@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-//import logo from '../../assets/logo.png'
+// import logo from '../../assets/icons8-search-35.png'
 import { Nav, Form, NavBarInput, NavBarBtn, Logo, PlatformButtons, CartButton, ProfileButton } from './NavBar.styles.js'
 
 
@@ -18,7 +18,7 @@ const NavBar = () => {
 
     return (
         <Nav>
-            <Logo src={logo} alt='logo' />
+            {/* <Logo src={logo} alt='logo' /> */}
             <PlatformButtons>
                 <button>
                     PC
