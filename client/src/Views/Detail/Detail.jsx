@@ -4,8 +4,6 @@ import "./Detail.style.css"
 import { useDispatch, useSelector } from "react-redux";
 import { getById} from "../../Redux/Actions";
 
-
-
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();

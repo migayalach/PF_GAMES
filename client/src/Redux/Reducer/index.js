@@ -20,7 +20,6 @@ function rootReducer(state = initialState, action) {
             };
         
         case GET_BY_ID:
-            
             return {
                 ...state,
                 allGames: action.payload,

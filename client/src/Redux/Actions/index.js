@@ -12,8 +12,9 @@ export function getGames(){
         return dispatch ({
             type: "GET_GAMES",
             payload:responce.data
+            
         })
-        
+
     };
 }
 
