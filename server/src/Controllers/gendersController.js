@@ -1,6 +1,7 @@
 const { genders } = require("../DataBase/dataBase");
 const { Op } = require("sequelize");
 const axios = require("axios");
+const { URL_GENRES } = require("../Utils/url");
 
 const createGenders = async ({ nameGenders }) => {
   const existsData = await genders.findOne({ where: { nameGenders } });
@@ -12,7 +13,11 @@ const createGenders = async ({ nameGenders }) => {
 
 const getAllGenders = async () => {
   const gendersBDD = await genders.findAll();
-  return gendersBDD;
+  if (gendersBDD.length > 0) return gendersBDD;
+  const { data } = await axios.get(`${URL_GENRES}`);
+  const apiGenders = data.results.map(gn => ({ nameGenders: gn.name }));
+  const newGenders = await genders.bulkCreate(apiGenders);
+  return newGenders;
 };
 
 const searchGenders = async (idGenders) => {
