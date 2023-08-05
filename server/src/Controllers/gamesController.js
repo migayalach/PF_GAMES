@@ -1,7 +1,6 @@
 const {
   game,
   genders,
-  platForms,
   GenderGames,
 } = require("../DataBase/dataBase");
 const { Op } = require("sequelize");
@@ -11,94 +10,88 @@ const {
   newArrGames,
   searchApi,
   resCreateGame,
+  newGameId
 } = require("../Utils/gamesUtils");
 
 const allGetGames = async () => {
-  const apiResult = (await axios.get(`${URL_GAMES}`)).data.results;
-  const apiGames = newArrGames(apiResult);
   const resultDBB = await game.findAll({
-    include: {
-      model: genders,
-    },
+    include: [genders],
+  });
+  if (resultDBB.length > 0) return resultDBB;
+  const apiResult = (await axios.get(`${URL_GAMES}`)).data.results;
+  const apiGames = await Promise.all(apiResult.map(async (game) => {
+    const gameOrigin = await newGameId(game.id);
+    return gameOrigin;
+  }));
+  for (let i = 0; i < apiGames.length; i++) {
+    const newGame = {
+      nameGame: apiGames[i].nameGame,
+      description: apiGames[i].description,
+      image: apiGames[i].image,
+      cost: apiGames[i].cost,
+    }
+    const createGame = await game.create(newGame);
+    const gendersGame = apiGames[i].genders?.map(gn => gn.name);
+    for (let j = 0; j < gendersGame.length; j++) {
+      const genre = await genders.findOne({ where: { nameGenders: gendersGame[j] } });
+      await createGame.addGenders(genre);
+    }
+  }
+  const gamesResult = await game.findAll({
+    include: [genders]
   });
   // LIMPIAR RESULTADOS PARA DEVOLVER
-  return [...resultDBB, ...apiGames];
+  return gamesResult;
 };
 
 const getGameName = async (name) => {
   // BUSCAR ESTILO LIKE EN LA API
-  const apiResult = (await axios.get(`${URL_GAMES}`)).data.results;
-  const apiGame = newArrGames(apiResult);
-  const gameResponse = searchApi(name, apiGame);
-  const dataName = await game.findAll({
-    where: {
-      nameGame: {
-        [Op.iLike]: `%${name}%`,
-      },
-    },
-    include: {
-      model: genders,
-    },
+  const gamesByName = await game.findAll({
+    where: { nameGame: { [Op.iLike]: `%${name}%` } },
+    include: [genders]
   });
   // LIMPIAR RESULTADOS PARA DEVOLVER
-  return [...dataName, ...gameResponse];
+  return gamesByName;
 };
 
 const getGamesId = async (idGame, typeData) => {
-  const responseId =
-    typeData === "number"
-      ? (await axios.get(`${URL_GAME}/${idGame}?key=${API_KEY}`)).data
-      : await game.findAll({
-          where: {
-            idGame,
-          },
-          include: {
-            model: genders,
-          },
-        });
+  const gameById = await game.findByPk(idGame, {
+    include: [genders]
+  });
   // LIMPIAR RESPUESTA TANTO BASE DE DATOS COMO API
   // return newArrGames([responseId]);
-  return responseId;
+  return gameById;
 };
 
 const createGame = async (
-  idPlatforms,
   nameGame,
   image,
   cost,
   description,
-  nameGender
+  idsGenders
 ) => {
-  const newGame = await game.create({
-    idPlatforms,
-    nameGame,
-    image,
-    cost,
-    description,
+  const [newGame, created] = await game.findOrCreate({
+    where: { nameGame },
+    defaults: {
+      nameGame,
+      image,
+      cost,
+      description,
+    }
   });
-  if (nameGender && nameGender.length > 0) {
-    const itemGender = await genders.findAll({
-      where: {
-        nameGenders: nameGender,
-      },
-    });
-    await newGame.addGenders(itemGender);
-  }
-
-  const namePlatform = await platForms.findAll({
-    attributes: ["namePlatforms"],
-    where: {
-      idPlatforms,
-    },
+  if (!created) return { error: "Game ya existe" }
+  const gendersBD = await genders.findAll({
+    where: { idGenders: idsGenders }
+  })
+  await newGame.setGenders(gendersBD);
+  const totalGames = await game.findAll({
+    include: [genders]
   });
-
-  const namePlatf = namePlatform[0].dataValues.namePlatforms;
-  return resCreateGame(newGame, namePlatf, nameGender);
+  return totalGames;
 };
 
 const updateGame = async (
   idGame,
-  idPlatforms,
   nameGame,
   image,
   cost,

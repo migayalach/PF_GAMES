@@ -3,7 +3,6 @@ require("dotenv").config();
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 // MODELS
-const platformsModel = require("../Models/platforms");
 const gendersModel = require("../Models/genders");
 const gamesModel = require("../Models/games");
 const levelModel = require("../Models/level");
@@ -19,7 +18,6 @@ const sequelize = new Sequelize(
   }
 );
 
-platformsModel(sequelize);
 gendersModel(sequelize);
 gamesModel(sequelize);
 levelModel(sequelize);
@@ -27,13 +25,10 @@ userInfoModel(sequelize);
 saleModel(sequelize);
 detailModel(sequelize);
 
-const { platForms, genders, game, level, userInfo, sale, detail } =
+const { genders, game, level, userInfo, sale, detail } =
   sequelize.models;
 
 // RELATION
-
-platForms.hasMany(game, { foreignKey: "idPlatforms" });
-game.belongsTo(platForms, { foreignKey: "idPlatforms" });
 
 genders.belongsToMany(game, { through: "GenderGames", timestamps: false  });
 game.belongsToMany(genders, { through: "GenderGames", timestamps: false  });

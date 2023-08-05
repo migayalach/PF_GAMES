@@ -31,16 +31,15 @@ const getGameId = async (request, response) => {
 };
 
 const postGame = async (request, response) => {
-  const { idPlatforms, nameGenders, nameGame, image, cost, description } =
+  const { idsGenders, nameGame, image, cost, description } =
     request.body;
   try {
     const newGame = await createGame(
-      idPlatforms,
       nameGame,
       image,
       cost,
       description,
-      nameGenders
+      idsGenders
     );
     response.status(SUCCESS).json(newGame);
   } catch (error) {
@@ -51,22 +50,20 @@ const postGame = async (request, response) => {
 const putGame = async (request, response) => {
   const {
     idGame,
-    idPlatforms,
     nameGame,
     image,
     cost,
     description,
-    nameGenders,
+    namesGenders,
   } = request.body;
   try {
     const editInfoGame = await updateGame(
       idGame,
-      idPlatforms,
       nameGame,
       image,
       cost,
       description,
-      nameGenders,
+      namesGenders,
     );
     response.status(SUCCESS).json(editInfoGame);
   } catch (error) {
