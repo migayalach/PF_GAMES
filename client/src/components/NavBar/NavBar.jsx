@@ -18,7 +18,7 @@ const NavBar = () => {
 
     return (
         <Nav>
-            <Logo src={logo} alt='logo' />
+            {/* <Logo src={logo} alt='logo' /> */}
             <PlatformButtons>
                 <button>
                     PC

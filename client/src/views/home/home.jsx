@@ -23,12 +23,11 @@ export default function Home(){
         setPagActual(pageNumber)
     }
 
-
     console.log("HOME", allGames);
 
     useEffect(() => {
-          dispatch(getGames());
-      }, []);
+        dispatch(getGames());
+    }, []);
     return(
         <div>
             <Encabezado/>
