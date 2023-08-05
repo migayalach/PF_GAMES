@@ -1,4 +1,4 @@
-import { GET_GAMES } from "./action-type";
+import { GET_GAMES, GET_BY_ID} from "./action-type";
 
 const initialState = {
     users: [],
@@ -13,6 +13,7 @@ const initialState = {
     order: {},
     orders: [],
     reviews: [],
+    
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -22,6 +23,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 games: payload,
             };
+        
+            case GET_BY_ID:
+                return {
+                    ...state,
+                    games: payload,
+          };
         default: 
             return state;
     }
