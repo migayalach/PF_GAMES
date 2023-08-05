@@ -1,13 +1,14 @@
 import "./navbar.styles.css";
-
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 function Navbar() {
     return (
       <div className="search">
-        <form className="search-box">
+        {/* <form className="search-box">
           <input  placeholder="Buqueda" />
           <button>Buscar</button>
-        </form>
+        </form> */}
+        <SearchBar></SearchBar>
       </div>
     );
   }
