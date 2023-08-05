@@ -9,8 +9,8 @@ const CardList = ({ gamesList }) => {
         {gamesList?.map((game) => (
           <Card
           key={game.id}
-          name={game.name}
-          image={game.background_image}
+          name={game.nameGame}
+          image={game.image}
           />
         ))}
       </div>
