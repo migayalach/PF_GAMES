@@ -2,8 +2,9 @@ import { useSelector } from "react-redux"
 import { useState } from "react";
 import CardList from "../../components/cardList/cardList";
 import Encabezado from "../encabezado/encabezado";
-import NavBar from "../navBar/navBar";
+import NavBar from "../../components/NavBar/NavBar";
 import Paginado from "../../components/Paginado/Paginado";
+import Carousel from '../../components/Carousel/Carousel';
 import "./home.styles.css"
 
 export default function Home(){
@@ -25,6 +26,7 @@ export default function Home(){
         <div>
             <Encabezado/>
             <NavBar/>
+            {/* <Carousel/> */}
             <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
             <CardList gamesList={juegosActuales}/>
         </div>
