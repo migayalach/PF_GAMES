@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 20px;
+    transition: 1s;
+    perspective: 1000px;
+    width: 500px; /* Ajusta el tamaño de acuerdo a tus necesidades */
+    height: 500px;
+  }

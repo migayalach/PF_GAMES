@@ -13,6 +13,7 @@ export function getGames(){
             type: "GET_GAMES",
             payload:responce.data
         })
+        
     };
 }
 
