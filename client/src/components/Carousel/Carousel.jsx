@@ -1,7 +1,6 @@
 import React from 'react'
-import style from '../Carousel/Carousel.module.css'
-
-
+import style from './Carousel.module.css'
+import { useState, useEffect } from 'react'
 const Carousel = () => {
 
   const images = [
