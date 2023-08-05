@@ -11,3 +11,13 @@ export const getGames = () => {
         }
     }
 }; 
+
+export function getById(id){
+    return async function(dispatch){
+        const responce = await axios(`http://localhost:3001/games/${id}`);
+        return dispatch ({
+            type: "GET_BY_ID",
+            payload: responce.data
+        })
+    };
+}
