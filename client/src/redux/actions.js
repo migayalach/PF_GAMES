@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_GAMES} from "./action-type"
+import {GET_GAMES, GET_GENDERS} from "./action-type"
 
 export const getGames = () => {
     return async function (dispatch) {
@@ -10,11 +10,22 @@ export const getGames = () => {
             console.log(error)
         }
     }
-}; 
+};
+
+export const getGenders = () => {
+    return async function (dispatch) {
+        try {
+            const { data } = await axios.get('/genders')
+            dispatch({ type: GET_GENDERS, payload: data })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
 export function getById(id){
     return async function(dispatch){
-        const responce = await axios(`http://localhost:3001/games/${id}`);
+        const responce = await axios(`/games/${id}`);
         return dispatch ({
             type: "GET_BY_ID",
             payload: responce.data
