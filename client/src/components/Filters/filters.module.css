@@ -1,0 +1,93 @@
+.filters {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0006;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgb(13, 58, 58);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.form label {
+  margin-top: 20px;
+}
+
+.form label input {
+  outline: none;
+  border: none;
+  width: 100%;
+  max-width: 200px;
+  height: 30px;
+  padding: 6px;
+  color: rgb(13, 58, 58);
+  font-size: 16px;
+  opacity: 0.6;
+  transition: all .3s linear;
+}
+
+.form label input:focus, .form label input:hover {
+  opacity: 1;
+}
+
+.form label input::placeholder {
+  color: rgb(13, 58, 58);
+}
+
+.form label select {
+  outline: none;
+  border: none;
+  width: 100%;
+  max-width: 220px;
+  height: 40px;
+  padding: 6px;
+  color: rgb(13, 58, 58);
+  font-size: 16px;
+  opacity: 0.6;
+  transition: all .3s linear;
+}
+
+.form label select:hover, .form label select:focus {
+  opacity: 1;
+}
+
+.filtPrice {
+  display: flex;
+  flex-direction: column;
+}
+
+.filtPrice p {
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.filtPrice div {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filtPrice div input {
+  width: 80px;
+}
+
+.btns {
+  width: 100%;
+  max-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
