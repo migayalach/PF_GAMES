@@ -4,12 +4,13 @@ import CardList from "../../components/cardList/cardList";
 import Encabezado from "../encabezado/encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Paginado from "../../components/Paginado/Paginado";
+import Filters from '../../components/Filters'
 import Carousel from '../../components/Carousel/Carousel';
 import "./home.styles.css"
 
 export default function Home(){
     const allGames = useSelector((state) => state.games)
-
+    const filtersActive = useSelector(state => state.filtersActive)
     const [pagActual, setPagActual] = useState(1);
     const [cantidadPorPag] = useState(10);
     const ultimoIndice = pagActual * cantidadPorPag
@@ -23,7 +24,8 @@ export default function Home(){
     console.log("HOME", allGames);
 
     return(
-        <div>
+        <div className="home-div">
+            {filtersActive ? <Filters /> : null}
             <Encabezado/>
             <NavBar/>
             {/* <Carousel/> */}
