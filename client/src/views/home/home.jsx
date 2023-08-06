@@ -26,7 +26,7 @@ export default function Home(){
         <div>
             <Encabezado/>
             <NavBar/>
-            {/* <Carousel/> */}
+            <Carousel/>
             <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
             <CardList gamesList={juegosActuales}/>
         </div>
