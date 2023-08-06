@@ -28,7 +28,7 @@ export default function Home(){
             {filtersActive ? <Filters /> : null}
             <Encabezado/>
             <NavBar/>
-            {/* <Carousel/> */}
+            <Carousel/>
             <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
             <CardList gamesList={juegosActuales}/>
         </div>
