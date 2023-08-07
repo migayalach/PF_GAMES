@@ -81,7 +81,7 @@ const createGame = async (
   });
   if (!created) return { error: "Game ya existe" }
   const gendersBD = await genders.findAll({
-    where: { idGenders: idsGenders }
+    where: { nameGenders: idsGenders }
   })
   await newGame.setGenders(gendersBD);
   const totalGames = await game.findAll({

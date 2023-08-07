@@ -11,6 +11,7 @@ export default function Encabezado() {
         <h2>GAMING SHOP</h2>
       </div>
       <nav >
+        <NavLink to="/formGame" style={{ textDecoration: "none", color: "black" }}>CREAR JUEGO</NavLink>
         <a className={styles.encab}>
         <NavLink to="/soporte" style={{ textDecoration: "none", color: "black" }} >SOPORTE</NavLink>
         </a>
