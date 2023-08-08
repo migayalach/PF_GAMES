@@ -2,30 +2,32 @@ import { useState, useEffect } from "react";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { countTotal, deleteItem, deleteProducts } from "../../redux/actions";
 import estilo from './Carrito.module.css'
 
 const Cart = () => {
     const dispatch = useDispatch()
     const [active, setActive] = useState(false);
-    let productos = useSelector((state) => state.cart)
-    let total = useSelector((state) => state.cartTotal)
+    const productos = useSelector((state) => state.cart)
+    const total = useSelector((state) => state.cartTotal)
     const [countProducts, setCountProducts] = useState(0);
 
+    console.log("CARRITOOO", productos, total	);
 
     useEffect(() => {
-        const newTotal = productos.reduce((acc, product) => acc + product.price, 0);
+        const newTotal = productos?.reduce((acc, product) => acc + product.cost, 0);
+        dispatch(countTotal(newTotal))
         setCountProducts(productos.length)
     }, [productos]);
 
 
     const deleteProductCart = (product) => {
-        //dispatch(deleteItem(product.idPlan))
+        dispatch(deleteItem(product.idGame))
     };
 
     const clearCart = () => {
-        // dispatch(deleteProducts());
-        // setTotal(0);
-        // setCountProducts(0);
+        dispatch(deleteProducts());
+        setCountProducts(0);
     }
 
     return (

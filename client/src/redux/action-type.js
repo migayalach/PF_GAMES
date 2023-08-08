@@ -7,3 +7,7 @@ export const FILTERS_ACTIVE = "FILTERS_ACTIVE";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_COST = "ORDER_COST";
 export const POST_GAME = "POST_GAME";
+export const DELETE_ITEM = "DELETE_ITEM"
+export const DELETE_PRODUCTS = "DELETE_PRODUCTS"
+export const ADD_PRODUCTS = "ADD_PRODUCTS" 
+export const COUNT_TOTAL = "COUNT_TOTAL"

@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./detail.style.css"
 import { useDispatch, useSelector } from "react-redux";
-import { getById } from "../../redux/actions";
-
+// import { addProducts, getById } from "../../redux/actions";
+ 
 const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -11,6 +11,10 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getById(id));
   }, [dispatch, id]);
+
+  // const handleAdd = (plan) => {
+  //   dispatch(addProducts(plan))
+  // }
 
   const game = useSelector((state) => state.game);
 
@@ -31,7 +35,7 @@ const Detail = () => {
           </ul>
         </div>
       )}
-
+      {/* <button onClick={() => handleAdd(game)}>AGREGAR A CARRITO</button> */}
       <Link to="/"> 
         <button>Home</button>
       </Link>
