@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./detail.style.css"
 import { useDispatch, useSelector } from "react-redux";
-// import { addProducts, getById } from "../../redux/actions";
+import { addProducts, getById } from "../../redux/actions";
  
 const Detail = () => {
   const { id } = useParams();
