@@ -8,6 +8,10 @@ import {
   ORDER_NAME,
   ORDER_COST,
   POST_GAME,
+  DELETE_ITEM,
+  DELETE_PRODUCTS,
+  ADD_PRODUCTS,
+  COUNT_TOTAL
 } from "./action-type";
 
 const initialState = {
@@ -28,6 +32,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
+  console.log("DESDE REDUCER: ", payload);
   switch (type) {
     case POST_GAME:
       return {
@@ -83,6 +88,31 @@ const rootReducer = (state = initialState, { type, payload }) => {
           return 0;
         }),
       };
+    case ADD_PRODUCTS:
+      return{
+        ...state,
+        cart: [...state.cart ,payload]
+      }
+    case COUNT_TOTAL:
+      return{
+        ...state,
+        cartTotal: payload
+      }
+    case DELETE_ITEM:
+      const index = state.cart.findIndex((producto) => producto.idGame === payload.idGame);
+      if (index !== 1) {
+        const newCart = [...state.cart];
+        newCart.splice(index, 1);
+        return {
+          ...state,
+          cart: newCart
+        };
+      }
+    case DELETE_PRODUCTS:
+      return {
+        ...state,
+        cart : []
+      }
     default:
       return state;
   }
