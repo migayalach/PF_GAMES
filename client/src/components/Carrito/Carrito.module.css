@@ -81,6 +81,7 @@
     align-items: center;
     padding: 20px 0;
     gap: 20px;
+    color: #000;
   }
   
   .cartTotal h3 {

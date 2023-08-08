@@ -10,6 +10,10 @@ import {
   ORDER_NAME,
   ORDER_COST,
   POST_GAME,
+  DELETE_ITEM,
+  DELETE_PRODUCTS,
+  ADD_PRODUCTS,
+  COUNT_TOTAL
 } from "./action-type";
 
 export const postGame = (game) => {
@@ -109,3 +113,35 @@ export function orderByCost(orden) {
     payload: orden,
   };
 }
+
+export const addProducts = (payload) => {
+  return {
+    type: ADD_PRODUCTS,
+    payload
+  }
+}
+
+
+
+export const deleteItem = (payload) => {
+  return {
+    type: DELETE_ITEM,
+    payload
+  }
+}
+
+export const deleteProducts = () => {
+  return {
+    type: DELETE_PRODUCTS,
+  }
+}
+
+export const countTotal = (payload) => {
+  return{
+    type: COUNT_TOTAL,
+    payload
+  }
+}
+
+
+
