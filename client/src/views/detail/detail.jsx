@@ -15,27 +15,26 @@ const Detail = () => {
   const game = useSelector((state) => state.game);
 
   return (
-    <div className="container">
-      {game && (
-        <div key={game.id}>
-          <h1>{game?.nameGame}</h1>
-          <img src={game?.image} alt="imagen allGame"/>
-          <p>{game?.description}</p>
-          <p>{game?.cost}</p>
-          <ul>
-            {
-              game.genders?.map(gm => (
-                <li>{gm.nameGenders}</li>
-              ))
-            }
-          </ul>
-        </div>
-      )}
+    <div className="container" style={{ backgroundImage: `url(${game?.image})` }}>
+  <Link to="/"> 
+  <div className="home-button"></div> 
+  </Link>
 
-      <Link to="/"> 
-        <button>Home</button>
-      </Link>
+  {game && (
+    <div className="content" key={game.id}>
+      <h1>{game?.nameGame}</h1>
+      <img src={game?.image} alt="imagen allGame"/>
+      <p>{game?.description}</p>
+      <p>{game?.cost}</p>
+      <ul>
+        {game.genders?.map(gm => (
+          <li>{gm.nameGenders}</li>
+        ))}
+      </ul>
     </div>
+  )}
+</div>
+
   )
 }
 
