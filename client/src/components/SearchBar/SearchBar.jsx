@@ -18,6 +18,14 @@ const SearchBar = () => {
         setName(event.target.value);
     };
 
+    if (busqueda === true && juegos.length === 0) {
+        Swal.fire({
+          text: "No hay resultados de tu busqueda :c",
+          icon: "info",
+          confirmButtonText: "ok",
+        });
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         setName("");
