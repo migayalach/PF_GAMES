@@ -1,23 +1,6 @@
 const axios = require("axios");
 const { URL_GAME, API_KEY } = require("./url");
 
-const newArrGames = (arr) =>
-  arr.map(
-    ({
-      name_original,
-      background_image,
-      description_raw,
-      genres
-    }) => {
-      return {
-        name: name_original,
-        background_image,
-        description_raw,
-        genres
-      };
-    }
-  );
-
 const deleteTagsHTML = (texto) => {
   // Expresión regular para buscar etiquetas HTML
   const regex = /<[^>]+>/g;
@@ -45,33 +28,7 @@ const newGameId = async (idGame) => {
   return newGame;
 }
 
-//arreglar y que traiga todas las coinsidencias
-const searchApi = (nombre, arr) => {
-  return arr.filter(({ name }) => name == nombre);
-};
-
-const resCreateGame = (
-  { idPlatforms, nameGame, image, cost, description },
-  namePlatf,
-  gender
-) => {
-  console.log(
-    { idPlatforms, nameGame, image, cost, description },
-    namePlatf,
-    gender
-  );
-  const obj = {
-    namePlatf,
-    nameGame,
-    image,
-    cost,
-    nameGender: gender,
-    description,
-  };
-  return [obj];
-};
-
-module.exports = { newArrGames, searchApi, resCreateGame, newGameId };
+module.exports = { newGameId };
 
 // https://api.rawg.io/api/platforms?key=fb314556f97a46c58e30e1230142ef30
 // https://api.rawg.io/api/games?dates=2019-09-01%2C2019-09-30&key=fb314556f97a46c58e30e1230142ef30&page=2&platforms=18%2C1%2C7
