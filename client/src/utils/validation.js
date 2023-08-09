@@ -1,5 +1,4 @@
 const validation = (data) => {
-  console.log(data.costo);
   const errors = {};
 
   // NOMBRE
@@ -35,11 +34,11 @@ const validation = (data) => {
   }
 
   // LINK
-  if (data.imagen.length === 0) {
-    errors.imagen = `Por favor ingrese una direccion URL para poder guardar la referencia`;
-  } else if (!/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)/.test(data.imagen)) {
-    errors.imagen = `El enlace no cumple los requirimientos solicitados, por favor verifique lo introducido`;
-  }
+  // if (data.imagen.length === 0) {
+  //   errors.imagen = `Por favor ingrese una direccion URL para poder guardar la referencia`;
+  // } else if (!/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)/.test(data.imagen)) {
+  //   errors.imagen = `El enlace no cumple los requirimientos solicitados, por favor verifique lo introducido`;
+  // }
 
   if (!/^(?!0*(\.0+)?$)(?!-)[0-9]+(\.[0-9]{1,2})?$/.test(data.costo)) {
     errors.costo = "El precio debe ser mayor a 0";

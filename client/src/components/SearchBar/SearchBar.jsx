@@ -11,8 +11,6 @@ const SearchBar = () => {
     const dispatch = useDispatch();
     const juegos = useSelector((state) => state.games)
 
-    console.log("SEARCH", juegos);
-
     const handleChange = (event) => {
         event.preventDefault();
         setName(event.target.value);
@@ -20,9 +18,9 @@ const SearchBar = () => {
 
     if (busqueda === true && juegos.length === 0) {
         Swal.fire({
-          text: "No hay resultados de tu busqueda :c",
-          icon: "info",
-          confirmButtonText: "ok",
+            text: "No hay resultados de tu busqueda :c",
+            icon: "info",
+            confirmButtonText: "ok",
         });
     }
 
@@ -31,9 +29,9 @@ const SearchBar = () => {
         setName("");
         if (!name.length) {
             Swal.fire({
-              text: "Debes ingresar un parametro de busqueda.",
-              icon: "info",
-              confirmButtonText: "ok",
+                text: "Debes ingresar un parametro de busqueda.",
+                icon: "info",
+                confirmButtonText: "ok",
             });
         } else{
             dispatch(getGameByName(name));

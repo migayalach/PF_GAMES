@@ -1,5 +1,4 @@
 import axios from "axios";
-import { newObj } from "../utils/actionClear";
 import {
   GET_GAMES,
   GET_GAME_BY_NAME,
@@ -16,13 +15,23 @@ import {
   COUNT_TOTAL
 } from "./action-type";
 
+const apiKeyIBB = process.env.REACT_APP_API_KEY_IBB;
+
 export const postGame = (game) => {
-  console.log(game);
+  const formData = new FormData();
+  formData.append("image", game.imagen);
   return async function (dispatch) {
-    const obj = newObj(game);
     try {
+      const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${apiKeyIBB}`, formData);
+      const obj = {
+        namesGenders: game.genero,
+        nameGame: game.nombre,
+        image: data.data.url,
+        cost: game.costo,
+        description: game.descripcion
+      }
       const createGame = await axios.post(
-        `http://localhost:3001/gaming/games`,
+        "/games",
         obj
       );
       const newGames = createGame.data;
