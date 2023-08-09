@@ -78,7 +78,7 @@ const Cart = () => {
                                     Vaciar Carrito
                                 </button>
 
-                                <Link to={`/paycheck`}>
+                                <Link to={`/PayPage`}>
                                     <button className={estilo.btnClearAll}>
                                         Pasar a pagar
                                     </button>
