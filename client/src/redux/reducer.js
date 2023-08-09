@@ -32,12 +32,11 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
-  console.log("DESDE REDUCER: ", payload);
   switch (type) {
     case POST_GAME:
       return {
         ...state,
-        games: [...state.games, payload],
+        games: payload,
       };
 
     case GET_GAMES:

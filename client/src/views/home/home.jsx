@@ -20,9 +20,7 @@ export default function Home(){
     const paginado = (pageNumber) => {
         setPagActual(pageNumber)
     }
-
-    console.log("HOME", allGames);
-
+    
     return(
         <div className="home-div">
             {filtersActive ? <Filters /> : null}

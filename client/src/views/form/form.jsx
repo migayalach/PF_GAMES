@@ -1,24 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 import { postGame } from "../../redux/actions";
 
 const Form = () => {
   const dispatch = useDispatch();
-  useEffect(() => {}, []);
+  const navigate = useNavigate();
 
   const resGenders = useSelector(({ genres }) => genres);
   const [data, setData] = useState({
     nombre: "",
     descripcion: "",
-    imagen: "",
+    imagen: null,
     genero: [],
     costo: 0,
   });
   const [errors, setErrors] = useState({});
 
+  const handleImgChange = (event) => {
+    setData({
+      ...data,
+      imagen: event.target.files[0]
+    });
+  }
+
   const handleChange = (event) => {
-    console.log(event.target.value);
     if (event.target.name === "genero") {
       let aux = event.target.value;
       if (aux.length > 0) {
@@ -51,9 +58,9 @@ const Form = () => {
   };
 
   const handleSubmit = (event) => {
-    dispatch(postGame(data))
     event.preventDefault();
-    window.location.href = "/";
+    dispatch(postGame(data))
+    navigate('/');
   };
 
   return (
@@ -83,10 +90,9 @@ const Form = () => {
         <br />
         <label htmlFor="imagen">Imagen: </label>
         <input
-          type="text"
+          type="file"
           name="imagen"
-          value={data.imagen}
-          onChange={handleChange}
+          onChange={handleImgChange}
         />
         {errors.imagen && <p>{errors.imagen}</p>}
         <br />

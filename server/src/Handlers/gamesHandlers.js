@@ -43,7 +43,7 @@ const getGameBySearch = async(req, res) => {
 }
 
 const postGame = async (request, response) => {
-  const { idsGenders, nameGame, image, cost, description } =
+  const { namesGenders, nameGame, image, cost, description } =
     request.body;
   try {
     const newGame = await createGame(
@@ -51,7 +51,7 @@ const postGame = async (request, response) => {
       image,
       cost,
       description,
-      idsGenders
+      namesGenders
     );
     response.status(SUCCESS).json(newGame);
   } catch (error) {

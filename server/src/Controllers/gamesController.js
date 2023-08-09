@@ -68,7 +68,7 @@ const createGame = async (
   image,
   cost,
   description,
-  idsGenders
+  namesGenders
 ) => {
   const [newGame, created] = await game.findOrCreate({
     where: { nameGame },
@@ -81,7 +81,7 @@ const createGame = async (
   });
   if (!created) return { error: "Game ya existe" }
   const gendersBD = await genders.findAll({
-    where: { nameGenders: idsGenders }
+    where: { nameGenders: namesGenders }
   })
   await newGame.setGenders(gendersBD);
   const totalGames = await game.findAll({
