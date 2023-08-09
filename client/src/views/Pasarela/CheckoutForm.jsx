@@ -2,7 +2,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"; /
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import estilo from './Prueba.module.css'
+import estilo from './CheckoutForm.module.css'
+import { deleteProducts, postCheckoutId } from "../../redux/actions";
 
 const CheckoutForm = ({ productos }) => {
     //CONFIG Stripe
@@ -21,7 +22,6 @@ const CheckoutForm = ({ productos }) => {
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card: elements.getElement(CardElement)
-
         })
         //-------FIN-------- 
         console.log("BANDER CHECKOUT", paymentMethod);
@@ -29,11 +29,26 @@ const CheckoutForm = ({ productos }) => {
         //-------------LOGICA PAGO--------------   
 
         if (!error) {
-            Swal.fire({
-                title: 'TESTEANDO',
-                text: "ESTO ES UNA PRUEBA",
-                icon: "info"
-            })
+            
+            const {id} = paymentMethod;
+            let mont = total.toFixed();
+            let objPay = {
+                id,
+                amount: mont * 100
+            }
+            dispatch(postCheckoutId(objPay));
+            dispatch(deleteProducts());
+            
+            //---------PENDIENTE---------
+            // productos.forEach(producto => {
+            //     dispatch(postCompraUser({
+            //         idUser: user,
+            //         idPlan: producto.idPlan,
+            //         amount: mont
+            //     }));
+            // });
+            //---------PENDIENTE---------
+
         } else {
             Swal.fire({
                 title: 'Error',
@@ -46,17 +61,16 @@ const CheckoutForm = ({ productos }) => {
     }
     //Fin método handle
     return (
-        <div style={{ textAlign: 'center', display: "flex", justifyContent: "center" }}>
+        <div className={estilo.contenedorPadre}>
             <div>
-                <form style={{ display: "flex", flexDirection: "column"}} className="card card-body" onSubmit={event => handleSubmit(event)}>
+                <form className={estilo.formPay} onSubmit={event => handleSubmit(event)}>
                     <h2 htmlFor="">Completa los datos para la factura</h2>
                     <label>Nombre del comprador</label>
                     <input type="text" name="to_name" placeholder="Tu nombre aquí" />
                     <label>Email al cual enviar factura</label>
-                    <input style={{height: "25px"}} type="email" name="user_email" placeholder="Tu correo electronico aquí" />
-
+                    <input className={estilo.input} type="email" name="user_email" placeholder="Tu correo electronico aquí" />
                     <h3 className="text-center">TOTAL: $ {total}</h3>
-                    <div style={{borderStyle: "solid", borderColor: "black", backgroundColor: "gold"}}>
+                    <div className={estilo.subContenedor}>
                         <CardElement className="form-control" />
                     </div>
                     <button className={estilo.btn} >

@@ -9,6 +9,7 @@ const levelModel = require("../Models/level");
 const userInfoModel = require("../Models/userInfo");
 const saleModel = require("../Models/sale");
 const detailModel = require("../Models/detail");
+const CompraModel = require("../Models/Compra");
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
@@ -24,6 +25,7 @@ levelModel(sequelize);
 userInfoModel(sequelize);
 saleModel(sequelize);
 detailModel(sequelize);
+CompraModel(sequelize);
 
 const { genders, game, level, userInfo, sale, detail } =
   sequelize.models;
@@ -44,5 +46,9 @@ detail.belongsTo(sale, { foreignKey: "idSale" });
 
 game.hasMany(detail, { foreignKey: "idGame" });
 detail.belongsTo(game, { foreignKey: "idGame" });
+
+userInfo.belongsToMany(game, { through: 'Compra'});
+game.belongsToMany(userInfo, { through: 'Compra'});
+
 
 module.exports = { sequelize, ...sequelize.models };
