@@ -184,7 +184,9 @@
   }
   
   .btn {
-    background-image: url(../../assets/icons8-bolsa-de-compras-40.png);
+    background-image: url(../../assets/Diseño\ sin\ título\ \(12\).png);
+    background-size: cover;
+    background-position: center;
     width: 40px;
     height: 40px;
   }
