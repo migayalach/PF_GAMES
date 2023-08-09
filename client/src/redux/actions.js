@@ -13,8 +13,12 @@ import {
   DELETE_ITEM,
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
-  COUNT_TOTAL
+  COUNT_TOTAL,
+  POST_CHECKOUT_ID,
+  POST_COMPRA_USER,
+  GET_COMPRAS_USER
 } from "./action-type";
+import Swal from "sweetalert2";
 
 export const postGame = (game) => {
   console.log(game);
@@ -84,11 +88,11 @@ export function getFilter(gender = "", min = 0, max = 0) {
     const response =
       gender && min && max
         ? await axios(
-            `/filters?gender=${gender}&minPrice=${min}&maxPrice=${max}`
-          )
+          `/filters?gender=${gender}&minPrice=${min}&maxPrice=${max}`
+        )
         : gender && !min && !max
-        ? await axios(`/filters?gender=${gender}`)
-        : await axios(`/filters?minPrice=${min}&maxPrice=${max}`);
+          ? await axios(`/filters?gender=${gender}`)
+          : await axios(`/filters?minPrice=${min}&maxPrice=${max}`);
     return dispatch({
       type: GET_FILTER,
       payload: response.data,
@@ -137,11 +141,69 @@ export const deleteProducts = () => {
 }
 
 export const countTotal = (payload) => {
-  return{
+  return {
     type: COUNT_TOTAL,
     payload
   }
 }
 
+export const postCheckoutId = (payload) => async (dispatch) => {
+  try {
+    const { data } = await axios.post("/compras", payload)
+    Swal.fire({
+      title: 'COMPRADO!',
+      text: 'Su compra fue éxitosa',
+      icon: 'success',
+      confirmButtonText: 'entendido'
+    })
+    return dispatch({
+      type: POST_CHECKOUT_ID,
+      payload: data
+    })
+  } catch (error) {
+    Swal.fire({
+      title: 'ERROR AL COMPRAR!',
+      text: error.response.data.message,
+      icon: 'error',
+      confirmButtonText: 'entendido'
+    })
+  }
+}
+
+export const postCompraUser = (payload) => async (dispatch) => {
+  try {
+    const { data } = await axios.post("/Compras/Comprar", payload)
+    return dispatch({
+      type: POST_COMPRA_USER,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("Desde postCompraUser", error);
+    Swal.fire({
+      title: 'ERROR AL REGISTRAR COMPRA!',
+      text: error.response.data.message,
+      icon: 'error',
+      confirmButtonText: 'entendido'
+    })
+  }
+}
+
+export const getComprasUser = (payload) => async (dispatch) => {
+  try {
+    const { data } = await axios(`/Compras?idUser=${payload}`)
+    return dispatch({
+      type: GET_COMPRAS_USER,
+      payload: data
+    });
+  } catch (error) {
+    console.log("Desde getCompraUser", error);
+    Swal.fire({
+      title: 'No se encontraron compras para este usuario',
+      text: "Este usuario no registra compras",
+      icon: "info",
+      confirmButtonText: 'entendido'
+    })
+  }
+}
 
 

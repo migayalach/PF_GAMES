@@ -9,7 +9,9 @@ const detailRouter = require("./detailRoute");
 const gendersRoute = require("./gendersRoute");
 const gamesRouter = require("./gamesRoute");
 const filtersRoute = require("./filtersRoute");
+const compraRoute = require("./comprasRoute")
 
+mainRouter.use("/compras", compraRoute)
 mainRouter.use("/level", levelRouter);             //OK
 mainRouter.use("/user", userRouter);               //OK
 mainRouter.use("/sale", saleRouter);               //OK

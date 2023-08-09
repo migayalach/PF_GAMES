@@ -1,0 +1,27 @@
+.contenedorPadre{
+    display: flex; 
+    text-align: center; 
+    justify-content: center; 
+}
+
+.formPay{
+    display: flex; 
+    flex-direction: column;
+}
+
+.input{
+    height: 25px;
+}
+
+.subContenedor{
+    border-style: solid; 
+    border-color: black; 
+    background-color: gold;
+}
+
+.btn{
+    background-color: rgba(16, 107, 160, 0.87);
+    width: 200px;
+    height: 30px;
+    cursor: pointer;
+  }

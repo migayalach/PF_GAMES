@@ -11,7 +11,10 @@ import {
   DELETE_ITEM,
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
-  COUNT_TOTAL
+  COUNT_TOTAL,
+  POST_CHECKOUT_ID,
+  POST_COMPRA_USER,
+  GET_COMPRAS_USER,
 } from "./action-type";
 
 const initialState = {
@@ -29,6 +32,7 @@ const initialState = {
   order: {},
   orders: [],
   reviews: [],
+  pagos: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -112,6 +116,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         cart : []
+      }
+    case POST_CHECKOUT_ID:
+      return{
+        ...state,
+        pagos: payload
+      }
+    case POST_COMPRA_USER:
+      return{
+        ...state,
+        pagos: payload,
+      }
+    case GET_COMPRAS_USER:
+      return{
+        ...state,
+        pagos: payload
       }
     default:
       return state;
