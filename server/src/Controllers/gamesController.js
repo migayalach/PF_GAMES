@@ -4,21 +4,18 @@ const {
   GenderGames,
 } = require("../DataBase/dataBase");
 const { Op } = require("sequelize");
-const axios = require("axios");
-const { API_KEY, URL_GAMES, URL_GAME } = require("../Utils/url");
+const { URL_GAMES } = require("../Utils/url");
 const {
-  newArrGames,
-  searchApi,
-  resCreateGame,
   newGameId
 } = require("../Utils/gamesUtils");
+const { getApi } = require('../Utils/getApi');
 
 const allGetGames = async () => {
   const resultDBB = await game.findAll({
     include: [genders],
   });
   if (resultDBB.length > 0) return resultDBB;
-  const apiResult = (await axios.get(`${URL_GAMES}`)).data.results;
+  const apiResult = await getApi(URL_GAMES);
   const apiGames = await Promise.all(apiResult.map(async (game) => {
     const gameOrigin = await newGameId(game.id);
     return gameOrigin;
@@ -58,8 +55,6 @@ const getGamesId = async (idGame, typeData) => {
   const gameById = await game.findByPk(idGame, {
     include: [genders]
   });
-  // LIMPIAR RESPUESTA TANTO BASE DE DATOS COMO API
-  // return newArrGames([responseId]);
   return gameById;
 };
 
