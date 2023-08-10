@@ -11,7 +11,8 @@ import {
   DELETE_ITEM,
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
-  COUNT_TOTAL
+  COUNT_TOTAL,
+  GAMES_BY_GENRE
 } from "./action-type";
 
 const initialState = {
@@ -20,7 +21,7 @@ const initialState = {
   games: [],
   filtersActive: false, // Para mostrar los filtros
   genres: [],
-  searched: [],
+  gamesByGenres: {},
   addedgame: {},
   currentPage: 1,
   error: {},
@@ -68,6 +69,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filtersActive: !state.filtersActive,
+      };
+    case GAMES_BY_GENRE:
+      return {
+        ...state,
+        gamesByGenres: { ...state.gamesByGenres, [payload.name.toLowerCase()]: payload.list }
       };
     case ORDER_NAME:
       return {
