@@ -12,6 +12,7 @@ import {
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
   COUNT_TOTAL,
+  GAMES_BY_GENRE,
   POST_CHECKOUT_ID,
   POST_COMPRA_USER,
   GET_COMPRAS_USER,
@@ -23,7 +24,7 @@ const initialState = {
   games: [],
   filtersActive: false, // Para mostrar los filtros
   genres: [],
-  searched: [],
+  gamesByGenres: {},
   addedgame: {},
   currentPage: 1,
   error: {},
@@ -72,6 +73,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         filtersActive: !state.filtersActive,
+      };
+    case GAMES_BY_GENRE:
+      return {
+        ...state,
+        gamesByGenres: { ...state.gamesByGenres, [payload.name.toLowerCase()]: payload.list }
       };
     case ORDER_NAME:
       return {

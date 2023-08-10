@@ -13,6 +13,7 @@ import {
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
   COUNT_TOTAL,
+  GAMES_BY_GENRE,
   POST_CHECKOUT_ID,
   POST_COMPRA_USER,
   GET_COMPRAS_USER
@@ -111,6 +112,17 @@ export function getFilter(gender = "", min = 0, max = 0) {
 
 export function filtersActive() {
   return { type: FILTERS_ACTIVE };
+}
+
+export function gamesByGenders(genre) {
+  return async function (dispatch) {
+    const response = await axios(`/filters?gender=${genre}`);
+    const listGamesImages = response.data.map(gm => gm.image);
+    return dispatch({
+      type: GAMES_BY_GENRE,
+      payload: { name: genre, list: listGamesImages }
+    });
+  }
 }
 
 export function orderByName(orden) {

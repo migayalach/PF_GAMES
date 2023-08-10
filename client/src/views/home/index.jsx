@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux"
 import { useState } from "react";
 import CardList from "../../components/cardList/cardList";
-import Encabezado from "../encabezado/encabezado";
+import Encabezado from "../encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Paginado from "../../components/Paginado/Paginado";
 import Filters from '../../components/Filters'
-import Carousel from '../../components/Carousel/Carousel';
 import "./home.styles.css"
 
 export default function Home(){
@@ -26,9 +25,8 @@ export default function Home(){
             {filtersActive ? <Filters /> : null}
             <Encabezado/>
             <NavBar/>
-            <Carousel/>
-            <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
             <CardList gamesList={juegosActuales}/>
+            <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
         </div>
     )
 

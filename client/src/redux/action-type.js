@@ -11,6 +11,10 @@ export const DELETE_ITEM = "DELETE_ITEM"
 export const DELETE_PRODUCTS = "DELETE_PRODUCTS"
 export const ADD_PRODUCTS = "ADD_PRODUCTS" 
 export const COUNT_TOTAL = "COUNT_TOTAL"
+
+// Arrays para carruseles
+export const GAMES_BY_GENRE = "GAMES_BY_GENRE";
+
 export const POST_CHECKOUT_ID = "POST_CHECKOUT_ID"
 export const POST_COMPRA_USER = "POST_COMPRA_USER"
 export const GET_COMPRAS_USER = "GET_COMPRAS_USER"

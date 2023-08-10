@@ -43,6 +43,10 @@
   color: #fff
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   padding: 10px 20px;
   font-size: 1rem;
