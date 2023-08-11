@@ -21,11 +21,12 @@ export default function Home(){
         setPagActual(pageNumber)
     }
 
-    console.log("HOME", allGames);
+    // console.log("HOME", allGames);
 
     return(
         <div className="home-div">
             {filtersActive ? <Filters /> : null}
+            
             <Encabezado/>
             <NavBar/>
             <Carousel/>
@@ -34,4 +35,4 @@ export default function Home(){
         </div>
     )
 
-}; 
+};
