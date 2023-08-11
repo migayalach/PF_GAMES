@@ -24,7 +24,6 @@ const CheckoutForm = ({ productos }) => {
             card: elements.getElement(CardElement)
         })
         //-------FIN-------- 
-        console.log("BANDER CHECKOUT", paymentMethod);
 
         //-------------LOGICA PAGO--------------   
 

@@ -5,7 +5,6 @@ import estilo from "./PayPage.module.css"
 
 const Pay = () => {
     const productos = useSelector((state) => state.cart)
-    console.log("BANDERA PAYPAGE", productos); 
     return (
         <div className={estilo.contenedorPadre}>
           <h1>PRODUCTOS SELECCIONADOS: </h1>

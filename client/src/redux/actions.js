@@ -18,6 +18,7 @@ import {
   POST_COMPRA_USER,
   GET_COMPRAS_USER,
   CHECK_USER,
+  GET_LEVEL_USER
 } from "./action-type";
 import Swal from "sweetalert2";
 
@@ -239,4 +240,22 @@ export const checkUser = (nameUser, email) => {
       console.log("hay error");
     }
   };
+};
+
+export const getLevelUser = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get("/level");
+    return dispatch(
+      {
+        type: GET_LEVEL_USER,
+        payload: data
+      });
+  } catch (error) {
+    Swal.fire({
+      title: 'ERROR AL TRAER NIVELES DE USUARIO!',
+      text: error.response.data.message,
+      icon: 'error',
+      confirmButtonText: 'entendido'
+    })
+  }
 };
