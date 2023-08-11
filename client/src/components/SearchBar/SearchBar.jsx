@@ -11,7 +11,7 @@ const SearchBar = () => {
     const dispatch = useDispatch();
     const juegos = useSelector((state) => state.games)
 
-    console.log("SEARCH", juegos);
+    // console.log("SEARCH", juegos);
 
     const handleChange = (event) => {
         event.preventDefault();
