@@ -17,6 +17,7 @@ import {
   POST_COMPRA_USER,
   GET_COMPRAS_USER,
   CHECK_USER,
+  GET_LEVEL_USER,
 } from "./action-type";
 
 const initialState = {
@@ -78,7 +79,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GAMES_BY_GENRE:
       return {
         ...state,
-        gamesByGenres: { ...state.gamesByGenres, [payload.name.toLowerCase()]: payload.list }
+        gamesByGenres: {
+          ...state.gamesByGenres,
+          [payload.name.toLowerCase()]: payload.list,
+        },
       };
     case ORDER_NAME:
       return {
@@ -99,47 +103,54 @@ const rootReducer = (state = initialState, { type, payload }) => {
         }),
       };
     case ADD_PRODUCTS:
-      return{
+      return {
         ...state,
-        cart: [...state.cart ,payload]
-      }
+        cart: [...state.cart, payload],
+      };
     case COUNT_TOTAL:
-      return{
+      return {
         ...state,
-        cartTotal: payload
-      }
+        cartTotal: payload,
+      };
     case DELETE_ITEM:
-      const index = state.cart.findIndex((producto) => producto.idGame === payload.idGame);
+      const index = state.cart.findIndex(
+        (producto) => producto.idGame === payload.idGame
+      );
       if (index !== 1) {
         const newCart = [...state.cart];
         newCart.splice(index, 1);
         return {
           ...state,
-          cart: newCart
+          cart: newCart,
         };
       }
     case DELETE_PRODUCTS:
       return {
         ...state,
-        cart : []
-      }
+        cart: [],
+      };
     case POST_CHECKOUT_ID:
-      return{
-        ...state,
-        pagos: payload
-      }
-    case POST_COMPRA_USER:
-      return{
+      return {
         ...state,
         pagos: payload,
-      }
-    case GET_COMPRAS_USER:
-      return{
+      };
+    case POST_COMPRA_USER:
+      return {
         ...state,
-        pagos: payload
-      }
+        pagos: payload,
+      };
+    case GET_COMPRAS_USER:
+      return {
+        ...state,
+        pagos: payload,
+      };
     case CHECK_USER:
       return { ...state, levelUser: payload };
+    case GET_LEVEL_USER:
+      return {
+        ...state,
+        levelUser: payload,
+      };
     default:
       return state;
   }

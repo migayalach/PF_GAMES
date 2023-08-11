@@ -3,18 +3,15 @@ import imagen from "./logogamer2.jpg";
 
 import styles from "./encabezado.module.css";
 
-//***********************************
 import { useAuth0 } from "@auth0/auth0-react";
-import Login from "../../components/Login/Login";       //botones
-import Logout from "../../components/Logout/Logout";    //botones
-import Profile from "../../components/Profile/Profile"; //el que dispara todo
+import Login from "../../components/Login/Login";
+import Logout from "../../components/Logout/Logout";
+import Profile from "../../components/Profile/Profile";
 import { useSelector } from "react-redux";
-//***********************************
 
 export default function Encabezado() {
   const aux = useSelector((state) => state.levelUser);
-  console.log(aux);
-  const acceso = aux.access;
+  const acceso = aux?.access;
 
   const { isAuthenticated, isLoading } = useAuth0();
   if (isLoading) return <h1>Cargando ................</h1>;

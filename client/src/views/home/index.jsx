@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { useState } from "react";
 import CardList from "../../components/cardList/cardList";
-import Encabezado from "../encabezado";
+import Encabezado from "../encabezado/encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Paginado from "../../components/Paginado/Paginado";
 import Filters from '../../components/Filters'

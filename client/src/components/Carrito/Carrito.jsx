@@ -12,8 +12,6 @@ const Cart = () => {
     const total = useSelector((state) => state.cartTotal)
     const [countProducts, setCountProducts] = useState(0);
 
-    console.log("CARRITOOO", productos, total	);
-
     useEffect(() => {
         const newTotal = productos?.reduce((acc, product) => acc + product.cost, 0);
         dispatch(countTotal(newTotal))
