@@ -20,7 +20,7 @@ const Detail = () => {
 
   return (
     <div className="container" style={{ backgroundImage: `url(${game?.image})` }}>
-  <Link to="/"> 
+  <Link to="/videogames"> 
     <div className="home-button"></div>
   </Link>
 
@@ -35,7 +35,7 @@ const Detail = () => {
           <li>{gm.nameGenders}</li>
         ))}
       </ul>
-      <Link to="/"> 
+      <Link to="/videogames"> 
       <div 
         className="cart-button"
         onClick={() => handleAdd(game)}
