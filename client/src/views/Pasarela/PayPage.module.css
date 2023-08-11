@@ -1,21 +1,66 @@
+/* PayPage.module.css */
+
 .contenedorPadre {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    background-color: slategray;
-}
-
-
-.contenedorGame {
-    border-radius: 10%;
-    border-style: solid;
-    border-color: rgb(0, 0, 0);
-    background-color: #2a53ac;
-    height: 150px;
-}
-
-.descriptionGame {
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    background-image: url('../../assets/halo.sa.gif');
+    background-size: cover;
+    background-position: center;
+    width: 100vw; 
+    height: 100vh;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .contenedorGame {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #010102a0;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(255, 0, 0, 0.719);
+    width: 50%;
+  }
+  
+  .contenedorGame img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 20px;
+  }
+  
+  .descriptionGame {
+    font-size: 18px;
+    color: #fffdfd;
+  }
+
+  .iconClos {
+    background-image: url(../../assets/Diseño\ sin\ título\ \(17\).png);
+    background-size: cover;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  .Market {
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .Market h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
