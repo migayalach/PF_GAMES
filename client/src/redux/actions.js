@@ -13,11 +13,12 @@ import {
   DELETE_ITEM,
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
-  COUNT_TOTAL
+  COUNT_TOTAL,
+  CHECK_USER,
 } from "./action-type";
 
 export const postGame = (game) => {
-  console.log(game);
+  // console.log(game);
   return async function (dispatch) {
     const obj = newObj(game);
     try {
@@ -32,6 +33,19 @@ export const postGame = (game) => {
       });
     } catch (error) {
       alert("No se pudo crear");
+    }
+  };
+};
+
+export const checkUser = (nameUser, email) => {
+  return async function (dispatch) {
+    try {
+      const data = (
+        await axios.get(`/user?nameUser=${nameUser}&email=${email}`)
+      ).data;
+      dispatch({ type: CHECK_USER, payload: data });
+    } catch (error) {
+      console.log("hay error");
     }
   };
 };
@@ -117,31 +131,26 @@ export function orderByCost(orden) {
 export const addProducts = (payload) => {
   return {
     type: ADD_PRODUCTS,
-    payload
-  }
-}
-
-
+    payload,
+  };
+};
 
 export const deleteItem = (payload) => {
   return {
     type: DELETE_ITEM,
-    payload
-  }
-}
+    payload,
+  };
+};
 
 export const deleteProducts = () => {
   return {
     type: DELETE_PRODUCTS,
-  }
-}
+  };
+};
 
 export const countTotal = (payload) => {
-  return{
+  return {
     type: COUNT_TOTAL,
-    payload
-  }
-}
-
-
-
+    payload,
+  };
+};

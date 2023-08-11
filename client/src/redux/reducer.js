@@ -11,7 +11,8 @@ import {
   DELETE_ITEM,
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
-  COUNT_TOTAL
+  COUNT_TOTAL,
+  CHECK_USER,
 } from "./action-type";
 
 const initialState = {
@@ -29,10 +30,11 @@ const initialState = {
   order: {},
   orders: [],
   reviews: [],
+  levelUser: {},
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
-  console.log("DESDE REDUCER: ", payload);
+  // console.log("DESDE REDUCER: ", payload);
   switch (type) {
     case POST_GAME:
       return {
@@ -89,30 +91,36 @@ const rootReducer = (state = initialState, { type, payload }) => {
         }),
       };
     case ADD_PRODUCTS:
-      return{
+      return {
         ...state,
-        cart: [...state.cart ,payload]
-      }
+        cart: [...state.cart, payload],
+      };
     case COUNT_TOTAL:
-      return{
+      return {
         ...state,
-        cartTotal: payload
-      }
+        cartTotal: payload,
+      };
     case DELETE_ITEM:
-      const index = state.cart.findIndex((producto) => producto.idGame === payload.idGame);
+      const index = state.cart.findIndex(
+        (producto) => producto.idGame === payload.idGame
+      );
       if (index !== 1) {
         const newCart = [...state.cart];
         newCart.splice(index, 1);
         return {
           ...state,
-          cart: newCart
+          cart: newCart,
         };
       }
     case DELETE_PRODUCTS:
       return {
         ...state,
-        cart : []
-      }
+        cart: [],
+      };
+
+    case CHECK_USER:
+      return { ...state, levelUser: payload };
+
     default:
       return state;
   }
