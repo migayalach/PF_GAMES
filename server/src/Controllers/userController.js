@@ -1,12 +1,27 @@
-const { userInfo } = require("../DataBase/dataBase");
+const { userInfo, level } = require("../DataBase/dataBase");
 const { Op } = require("sequelize");
 const axios = require("axios");
 
-const createUser = async ({ idLevel, nameUser, email, password, image }) => {
-  console.log(idLevel, nameUser, email, password, image);
+//ANTES DE AUTH0
+// const createUser = async ({ idLevel, nameUser, email, password, image }) => {
+// const existsData = await userInfo.findOne({ where: { email } });
+// if (!existsData) {
+//   return await userInfo.create({ idLevel, nameUser, email, password, image });
+// }
+// throw Error(`El email: ${email}, ya existe`);
+// };
+
+//CON AUTH0
+const createUser = async (nameUser, email) => {
   const existsData = await userInfo.findOne({ where: { email } });
   if (!existsData) {
-    return await userInfo.create({ idLevel, nameUser, email, password, image });
+    const cantRegister = await userInfo.count();
+    if (cantRegister === 0) {
+      await userInfo.create({ idLevel: 1, nameUser, email });
+      return { level: "admin" };
+    }
+    await userInfo.create({ idLevel: 2, nameUser, email });
+    return { level: "standar" };
   }
   throw Error(`El email: ${email}, ya existe`);
 };
@@ -44,6 +59,26 @@ const searchUserName = async (nameUser) => {
   }
 
   throw Error(`No se pudo encontrar el usuario buscado`);
+};
+
+const clearArray = (arr) => arr.map(({ level }) => level.nameLevel);
+
+const searchUserEmail = async (email) => {
+  const nameUserBDD = await userInfo.findAll({
+    where: {
+      email,
+    },
+    include: {
+      model: level,
+      attributes: ["nameLevel"],
+    },
+  });
+
+  if (nameUserBDD.length > 0) {
+    return clearArray(nameUserBDD)[0];
+  }
+
+  return "error";
 };
 
 const updateUser = async (
@@ -95,4 +130,5 @@ module.exports = {
   searchUserName,
   updateUser,
   delUser,
+  searchUserEmail,
 };

@@ -7,18 +7,32 @@ const {
   searchUserName,
   updateUser,
   delUser,
+  searchUserEmail,
 } = require("../Controllers/userController");
 
+//ANTES DE AUTH 0
+// const postUser = async (request, response) => {
+//   const { idLevel, nameUser, email, password, image } = request.body;
+//   try {
+//     const newUser = await createUser({
+//       nameUser,
+//       idLevel,
+//       email,
+//       password,
+//       image,
+//     });
+//     response.status(SUCCESS).json(newUser);
+//   } catch (error) {
+//     response.status(ERROR).json({ error: error.message });
+//   }
+// };
+
+// POST AUTH0
+
 const postUser = async (request, response) => {
-  const { idLevel, nameUser, email, password, image } = request.body;
+  const { nameUser, email } = request.body;
   try {
-    const newUser = await createUser({
-      nameUser,
-      idLevel,
-      email,
-      password,
-      image,
-    });
+    const newUser = await createUser(nameUser, email);
     response.status(SUCCESS).json(newUser);
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
@@ -26,12 +40,21 @@ const postUser = async (request, response) => {
 };
 
 const getUser = async (request, response) => {
-  const { nameUser } = request.query;
+  const { nameUser, email } = request.query;
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   try {
-    const result = nameUser
-      ? await searchUserName(nameUser)
-      : await getAllUser();
-    response.status(SUCCESS).json(result);
+    if (regex.test(email)) {
+      const result = await searchUserEmail(email);
+      result === "error"
+        ? (result = await createUser(nameUser, email)) &&
+          response.status(SUCCESS).json({ access: result })
+        : response.status(SUCCESS).json({ access: result });
+    } else {
+      const result = nameUser
+        ? await searchUserName(nameUser)
+        : await getAllUser();
+      response.status(SUCCESS).json(result);
+    }
   } catch (error) {
     response.status(ERROR).json({ error: error.message });
   }

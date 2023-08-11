@@ -16,7 +16,8 @@ import {
   GAMES_BY_GENRE,
   POST_CHECKOUT_ID,
   POST_COMPRA_USER,
-  GET_COMPRAS_USER
+  GET_COMPRAS_USER,
+  CHECK_USER,
 } from "./action-type";
 import Swal from "sweetalert2";
 
@@ -227,4 +228,15 @@ export const getComprasUser = (payload) => async (dispatch) => {
   }
 }
 
-
+export const checkUser = (nameUser, email) => {
+  return async function (dispatch) {
+    try {
+      const data = (
+        await axios.get(`/user?nameUser=${nameUser}&email=${email}`)
+      ).data;
+      dispatch({ type: CHECK_USER, payload: data });
+    } catch (error) {
+      console.log("hay error");
+    }
+  };
+};

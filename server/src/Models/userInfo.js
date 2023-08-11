@@ -16,14 +16,14 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      image: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
+      // password: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // image: {
+      //   type: DataTypes.TEXT,
+      //   allowNull: true,
+      // },
     },
     {
       timestamps: false,
