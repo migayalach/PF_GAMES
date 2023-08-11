@@ -16,6 +16,7 @@ import {
   POST_CHECKOUT_ID,
   POST_COMPRA_USER,
   GET_COMPRAS_USER,
+  CHECK_USER,
 } from "./action-type";
 
 const initialState = {
@@ -137,6 +138,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         pagos: payload
       }
+    case CHECK_USER:
+      return { ...state, levelUser: payload };
     default:
       return state;
   }
