@@ -20,3 +20,6 @@ export const POST_COMPRA_USER = "POST_COMPRA_USER";
 export const GET_COMPRAS_USER = "GET_COMPRAS_USER";
 export const CHECK_USER = "CHECK_USER";
 export const GET_LEVEL_USER = "GET_LEVEL_USER";
+export const APROBAR_PAGO = "APROBAR_PAGO";
+export const GET_USERS = "GET_USERS";
+export const AGREGADO_A_CARRITO = "AGREGADO_A_CARRITO";

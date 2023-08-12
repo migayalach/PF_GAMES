@@ -18,6 +18,9 @@ import {
   GET_COMPRAS_USER,
   CHECK_USER,
   GET_LEVEL_USER,
+  APROBAR_PAGO,
+  GET_USERS,
+  AGREGADO_A_CARRITO,
 } from "./action-type";
 
 const initialState = {
@@ -36,6 +39,9 @@ const initialState = {
   orders: [],
   reviews: [],
   pagos: [],
+  comprasUser: [],
+  aprobado: false,
+  agregado: false,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -142,7 +148,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_COMPRAS_USER:
       return {
         ...state,
-        pagos: payload,
+        comprasUser: payload,
       };
     case CHECK_USER:
       return { ...state, levelUser: payload };
@@ -151,6 +157,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         levelUser: payload,
       };
+    case APROBAR_PAGO:
+      return {
+        ...state,
+        aprobado: payload,
+      }
+    case GET_USERS:
+      return {
+        ...state,
+        users: payload,
+      }
+    case AGREGADO_A_CARRITO:
+      return{
+        ...state,
+        agregado: payload,
+      }
     default:
       return state;
   }
