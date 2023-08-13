@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import estilo from './CheckoutForm.module.css'
 import { deleteProducts, postCheckoutId } from "../../redux/actions";
+import axios from "axios";
+
 
 const CheckoutForm = ({ productos }) => {
     //CONFIG Stripe
@@ -35,10 +37,25 @@ const CheckoutForm = ({ productos }) => {
                 id,
                 amount: mont * 100
             }
+
             dispatch(postCheckoutId(objPay));
             dispatch(deleteProducts());
-            
-            //---------PENDIENTE---------
+        //Acá comienza el envío de email de confirmación de compra    
+            let email = {
+            user: {
+                name: nameUser,
+                email: email,
+            },
+        //Revisar los datos de num de factura y monto(nose si estan bien)
+            compra: {
+                numFac: numFac,
+                amount: mont,
+            }
+        }
+        let resEmail = await axios.post('/sendEmails/orderCreated', email);
+        console.log(resEmail);
+        
+        //---------PENDIENTE---------
             // productos.forEach(producto => {
             //     dispatch(postCompraUser({
             //         idUser: user,
