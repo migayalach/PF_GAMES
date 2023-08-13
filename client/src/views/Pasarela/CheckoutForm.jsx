@@ -40,10 +40,14 @@ const CheckoutForm = ({ productos }) => {
 
             dispatch(postCheckoutId(objPay));
             dispatch(deleteProducts());
-        //Acá comienza el envío de email de confirmación de compra    
+        
+            const name = event.target.elements.to_name.value;
+            const numFac = event.target.elements.num_fac.value;
+
+            //Acá comienza el envío de email de confirmación de compra    
             let email = {
             user: {
-                name: nameUser,
+                name: name,
                 email: email,
             },
         //Revisar los datos de num de factura y monto(nose si estan bien)
