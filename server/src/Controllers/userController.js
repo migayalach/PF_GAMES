@@ -18,9 +18,11 @@ const createUser = async (nameUser, email) => {
     const cantRegister = await userInfo.count();
     if (cantRegister === 0) {
       await userInfo.create({ idLevel: 1, nameUser, email });
+      sendWelcomeEmail(email);
       return { level: "admin" };
     }
     await userInfo.create({ idLevel: 2, nameUser, email });
+    sendWelcomeEmail(email);
     return { level: "standar" };
   }
   throw Error(`El email: ${email}, ya existe`);
