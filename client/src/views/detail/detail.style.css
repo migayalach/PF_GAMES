@@ -119,8 +119,73 @@ button {
 }
 
 
+.check-button {
+  background-image: url("../../assets/icons8-shelves-70.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  width: 70px; /* Ajusta el ancho según tu imagen */
+  height: 70px; /* Ajusta la altura según tu imagen */
+  border-radius: 30px;
+  cursor: pointer; 
+  transition: transform 0.2s ease-in-out;
+}
+
+.check-button::before {
+  content: attr(title); /* Toma el valor del atributo title como contenido */
+  position: absolute;
+  top: 0px;
+  left: 0%;
+  transform: translateX(-100%);
+  background-color: #ff000072;
+  color: #000000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.check-button:hover::before {
+  opacity: 1;
+}
 
 
+
+.agregado-button {
+  background-image: url("../../assets/icons8-pagado-70.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  width: 70px; /* Ajusta el ancho según tu imagen */
+  height: 70px; /* Ajusta la altura según tu imagen */
+  border-radius: 30px;
+  cursor: pointer; 
+  transition: transform 0.2s ease-in-out;
+}
+
+.agregado-button::before {
+  content: attr(title); /* Toma el valor del atributo title como contenido */
+  position: absolute;
+  top: 0px;
+  left: 0%;
+  transform: translateX(-100%);
+  background-color: #ff000072;
+  color: #000000;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.agregado-button:hover::before {
+  opacity: 1;
+}
 
 
 
