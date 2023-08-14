@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import Market from "./Market";
-import { deleteItem } from "../../redux/actions";
+import { deleteItem, agregadoACarrito } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
 import estilo from "./PayPage.module.css"
