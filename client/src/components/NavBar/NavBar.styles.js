@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
-  background-color: #333;
+
   color: #fff;
   padding: 10px;
 `;
@@ -85,17 +85,21 @@ export const NavBarInput = styled.input`
   border: 1px solid #ccc;
 `;
 
-export const NavBarBtn = styled.button`
-  background-color: #444;
-  color: #fff;
+
+;
+export const NavButton = styled.button`
+  text-decoration: none;
+  color: black;
+  margin-left: 40px;
+  margin-right: 40px;
   border: none;
-  padding: 5px 10px;
+  background: none;
   cursor: pointer;
-  margin-left: 10px;
+  transition: border 0.3s ease-in-out;
+
   &:hover {
-    background-color: #555;
-  }
-  &:active {
-    background-color: #666;
+    border: 1px solid black;
+
+    border-radius: 5px;
   }
 `;
