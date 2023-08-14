@@ -11,7 +11,7 @@ import Form from "./views/form";
 import Landing from "./views/landing";
 import Biblioteca from "./views/BibliotecaGames/Biblioteca";
 
-axios.defaults.baseURL = "http://localhost:3001/gaming";
+axios.defaults.baseURL = "https://pfgames-production.up.railway.app/";
 
 function App() {
   const dispatch = useDispatch();
