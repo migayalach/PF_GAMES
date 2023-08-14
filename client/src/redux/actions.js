@@ -18,7 +18,10 @@ import {
   POST_COMPRA_USER,
   GET_COMPRAS_USER,
   CHECK_USER,
-  GET_LEVEL_USER
+  GET_LEVEL_USER,
+  APROBAR_PAGO,
+  GET_USERS,
+  AGREGADO_A_CARRITO
 } from "./action-type";
 import Swal from "sweetalert2";
 
@@ -220,12 +223,6 @@ export const getComprasUser = (payload) => async (dispatch) => {
     });
   } catch (error) {
     console.log("Desde getCompraUser", error);
-    Swal.fire({
-      title: 'No se encontraron compras para este usuario',
-      text: "Este usuario no registra compras",
-      icon: "info",
-      confirmButtonText: 'entendido'
-    })
   }
 }
 
@@ -251,11 +248,35 @@ export const getLevelUser = () => async (dispatch) => {
         payload: data
       });
   } catch (error) {
-    Swal.fire({
-      title: 'ERROR AL TRAER NIVELES DE USUARIO!',
-      text: error.response.data.message,
-      icon: 'error',
-      confirmButtonText: 'entendido'
-    })
+     console.log('ERROR AL TRAER NIVELES DE USUARIO!',error.message) 
   }
 };
+
+
+export const aprobarPago = () => {
+  return {
+    type: APROBAR_PAGO,
+    payload: true,
+  }
+}
+
+
+export const obtenerUsers = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get("/user");
+    return dispatch(
+      {
+        type: GET_USERS,
+        payload: data
+      });
+  } catch (error) {
+    console.log('ERROR AL OBTENER USUARIOS!', error.message) 
+  }
+};
+
+export const agregadoACarrito = (payload) => {
+  return {
+    type: AGREGADO_A_CARRITO,
+    payload,
+  }
+}

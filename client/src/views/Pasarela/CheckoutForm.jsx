@@ -3,16 +3,22 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import estilo from './CheckoutForm.module.css'
-import { deleteProducts, postCheckoutId } from "../../redux/actions";
+import { aprobarPago, countTotal, deleteProducts, postCheckoutId, postCompraUser } from "../../redux/actions";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 const CheckoutForm = ({ productos }) => {
+    const dispatch = useDispatch();
     //CONFIG Stripe
     const stripe = useStripe();
     const elements = useElements();
     //FIN
     const total = useSelector(state => state.cartTotal)
-    const dispatch = useDispatch();
-
+    const { user } = useAuth0();
+    const userAct = useSelector(state => state.users.filter(index => index.email == user?.email))
+    //const userAct = useSelector(state => state.users)
+  
+    console.log("PRUEBA", userAct);
     //-----------------------Método handle--------------------------
 
     const handleSubmit = async (event) => {
@@ -28,24 +34,26 @@ const CheckoutForm = ({ productos }) => {
         //-------------LOGICA PAGO--------------   
 
         if (!error) {
-            
-            const {id} = paymentMethod;
+
+            const { id } = paymentMethod;
             let mont = total.toFixed();
             let objPay = {
                 id,
                 amount: mont * 100
             }
+            dispatch(aprobarPago());
             dispatch(postCheckoutId(objPay));
             dispatch(deleteProducts());
-            
+            dispatch(countTotal(0))
+
             //---------PENDIENTE---------
-            // productos.forEach(producto => {
-            //     dispatch(postCompraUser({
-            //         idUser: user,
-            //         idPlan: producto.idPlan,
-            //         amount: mont
-            //     }));
-            // });
+            productos.forEach(producto => {
+                dispatch(postCompraUser({
+                    idUser: userAct[0]?.idUser,
+                    idGame: producto.idGame,
+                    amount: mont
+                }));
+            });
             //---------PENDIENTE---------
 
         } else {
@@ -63,11 +71,10 @@ const CheckoutForm = ({ productos }) => {
         <div className={estilo.contenedorPadre}>
             <div>
                 <form className={estilo.formPay} onSubmit={event => handleSubmit(event)}>
-                    <h2 htmlFor="">Completa los datos para la factura</h2>
                     <label>Nombre del comprador</label>
-                    <input type="text" name="to_name" placeholder="Tu nombre aquí" />
+                    <h1>{user.name}</h1>
                     <label>Email al cual enviar factura</label>
-                    <input className={estilo.input} type="email" name="user_email" placeholder="Tu correo electronico aquí" />
+                    <h1>{user.email}</h1>
                     <h3 className="text-center">TOTAL: $ {total}</h3>
                     <div className={estilo.subContenedor}>
                         <CardElement className="form-control" />
@@ -75,6 +82,9 @@ const CheckoutForm = ({ productos }) => {
                     <button className={estilo.btn} >
                         CONFIRMAR COMPRA
                     </button>
+                    <Link to = "/videogames">
+                    <button>CASA</button>
+                    </Link>
                 </form>
             </div>
         </div>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { countTotal, deleteItem, deleteProducts } from "../../redux/actions";
+import { agregadoACarrito, countTotal, deleteItem, deleteProducts } from "../../redux/actions";
 import estilo from './Carrito.module.css'
 
 const Cart = () => {
@@ -20,7 +20,8 @@ const Cart = () => {
 
 
     const deleteProductCart = (product) => {
-        dispatch(deleteItem(product.idGame))
+        dispatch(deleteItem(product.idGame));
+        dispatch(agregadoACarrito(false));
     };
 
     const clearCart = () => {
