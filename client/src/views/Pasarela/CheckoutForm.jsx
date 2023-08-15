@@ -6,7 +6,7 @@ import estilo from './CheckoutForm.module.css'
 import { aprobarPago, countTotal, deleteProducts, postCheckoutId, postCompraUser } from "../../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import emailjs from '@emailjs/browser'
 
 const CheckoutForm = ({ productos }) => {
     const dispatch = useDispatch();
@@ -41,24 +41,21 @@ const CheckoutForm = ({ productos }) => {
             let objPay = {
                 id,
                 amount: mont * 100
-            }        
-            // const name = event.target.elements.to_name.value;
-            // const numFac = event.target.elements.num_fac.value;
+            }
 
             //Acá comienza el envío de email de confirmación de compra    
-        //     let email = {
-        //     user: {
-        //         name: name,
-        //         email: email,
-        //     },
-        // //Revisar los datos de num de factura y monto(nose si estan bien)
-        //     compra: {
-        //         numFac: numFac,
-        //         amount: mont,
-        //     }
-        // }
-        // let resEmail = await axios.post('/sendEmails/orderCreated', email);
-        // console.log(resEmail);
+            let templateParams = {
+                name: 'name',
+                notes: 'notes!'
+            };
+            emailjs.send('service_yuf9stp', 'template_qptp1zr', templateParams,
+             'V08KUVn8ox1Prhrh5')
+                .then(function(response) {
+                   console.log('SUCCESS!', response.status, response.text);
+                }, function(error) {
+                   console.log('FAILED...', error);
+                });
+
             dispatch(aprobarPago());
             dispatch(postCheckoutId(objPay));
             dispatch(deleteProducts());
