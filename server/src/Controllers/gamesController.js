@@ -12,6 +12,7 @@ const { getApi } = require('../Utils/getApi');
 
 const allGetGames = async () => {
   const resultDBB = await game.findAll({
+    where: { available: true },
     include: [genders],
   });
   if (resultDBB.length > 0) return resultDBB;
@@ -35,6 +36,7 @@ const allGetGames = async () => {
     }
   }
   const gamesResult = await game.findAll({
+    where: { available: true },
     include: [genders]
   });
   // LIMPIAR RESULTADOS PARA DEVOLVER
@@ -44,14 +46,14 @@ const allGetGames = async () => {
 const getGameName = async (name) => {
   // BUSCAR ESTILO LIKE EN LA API
   const gamesByName = await game.findAll({
-    where: { nameGame: { [Op.iLike]: `%${name}%` } },
+    where: { nameGame: { [Op.iLike]: `%${name}%` }, available: true },
     include: [genders]
   });
   // LIMPIAR RESULTADOS PARA DEVOLVER
   return gamesByName;
 };
 
-const getGamesId = async (idGame, typeData) => {
+const getGamesId = async (idGame) => {
   const gameById = await game.findByPk(idGame, {
     include: [genders]
   });
@@ -80,6 +82,7 @@ const createGame = async (
   })
   await newGame.setGenders(gendersBD);
   const totalGames = await game.findAll({
+    where: { available: true },
     include: [genders]
   });
   return totalGames;
@@ -87,41 +90,33 @@ const createGame = async (
 
 const updateGame = async (
   idGame,
-  nameGame,
-  image,
-  cost,
-  description,
-  nameGender
+  updatedProps
 ) => {
-  const [updatedRowsCount, updatedRows] = await game.update(
-    { idPlatforms, nameGame, image, cost, description },
-    { where: { idGame }, returning: true }
-  );
-
-  // await GenderGames.destroy({
-  //   where: {
-  //     gameIdGame: idGame,
-  //   },
-  // });
-
-  // await GenderGames.update({
-  //   where: { gameIdGame: nameGender },
-  // });
-
-  return "Se actualizo :D";
+  const dbGame = await game.findByPk(idGame);
+  if (updatedProps.namesGenders) {
+    await dbGame.setGenders([]);
+    const newGenders = await genders.findAll({
+      where: { nameGenders: updatedProps.namesGenders },
+    });
+    await dbGame.addGenders(newGenders);
+  }
+  await dbGame.update(updatedProps);
+  const allGames = await game.findAll({
+    where: { available: true },
+    include: [genders]
+  });
+  return allGames;
 };
 
 const delGame = async (idGame) => {
-  const response = await game.destroy({
-    where: {
-      idGame,
-    },
+  const dbGame = await game.findByPk(idGame);
+  const newAvailable = !dbGame.available;
+  await dbGame.update({ available: newAvailable });
+  const allGames = await game.findAll({
+    where: { available: true },
+    include: [genders]
   });
-  console.log(response);
-  if (response === 1) {
-    return `Se elimino exitosamente`;
-  }
-  return `No se pudo eliminar`;
+  return allGames;
 };
 
 module.exports = {
