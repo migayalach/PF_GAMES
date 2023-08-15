@@ -26,14 +26,23 @@ const Detail = () => {
   const agregado = useSelector(state => state.agregado);
 
   const handleAdd = (plan) => {
-    dispatch(addProducts(plan));
-    dispatch(agregadoACarrito(true));
-    Swal.fire({
-      title: "Se agregó el producto al carrito!",
-      text: "Revisa el carrito",
-      timer: 4000,
-      icon: "success"
-    });
+    if (!user) {
+      Swal.fire({
+        title: "Debes iniciar sesión",
+        text: "Inicia sesión",
+        timer: 4000,
+        icon: "info"
+      });
+    } else {
+      dispatch(addProducts(plan));
+      dispatch(agregadoACarrito(true));
+      Swal.fire({
+        title: "Se agregó el producto al carrito!",
+        text: "Revisa el carrito",
+        timer: 4000,
+        icon: "success"
+      });
+    }
   }
 
   const game = useSelector((state) => state.game);
@@ -71,15 +80,12 @@ const Detail = () => {
                   onClick={() => handleAdd(game)}
                   title="Agregar al carrito"
                 ></div>
-              : agregado == false ?
+              :
               <div
                 className="cart-button"
                 onClick={() => handleAdd(game)}
                 title="Agregar al carrito"
-              ></div> : <div
-              className="agregado-button"
-              title="El producto ya fue agregado"
-            ></div>
+              ></div>
           }
         </div>
       )}

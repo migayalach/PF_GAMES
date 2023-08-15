@@ -42,23 +42,23 @@ const CheckoutForm = ({ productos }) => {
                 id,
                 amount: mont * 100
             }        
-            const name = event.target.elements.to_name.value;
-            const numFac = event.target.elements.num_fac.value;
+            // const name = event.target.elements.to_name.value;
+            // const numFac = event.target.elements.num_fac.value;
 
             //Acá comienza el envío de email de confirmación de compra    
-            let email = {
-            user: {
-                name: name,
-                email: email,
-            },
-        //Revisar los datos de num de factura y monto(nose si estan bien)
-            compra: {
-                numFac: numFac,
-                amount: mont,
-            }
-        }
-        let resEmail = await axios.post('/sendEmails/orderCreated', email);
-        console.log(resEmail);
+        //     let email = {
+        //     user: {
+        //         name: name,
+        //         email: email,
+        //     },
+        // //Revisar los datos de num de factura y monto(nose si estan bien)
+        //     compra: {
+        //         numFac: numFac,
+        //         amount: mont,
+        //     }
+        // }
+        // let resEmail = await axios.post('/sendEmails/orderCreated', email);
+        // console.log(resEmail);
             dispatch(aprobarPago());
             dispatch(postCheckoutId(objPay));
             dispatch(deleteProducts());
