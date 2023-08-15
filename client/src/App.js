@@ -11,7 +11,10 @@ import Form from "./views/form";
 import Landing from "./views/landing";
 import Biblioteca from "./views/BibliotecaGames/Biblioteca";
 
+// deploy
 axios.defaults.baseURL = "https://pfgames-production.up.railway.app/";
+// local
+// axios.defaults.baseURL = "http://localhost:3001/gaming";
 
 function App() {
   const dispatch = useDispatch();

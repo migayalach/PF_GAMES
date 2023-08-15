@@ -33,15 +33,6 @@ const getGameId = async (request, response) => {
   }
 };
 
-const getGameBySearch = async(req, res) => {
-  try {
-    const {search} = req.query
-    
-  } catch (error) {
-    res.status(ERROR).json({error: error.message})
-  }
-}
-
 const postGame = async (request, response) => {
   const { namesGenders, nameGame, image, cost, description } =
     request.body;
@@ -62,20 +53,12 @@ const postGame = async (request, response) => {
 const putGame = async (request, response) => {
   const {
     idGame,
-    nameGame,
-    image,
-    cost,
-    description,
-    namesGenders,
+    updatedProps
   } = request.body;
   try {
     const editInfoGame = await updateGame(
       idGame,
-      nameGame,
-      image,
-      cost,
-      description,
-      namesGenders,
+      updatedProps
     );
     response.status(SUCCESS).json(editInfoGame);
   } catch (error) {
