@@ -78,15 +78,12 @@ const Detail = () => {
                   onClick={() => handleAdd(game)}
                   title="Agregar al carrito"
                 ></div>
-              : agregado == false ?
-                <div
-                  className="cart-button"
-                  onClick={() => handleAdd(game)}
-                  title="Agregar al carrito"
-                ></div> : <div
-                  className="agregado-button"
-                  title="El producto ya fue agregado"
-                ></div>
+              :
+              <div
+                className="cart-button"
+                onClick={() => handleAdd(game)}
+                title="Agregar al carrito"
+              ></div>
           }
         </div>
       )}

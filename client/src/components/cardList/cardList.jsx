@@ -12,6 +12,7 @@ const CardList = ({ gamesList }) => {
           id={game.idGame}
           name={game.nameGame}
           image={game.image}
+          cost={game.cost}
           />
         ))}
       </div>
