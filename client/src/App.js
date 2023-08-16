@@ -10,7 +10,7 @@ import Pay from "./views/Pasarela/PayPage";
 import Form from "./views/form";
 import Landing from "./views/landing";
 import Biblioteca from "./views/BibliotecaGames/Biblioteca";
-
+import Profile from './components/Profile/Profile';
 // deploy
 axios.defaults.baseURL = "https://pfgames-production.up.railway.app/gaming";
 // local
@@ -29,6 +29,7 @@ function App() {
         <Route path="/formGame" element={<Form />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/PayPage" element={<Pay/>} />
+        <Route path="/perfil" element={<Profile/>}/>
         <Route path="/videogames" element={<Home />} />
         <Route path="/biblioteca" element={<Biblioteca />} />
         <Route path="/" element={<Landing />} />
