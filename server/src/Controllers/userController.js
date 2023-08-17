@@ -30,23 +30,19 @@ const createUser = async (nameUser, email) => {
 };
 
 const getAllUser = async () => {
-  const userBDD = await userInfo.findAll();
-  
+  const userBDD = await userInfo.findAll({
+    where: { ban: false },
+    include: [level]
+  });
+  //const userBDD = await userInfo.findAll();
   return userBDD;
 };
 
 const searchUser = async (idUser) => {
-  const nameUser = await userInfo.findAll({
-    where: {
-      idUser,
-    },
-  });
-
-  if (nameUser.length > 0) {
-    return nameUser;
-  }
-
-  throw Error(`No se pudo encontrar el usuario buscado`);
+  const nameUser = await userInfo.findByPk(idUser, {
+    include: [level]
+  })
+  return nameUser;
 };
 
 const searchUserName = async (nameUser) => {
