@@ -24,7 +24,7 @@ const Biblioteca = () => {
     const compras = useSelector(state => state.comprasUser.boughts)
     const videojuegos = useSelector(state => state.games);
     const copia = [...videojuegos];
-    const juegosComprados = copia.filter(obj1 => compras.some(obj2 => obj2.gameIdGame === obj1.idGame))
+    const juegosComprados = copia.filter(obj1 => compras?.some(obj2 => obj2.gameIdGame === obj1.idGame))
 
 
     const [pagActual, setPagActual] = useState(1);
@@ -41,13 +41,25 @@ const Biblioteca = () => {
     return (
         <>
             <Encabezado />
-            <div className={estilo.contenedorPadre}>
-                <Link to="/videogames">
-                <button>INICIO</button>
-                </Link>
-                <Paginado cantidadPorPag={cantidadPorPag} juegos={juegosComprados.length} paginado={paginado}></Paginado>
-                <CardsGame gamesList={juegosActuales} />
-            </div>
+            {
+                compras?.length 
+                ?
+                    <div className={estilo.contenedorPadre}>
+                        <Link to="/videogames">
+                            <button>INICIO</button>
+                        </Link>
+                        <Paginado cantidadPorPag={cantidadPorPag} juegos={juegosComprados.length} paginado={paginado}></Paginado>
+                        <CardsGame gamesList={juegosActuales} />
+                    </div>
+                : 
+                    <div className={estilo.contenedorPadre}>
+                        <h1>Aún no registras compras...</h1>
+                        <img src="https://blog.fluidui.com/assets/images/posts/imageedit_1_9273372713.png" alt="" />
+                        <Link to="/videogames">
+                            <button>INICIO</button>
+                        </Link>
+                    </div>
+            }
         </>
     )
 }
