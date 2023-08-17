@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { agregadoACarrito, countTotal, deleteItem, deleteProducts } from "../../redux/actions";
