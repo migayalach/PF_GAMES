@@ -1,6 +1,7 @@
 const { userInfo, level } = require("../DataBase/dataBase");
 const { Op } = require("sequelize");
 const axios = require("axios");
+const { sendWelcomeEmail } = require("../Utils/emailBienvenida/emailDeBienvenida");
 
 //ANTES DE AUTH0
 // const createUser = async ({ idLevel, nameUser, email, password, image }) => {
@@ -18,11 +19,11 @@ const createUser = async (nameUser, email) => {
     const cantRegister = await userInfo.count();
     if (cantRegister === 0) {
       await userInfo.create({ idLevel: 1, nameUser, email });
-      sendWelcomeEmail(email);
+      sendWelcomeEmail(email, nameUser);
       return { level: "admin" };
     }
     await userInfo.create({ idLevel: 2, nameUser, email });
-    sendWelcomeEmail(email);
+    sendWelcomeEmail(email, nameUser);
     return { level: "standar" };
   }
   throw Error(`El email: ${email}, ya existe`);
@@ -30,6 +31,7 @@ const createUser = async (nameUser, email) => {
 
 const getAllUser = async () => {
   const userBDD = await userInfo.findAll();
+  
   return userBDD;
 };
 
