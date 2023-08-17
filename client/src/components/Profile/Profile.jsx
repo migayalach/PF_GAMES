@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkUser } from "../../redux/actions";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import Encabezado from "../../views/encabezado/encabezado";
 const Profile = () => {
   const { user, isAuthenticated, } = useAuth0();
   const dispatch = useDispatch();
@@ -18,17 +18,19 @@ const Profile = () => {
   const acceso = aux?.access;
   return (
     isAuthenticated && (
-      <div>
-        
-        <img src={user.picture} alt={user.name} />
-      <p>{acceso === "admin" && <h1>Cuenta ADMIN </h1>}
-      {acceso === "standar" && <h1>Cuenta Standar</h1>}</p>
-        <h2>{user.name}</h2>
-        <h2>{user.email}</h2>
-        <Link to="/"> 
-        <button>Home</button>
-      </Link>
-      </div>
+      <>
+        <Encabezado/>
+        <div>
+          <img src={user.picture} alt={user.name} />
+          <p>{acceso === "admin" && <h1>Cuenta ADMIN </h1>}
+            {acceso === "standar" && <h1>Cuenta Standar</h1>}</p>
+          <h2>{user.name}</h2>
+          <h2>{user.email}</h2>
+          <Link to="/">
+            <button>Home</button>
+          </Link>
+        </div>
+      </>
     )
   );
 };
