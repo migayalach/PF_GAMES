@@ -64,6 +64,7 @@ const CheckoutForm = ({ productos }) => {
           })
         );
       });
+      sendEmail(user.name, user.email); 
       //---------PENDIENTE---------
     
     } else {
@@ -76,9 +77,8 @@ const CheckoutForm = ({ productos }) => {
   };
   //Fin método handle
   
-  //Acá comienza el envío de email de confirmación de compra
-  const sendEmail = (name, email) => {
-    let templateParams = {
+  const sendEmail = () => {
+    const templateParams = {
       name: user.name,
       email: user.email,
     };
@@ -86,7 +86,6 @@ emailjs.send(
           "service_yuf9stp",
           "template_qptp1zr",
           templateParams,
-          sendEmail,
           "V08KUVn8ox1Prhrh5"
         ).then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
