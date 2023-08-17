@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGameByName, getGames } from "../../redux/actions";
 import estilo from './SearchBar.module.css'
 import Swal from "sweetalert2"; //Importación de la libreria sweetalert2 que permite mostrar alertas bien GG's
-
+import { Link } from "react-router-dom";
 const SearchBar = () => {
 
     const [name, setName] = useState("");
@@ -24,8 +24,7 @@ const SearchBar = () => {
         });
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = () => {
         setName("");
         if (!name.length) {
             Swal.fire({
@@ -33,7 +32,7 @@ const SearchBar = () => {
                 icon: "info",
                 confirmButtonText: "ok",
             });
-        } else{
+        } else {
             dispatch(getGameByName(name));
             setBusqueda(true);
         }
@@ -55,19 +54,21 @@ const SearchBar = () => {
                     className={estilo.inputSearch}
                     placeholder="Buscar videojuego..."
                 />
-                <button
-                    type="submit"
-                    onClick={(event) => handleSubmit(event)}
-                    className={estilo.btnSearch}
-                />
+                <Link to="/videogames">
+                    <button
+                        type="submit"
+                        onClick={() => handleSubmit()}
+                        className={estilo.btnSearch}
+                    />
+                </Link>
                 {
-                    busqueda ?
+                    juegos.length < 100?
                         <button
                             type="submit"
                             onClick={(event) => handleClear(event)}
                             className={estilo.btnClear}
                         />
-                    : <></>
+                        : <></>
                 }
             </form>
         </div>
