@@ -24,7 +24,7 @@ const Carousel = ({ images }) => {
   };
 
   useEffect(() => {
-    const time = setTimeout(nextImg, 6000);
+    const time = setTimeout(nextImg, 5000);
     return () => clearTimeout(time);
   }, [img]);
 

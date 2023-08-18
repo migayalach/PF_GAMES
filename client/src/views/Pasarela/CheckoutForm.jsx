@@ -64,7 +64,7 @@ const CheckoutForm = ({ productos }) => {
           })
         );
       });
-      sendEmail(user.name, user.email); 
+      sendEmail(); 
       //---------PENDIENTE---------
     
     } else {
@@ -77,10 +77,14 @@ const CheckoutForm = ({ productos }) => {
   };
   //Fin método handle
   
+  //Envio de correo de confirmación de compra
   const sendEmail = () => {
-    const templateParams = {
-      name: user.name,
-      email: user.email,
+    const userName = user.name;
+    const userEmail = user.email;
+    let templateParams = {
+      from_name: userName,
+      to_email : userEmail,
+      user_email: userEmail,
     };
 emailjs.send(
           "service_yuf9stp",

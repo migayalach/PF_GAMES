@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;  
+  max-height: 30%;  
 }
 .loadingText {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 10px;
-  color: #fff;
+  font-size: 26px;
+  font-weight: 900;
+  margin-top: 5px;
+  color: #0e5b13;
 }
 .loading{
-  max-width: 60%;
+  max-width: 30%;
 }

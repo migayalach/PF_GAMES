@@ -13,13 +13,18 @@ export default function Landing() {
     dispatch(gamesByGenders("Sports"));
     dispatch(gamesByGenders("Adventure"));
   }, []);
-  return (
+
+  const limitedActionImages = action.slice(0, 5); // Obtener solo las primeras 5 imágenes
+  const limitedAdventureImages = adventure.slice(0, 5);
+  const limitedSportsImages = sports.slice(0, 5);
+
+    return (
     <div>
       <Encabezado/>
       <NavBar/>
-      <Carousel images={action}/>
-      <Carousel images={adventure}/>
-      <Carousel images={sports}/>
+      <Carousel images={limitedActionImages} /> {/* Pasar las imágenes limitadas al Carousel */}
+      <Carousel images={limitedAdventureImages} />
+      <Carousel images={limitedSportsImages} />
     </div>
   );
 }
