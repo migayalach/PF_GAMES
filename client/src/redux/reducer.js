@@ -24,6 +24,7 @@ import {
 } from "./action-type";
 
 const initialState = {
+  user: {},
   users: [],
   game: {},
   games: [],
@@ -130,6 +131,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
           cart: newCart,
         };
       }
+      break
     case DELETE_PRODUCTS:
       return {
         ...state,
@@ -151,7 +153,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         comprasUser: payload,
       };
     case CHECK_USER:
-      return { ...state, levelUser: payload };
+      return { ...state, user: payload };
     case GET_LEVEL_USER:
       return {
         ...state,

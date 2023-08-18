@@ -10,7 +10,6 @@ import Cart from '../Carrito/Carrito.jsx'
 const NavBar = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const verificacionPath = location.pathname.includes('/detail/');
     return (
         <Nav style={{ display: "flex", justifyContent: "center", alignItems:"center" }}> 
             <Link to='/' >
@@ -19,11 +18,9 @@ const NavBar = () => {
             <NavButton>GAMES</NavButton></Link>
             <SearchBar/>
             {
-                verificacionPath
-                ?
-                <></>
-                :
-                <button id='btnFilter' onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
+                location.pathname === "/videogames"
+                ? <button id='btnFilter' onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
+                : null
             }
             <Cart/>
         </Nav>

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import { getComprasUser } from '../../redux/actions';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAccessStandar } from '../../hooks/useAccessStandar';
 import estilo from './Biblioteca.module.css';
 import Encabezado from '../encabezado/encabezado';
 import CardsGame from "./CardsGame";
 import Paginado from '../../components/Paginado/Paginado';
-import { Link } from 'react-router-dom';
 
 const Biblioteca = () => {
 
@@ -26,7 +27,6 @@ const Biblioteca = () => {
     const copia = [...videojuegos];
     const juegosComprados = copia.filter(obj1 => compras?.some(obj2 => obj2.gameIdGame === obj1.idGame))
 
-
     const [pagActual, setPagActual] = useState(1);
     const [cantidadPorPag] = useState(10);
     const ultimoIndice = pagActual * cantidadPorPag
@@ -37,7 +37,7 @@ const Biblioteca = () => {
         setPagActual(pageNumber)
     }
 
-
+    useAccessStandar();
     return (
         <>
             <Encabezado />

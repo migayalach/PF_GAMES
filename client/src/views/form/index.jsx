@@ -3,6 +3,7 @@ import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom'
 import { postGame } from "../../redux/actions";
+import { useAccessAdmin } from "../../hooks/useAccessAdmin";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ const Form = () => {
     navigate('/');
   };
 
+  useAccessAdmin();
   return (
     <div>
       <h1>Crear un juego</h1>
