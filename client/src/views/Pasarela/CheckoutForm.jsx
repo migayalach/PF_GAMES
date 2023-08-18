@@ -104,7 +104,7 @@ emailjs.send(
           <label>Nombre del comprador</label>
           <h1>{user.name}</h1>
           <label>Email al cual enviar factura</label>
-          <h1>{user.email}</h1>
+          <p>{user.email}</p>
           <h3 className="text-center">TOTAL: $ {total}</h3>
           <div className={estilo.subContenedor}>
             <CardElement className="form-control" />
