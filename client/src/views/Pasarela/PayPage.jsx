@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Market from "./Market";
 import { deleteItem, agregadoACarrito } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { useAccessStandar } from "../../hooks/useAccessStandar";
 
 import estilo from "./PayPage.module.css"
 import Encabezado from "../encabezado/encabezado";
@@ -16,6 +17,7 @@ const Pay = () => {
 
 
     const productos = useSelector((state) => state.cart)
+    useAccessStandar();
     return (
         <>
             <Encabezado />

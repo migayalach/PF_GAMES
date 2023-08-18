@@ -11,15 +11,7 @@ import Loading from '../../utils/Loading/Loading.jsx'
 const NavBar = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    const verificacionPath = location.pathname.includes('/detail/');
-    const [loading, setLoading] = useState(false);
 
-    const handleLoading = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 3000);
-    }
     return (
         <Nav style={{ display: "flex", justifyContent: "center", alignItems:"center" }}> 
             <Link to='/' onClick={handleLoading}>
@@ -28,11 +20,9 @@ const NavBar = () => {
             <NavButton>GAMES</NavButton></Link>
             <SearchBar/>
             {
-                verificacionPath
-                ?
-                <></>
-                :
-                <button id='btnFilter' onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
+                location.pathname === "/videogames"
+                ? <button id='btnFilter' onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
+                : null
             }
             <Cart/>
             {loading && <Loading/>}

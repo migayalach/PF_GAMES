@@ -20,9 +20,6 @@ export default function Encabezado() {
       dispatch(checkUser(user?.name, user?.email));
     }
   }, [user]);
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
     <div className={styles.enc}>
@@ -31,7 +28,6 @@ export default function Encabezado() {
         <h2>GAMING SHOP</h2>
       </div>
       <nav >
-      {
           dbUser?.level?.nameLevel === "admin" && (
             <NavLink to="/admin" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>DASHBOARD</NavLink>
           )

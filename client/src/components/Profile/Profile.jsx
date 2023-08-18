@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkUser } from "../../redux/actions";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAccessStandar } from "../../hooks/useAccessStandar";
 import Encabezado from "../../views/encabezado/encabezado";
+
+
 const Profile = () => {
   const { user, isAuthenticated, } = useAuth0();
   const dispatch = useDispatch();
@@ -14,8 +17,9 @@ const Profile = () => {
     }
   }, []);
 
-  const aux = useSelector((state) => state.levelUser);
-  const acceso = aux?.access;
+  const dbUser = useSelector((state) => state.user);
+  const acceso = dbUser?.level?.nameLevel;
+  useAccessStandar();
   return (
     isAuthenticated && (
       <>

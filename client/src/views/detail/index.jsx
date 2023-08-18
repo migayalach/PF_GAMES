@@ -62,11 +62,11 @@ const Detail = () => {
             <h1>{game?.nameGame}</h1>
             <img src={game?.image} alt="imagen allGame" />
             <p>{game?.description}</p>
-            <p>{game?.cost}</p>
+            <div className="price-overlay">${game?.cost}</div>
             <ul>
-              {game.genders?.map(gm => (
+            <div className="Generos">{game.genders?.map(gm => (
                 <li>{gm.nameGenders}</li>
-              ))}
+              ))}</div>
             </ul>
             {
               user?.email && comprobando?.length && currentUser?.length

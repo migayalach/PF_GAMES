@@ -16,6 +16,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      image: {
+        type: DataTypes.STRING
+      },
       ban: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
