@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 import imagen from "./logogamer2.jpg";
-
 import styles from "./encabezado.module.css";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Login from "../../components/Login/Login";
 import Logout from "../../components/Logout/Logout";
@@ -10,49 +8,41 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import Loading from "../../utils/Loading/Loading";
 
 export default function Encabezado() {
-
   const { isAuthenticated, isLoading, user } = useAuth0();
   const dispatch = useDispatch();
-  const aux = useSelector((state) => state.levelUser);
-  const acceso = aux?.access;
+  const dbUser = useSelector((state) => state.user);
   
   useEffect(() => {
-    if (user && user.name && user.email) {
-      dispatch(checkUser(user.name, user.email));
+    if (user?.email) {
+      dispatch(checkUser(user?.name, user?.email));
     }
-  }, []);
-  if (isLoading) 
+  }, [user]);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className={styles.enc}>
-
-
       <div className={styles.logo}>
         <img className={styles.image} src={imagen} alt="logo" />
         <h2>GAMING SHOP</h2>
       </div>
       <nav >
-        <a className={styles.encab}>
-          {
-            acceso === "admin" && (
-              <NavLink to="/formGame" style={{ textDecoration: "none", color: "black" }}>CREAR JUEGO</NavLink>
-            )}
-        </a>
-        <a className={styles.encab}>
-          <NavLink to="/soporte" style={{ textDecoration: "none", color: "black" }} >SOPORTE</NavLink>
-        </a>
-        <a className={styles.encab}>
-          {isAuthenticated && (
-            <NavLink to="/biblioteca" style={{ textDecoration: "none", color: "black" }}>BIBLIOTECA</NavLink>
+      {
+          dbUser?.level?.nameLevel === "admin" && (
+            <NavLink to="/admin" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>DASHBOARD</NavLink>
+          )
+        }
+        <NavLink to="/soporte" className={styles.encab} style={{ textDecoration: "none", color: "black" }} >SUPORT</NavLink>
+        {isAuthenticated && (
+            <NavLink to="/biblioteca" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>LIBRARY</NavLink>
           )}
-        </a>
-        <a className={styles.encab}>
-          {isAuthenticated && (
-            <NavLink to="/perfil" style={{ textDecoration: "none", color: "black" }}>PERFIL</NavLink>
+        {isAuthenticated && (
+            <NavLink to="/perfil" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>PROFILE</NavLink>
           )}
-        </a>
       </nav>
       {isAuthenticated ? <Logout /> : <Login />}
     </div>
