@@ -1,27 +1,56 @@
-.contenedorPadre{
-    display: flex; 
-    text-align: center; 
-    justify-content: center; 
-}
-
-.formPay{
-    display: flex; 
-    flex-direction: column;
-}
-
-.input{
-    height: 25px;
-}
-
-.subContenedor{
-    border-style: solid; 
-    border-color: black; 
-    background-color: gold;
-}
-
-.btn{
-    background-color: rgba(16, 107, 160, 0.87);
-    width: 200px;
-    height: 30px;
-    cursor: pointer;
+/* CheckoutForm.module.css */
+.contenedorPadre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vh;
+    height: 70vh;
+    background-color: #f0f0f0;
   }
+  
+  .formPay {
+    background-color: white;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  .formPay label, .formPay h1, .formPay h6 {
+    font-family: "Arial", sans-serif;
+    color: #333;
+  }
+  
+  .subContenedor {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  a button {
+    margin-top: 10px;
+    display: block;
+    background-color: transparent;
+    color: #007bff;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  a button:hover {
+    color: #0056b3;
+  }
+  
