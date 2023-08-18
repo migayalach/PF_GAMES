@@ -23,7 +23,8 @@ export default function Encabezado() {
       dispatch(checkUser(user.name, user.email));
     }
   }, []);
-  if (isLoading) return <h1>Cargando ................</h1>;
+  if (isLoading) 
+
   return (
     <div className={styles.enc}>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import loading from '../../assets/loading-neon.gif'
-import styles from './utils.module.css'
+import styles from '../Loading/Loading.module.css'
 
 const Loading = () => (
   <div className={styles.container}>
