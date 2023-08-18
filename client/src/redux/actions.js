@@ -229,10 +229,8 @@ export const getComprasUser = (payload) => async (dispatch) => {
 export const checkUser = (nameUser, email) => {
   return async function (dispatch) {
     try {
-      const data = (
-        await axios.get(`/user?nameUser=${nameUser}&email=${email}`)
-      ).data;
-      dispatch({ type: CHECK_USER, payload: data });
+      const { data } = await axios.get(`/user?nameUser=${nameUser}&email=${email}`);
+      return dispatch({ type: CHECK_USER, payload: data });
     } catch (error) {
       console.log("hay error");
     }
@@ -248,7 +246,7 @@ export const getLevelUser = () => async (dispatch) => {
         payload: data
       });
   } catch (error) {
-     console.log('ERROR AL TRAER NIVELES DE USUARIO!',error.message) 
+    console.log('ERROR AL TRAER NIVELES DE USUARIO!',error.message) 
   }
 };
 
