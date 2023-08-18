@@ -1,17 +1,15 @@
 .slideshowContainer {
-  width: 100%;
   position: relative;
-  margin: 8px;
-  height: 10%;
+  overflow-x: auto;
   justify-content: center;
   align-items: center;
 }
 
 .img {
-  width: 70%;
-  height: 650px;
+  width: 600px;
+  height: 300px;
   object-fit: cover;
-  margin: 8px;
+  margin: 30px;
 }
 
 .prev, .next {

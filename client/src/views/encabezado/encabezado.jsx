@@ -10,9 +10,9 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import Loading from "../../utils/Loading/Loading";
 
 export default function Encabezado() {
-
   const { isAuthenticated, isLoading, user } = useAuth0();
   const dispatch = useDispatch();
   const dbUser = useSelector((state) => state.user);
@@ -22,17 +22,18 @@ export default function Encabezado() {
       dispatch(checkUser(user?.name, user?.email));
     }
   }, [user]);
-  if (isLoading) return <h1>Cargando ................</h1>;
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className={styles.enc}>
-
-
       <div className={styles.logo}>
         <img className={styles.image} src={imagen} alt="logo" />
         <h2>GAMING SHOP</h2>
       </div>
       <nav >
-        {
+      {
           dbUser?.level?.nameLevel === "admin" && (
             <NavLink to="/admin" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>DASHBOARD</NavLink>
           )
