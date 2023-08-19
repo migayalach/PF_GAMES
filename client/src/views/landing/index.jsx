@@ -14,9 +14,9 @@ export default function Landing() {
     dispatch(gamesByGenders("Adventure"));
   }, []);
   //Solo modifique la vista de las imagenes, el resto quedo igual.
-  const limitedActionImages = action.slice(0, 5); // Obtener solo las primeras 5 imágenes
-  const limitedAdventureImages = adventure.slice(6, 11);
-  const limitedSportsImages = sports.slice(12, 17);
+  const limitedActionImages = action ? action.slice(12, 17) : []; //Diferentes numeros para que no se repitan las imagenes
+  const limitedAdventureImages = adventure ? adventure.slice(6, 11) : [];
+  const limitedSportsImages = sports ? sports.slice(0, 5) : [];
 
     return (
     <div>

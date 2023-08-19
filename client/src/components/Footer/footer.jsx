@@ -1,66 +1,53 @@
-import { NavLink } from "react-router-dom";
-import style from "./footer.module.css";
+import {
+  Facebook,
+  Instagram,
+  MailOutline,
+  Phone,
+  Pinterest,
+  Room,
+  Twitter,
+} from "@material-ui/icons";
+import img from "../../assets/stripe-payment.png";
+import { Container, Left, Logo, Desc, Social, SocialIcon, Right, Title, ContactItem, Payment } from "./Footer.styles";
 
-export default function Footer() {
-  const brandLinkStyles = {
-    fontWeight: "bold",
-    color: "#fff",
-    width: "fit-content",
-
-    textDecoration: "none",
-    "&:hover": {
-      textDecoration: "none",
-    },
-  };
+const Footer = () => {
   return (
-    <div className={style.footerContainer}>
-        <NavLink to="/">
-          <h6 className={style.marca}>GAMING SHOP</h6>
-        </NavLink>
-      <div>
-        <p>© 2023 GAMING SHOP, Inc.</p>
-      </div>
-      <div className={style.icons}>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={style.icon}
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/733/733547.png"
-            alt="Facebook"
-            width="30px"
-            height="30px"
-          />
-        </a>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={style.icon}
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/174/174855.png"
-            alt="Instagram"
-            width="30px"
-            height="30px"
-          />
-        </a>
-        <a
-          href="https://twitter.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={style.icon}
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/2504/2504947.png"
-            alt="Twitter"
-            width="30px"
-            height="30px"
-          />
-        </a>
-      </div>
-    </div>
+    <Container>
+      <Left>
+        <Logo>Gaming Shop</Logo>
+        <Desc>
+          Find all the latest digital games, here with us!
+        </Desc>
+        <Social>
+          <SocialIcon color="3B5999">
+            <Facebook />
+          </SocialIcon>
+          <SocialIcon color="E4405F">
+            <Instagram />
+          </SocialIcon>
+          <SocialIcon color="55ACEE">
+            <Twitter />
+          </SocialIcon>
+          <SocialIcon color="E60023">
+            <Pinterest />
+          </SocialIcon>
+        </Social>
+      </Left>
+      <Right>
+        <Title>Contact</Title>
+        <ContactItem>
+          <Room style={{marginRight:"10px"}}/> 123 Street, City, Country
+        </ContactItem>
+        <ContactItem>
+          <Phone style={{marginRight:"10px"}}/> +1 234 56 78
+        </ContactItem>
+        <ContactItem>
+          <MailOutline style={{marginRight:"10px"}} /> contact@henry.dev
+        </ContactItem>
+        <Payment src={img} alt="stripe-payments" />
+      </Right>
+    </Container>
   );
-}
+};
+
+export default Footer;

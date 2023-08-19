@@ -1,6 +1,3 @@
-import React from "react"
-import Card from "../cards/card"
-import styles from './cardList.module.css'
 import React, {useEffect, useState} from "react";
 import Card from "../cards/card";
 import styles from "./cardList.module.css";

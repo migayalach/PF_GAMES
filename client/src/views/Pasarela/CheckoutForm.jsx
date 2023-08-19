@@ -64,6 +64,7 @@ const CheckoutForm = ({ productos }) => {
           })
         );
       });
+      //Envio de email
       sendEmail(); 
       //---------PENDIENTE---------
     
@@ -76,7 +77,8 @@ const CheckoutForm = ({ productos }) => {
     }
   };
   //Fin método handle
-  
+
+  //------Configuracion de EmailJS para q envie el email al usuario registrado en auth0
   const sendEmail = () => {
     const userName = user.name;
     const userEmail = user.email;
@@ -96,7 +98,7 @@ emailjs.send(
           console.log('FAILED...', error);
        });
   }
-
+//-----------------------------------------------------
   return (
     <div className={estilo.contenedorPadre}>
       <div>
