@@ -8,6 +8,7 @@ const {
   updateUser,
   delUser,
   searchUserEmail,
+  isAdmin,
 } = require("../Controllers/userController");
 
 //ANTES DE AUTH 0
@@ -92,10 +93,21 @@ const deleteUser = async (request, response) => {
   }
 };
 
+const isAdminUser = async (request, response) => {
+  const { idUser } = request.body;
+  try {
+    const result = await isAdmin(idUser);
+    response.status(SUCCESS).json(result);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+}
+
 module.exports = {
   postUser,
   getUser,
   getUserId,
   putUser,
   deleteUser,
+  isAdminUser
 };

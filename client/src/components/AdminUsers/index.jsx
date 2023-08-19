@@ -5,7 +5,7 @@ import AdminCard from "../AdminCard";
 import Paginado from "../Paginado/Paginado";
 
 export default function AdminUsers() {
-  const users = useSelector(state => state.users);
+  const users = useSelector(state => state.adminUsers);
   const [page, setPage] = useState(1);
   const start = (page - 1) * 10;
   const end = page * 10;

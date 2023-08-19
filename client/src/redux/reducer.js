@@ -21,11 +21,16 @@ import {
   APROBAR_PAGO,
   GET_USERS,
   AGREGADO_A_CARRITO,
+  PUT_GAME,
+  DELETE_GAME,
+  USER_IS_BAN,
+  USER_IS_ADMIN,
 } from "./action-type";
 
 const initialState = {
   user: {},
-  users: [],
+  adminGames: [],
+  adminUsers: [],
   game: {},
   games: [],
   filtersActive: false, // Para mostrar los filtros
@@ -50,13 +55,26 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case POST_GAME:
       return {
         ...state,
-        games: payload,
+        adminGames: payload,
+        games: payload.filter(gm => gm.available === true),
       };
-
+    case PUT_GAME:
+      return {
+        ...state,
+        adminGames: payload,
+        games: payload.filter(gm => gm.available === true),
+      }
+    case DELETE_GAME:
+      return {
+        ...state,
+        adminGames: payload,
+        games: payload.filter(gm => gm.available === true),
+      }
     case GET_GAMES:
       return {
         ...state,
-        games: payload,
+        adminGames: payload,
+        games: payload.filter(gm => gm.available === true)
       };
     case GET_GAME_BY_NAME:
       return {
@@ -167,7 +185,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_USERS:
       return {
         ...state,
-        users: payload,
+        adminUsers: payload,
+      }
+    case USER_IS_BAN:
+      return {
+        ...state,
+        adminUsers: payload,
+      }
+    case USER_IS_ADMIN:
+      return {
+        ...state,
+        adminUsers: payload,
       }
     case AGREGADO_A_CARRITO:
       return{
