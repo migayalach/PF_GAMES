@@ -1,16 +1,14 @@
-import {
-  Facebook,
-  Instagram,
-  MailOutline,
-  Phone,
-  Pinterest,
-  Room,
-  Twitter,
-} from "@material-ui/icons";
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import RoomIcon from '@mui/icons-material/Room';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import img from "../../assets/stripe-payment.png";
-import { Container, Left, Logo, Desc, Social, SocialIcon, Right, Title, ContactItem, Payment } from "./Footer.styles";
+import { Container, Left, Logo, Desc, Social, SocialIcon, Right, Title, ContactItem, Payment } from "./footer.styles";
 
-const Footer = () => {
+const footer = () => {
   return (
     <Container>
       <Left>
@@ -20,29 +18,29 @@ const Footer = () => {
         </Desc>
         <Social>
           <SocialIcon color="3B5999">
-            <Facebook />
+            <FacebookRoundedIcon />
           </SocialIcon>
           <SocialIcon color="E4405F">
-            <Instagram />
+            <InstagramIcon />
           </SocialIcon>
           <SocialIcon color="55ACEE">
-            <Twitter />
+            <TwitterIcon />
           </SocialIcon>
           <SocialIcon color="E60023">
-            <Pinterest />
+            <PinterestIcon />
           </SocialIcon>
         </Social>
       </Left>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{marginRight:"10px"}}/> 123 Street, City, Country
+          <RoomIcon style={{marginRight:"10px"}}/> 123 Street, City, Country
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight:"10px"}}/> +1 234 56 78
+          <WhatsAppIcon style={{marginRight:"10px"}}/> +1 234 56 78
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{marginRight:"10px"}} /> contact@henry.dev
+          <MailOutlineIcon style={{marginRight:"10px"}} /> contact@henry.dev
         </ContactItem>
         <Payment src={img} alt="stripe-payments" />
       </Right>
@@ -50,4 +48,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default footer;
