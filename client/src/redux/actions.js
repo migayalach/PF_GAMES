@@ -21,7 +21,10 @@ import {
   GET_LEVEL_USER,
   APROBAR_PAGO,
   GET_USERS,
-  AGREGADO_A_CARRITO
+  AGREGADO_A_CARRITO,
+  GET_RATING,
+  POST_RATING,
+  UPDATE_RATING,
 } from "./action-type";
 import Swal from "sweetalert2";
 
@@ -278,5 +281,56 @@ export const agregadoACarrito = (payload) => {
   return {
     type: AGREGADO_A_CARRITO,
     payload,
+  }
+}
+
+
+export const getRating = () => async (dispatch) => {
+  try {
+    const { data } = await axios(`/rating`)
+    return dispatch({
+      type: GET_RATING,
+      payload: data
+    });
+  } catch (error) {
+    console.log("Desde getRating", error);
+  }
+}
+
+
+export const postRating = (payload) => async (dispatch) => {
+  try {
+    const { data } = await axios.post("/rating", payload)
+    return dispatch({
+      type: POST_RATING,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("Desde postRating", error);
+    Swal.fire({
+      title: 'ERROR AL POSTEAR RATING!',
+      text: error.response.data.message,
+      icon: 'error',
+      confirmButtonText: 'entendido'
+    })
+  }
+}
+
+
+export const updateRating = (payload) => async (dispatch) => {
+  try {
+    const { data } = await axios.put("/rating", payload)
+    return dispatch({
+      type: UPDATE_RATING,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("Desde UPDATE_RATING", error);
+    Swal.fire({
+      title: 'ERROR AL ACTUALIZAR RATING!',
+      text: error.response.data.message,
+      icon: 'error',
+      confirmButtonText: 'entendido'
+    })
   }
 }

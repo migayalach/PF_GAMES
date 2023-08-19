@@ -23,3 +23,6 @@ export const GET_LEVEL_USER = "GET_LEVEL_USER";
 export const APROBAR_PAGO = "APROBAR_PAGO";
 export const GET_USERS = "GET_USERS";
 export const AGREGADO_A_CARRITO = "AGREGADO_A_CARRITO";
+export const POST_RATING = "POST_RATING";
+export const GET_RATING = "GET_RATING";
+export const UPDATE_RATING = "UPDATE_RATING";

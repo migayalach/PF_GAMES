@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import { getComprasUser } from '../../redux/actions';
+import { getComprasUser, getRating } from '../../redux/actions';
 import { useState } from 'react';
 import estilo from './Biblioteca.module.css';
 import Encabezado from '../encabezado/encabezado';
@@ -36,6 +36,11 @@ const Biblioteca = () => {
     const paginado = (pageNumber) => {
         setPagActual(pageNumber)
     }
+
+    useEffect(() => {
+        dispatch(getRating());
+    }, [])
+    
 
 
     return (
