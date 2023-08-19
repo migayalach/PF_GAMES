@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getGames, getGenders, obtenerUsers } from "./redux/actions";
-import { gamesByGenders } from './redux/actions'
 import axios from "axios";
 import "./StyleSheets/App.css";
 import Home from "./views/home";
@@ -24,9 +23,6 @@ function App() {
     dispatch(getGames());
     dispatch(getGenders());
     dispatch(obtenerUsers());
-    dispatch(gamesByGenders("Action"));
-    dispatch(gamesByGenders("Sports"));
-    dispatch(gamesByGenders("Adventure"));
   }, []);
   return (
     <div>
