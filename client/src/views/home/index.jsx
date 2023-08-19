@@ -6,7 +6,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Paginado from "../../components/Paginado/Paginado";
 import Filters from '../../components/Filters'
 import "./home.styles.css"
-import footer from "../../components/Footer/footer";
+import Footer from "../../components/Footer/Footer";
 
 export default function Home(){
     const allGames = useSelector((state) => state.games)
@@ -28,7 +28,7 @@ export default function Home(){
             <NavBar/>
             <CardList gamesList={juegosActuales}/>
             <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
-            <footer />
+            <Footer />
         </div>
     )
 

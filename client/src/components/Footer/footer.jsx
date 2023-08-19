@@ -8,7 +8,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import img from "../../assets/stripe-payment.png";
 import { Container, Left, Logo, Desc, Social, SocialIcon, Right, Title, ContactItem, Payment } from "./footer.styles";
 
-const footer = () => {
+const Footer = () => {
   return (
     <Container>
       <Left>
@@ -48,4 +48,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;
