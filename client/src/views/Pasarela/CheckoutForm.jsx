@@ -106,9 +106,9 @@ emailjs.send(
           className={estilo.formPay}
           onSubmit={(event) => handleSubmit(event)}
         >
-          <label>Nombre del comprador</label>
-          <h1>{user.name}</h1>
-          <label>Email al cual enviar factura</label>
+          <label className={estilo.label}>Nombre del comprador</label>
+          <h2>{user.name}</h2>
+          <label className={estilo.label}>Email al cual enviar factura</label>
           <p>{user.email}</p>
           <h3 className="text-center">TOTAL: $ {total}</h3>
           <div className={estilo.subContenedor}>
@@ -116,7 +116,7 @@ emailjs.send(
           </div>
           <button className={estilo.btn}>CONFIRMAR COMPRA</button>
           <Link to="/videogames">
-            <button>CASA</button>
+            <button>HOME</button>
           </Link>
         </form>
       </div>

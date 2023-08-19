@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50vh;
+    width: 85vh;
     height: 70vh;
     background-color: #f0f0f0;
   }
@@ -20,7 +20,13 @@
     font-family: "Arial", sans-serif;
     color: #333;
   }
-  
+
+  .label{
+    font-weight: 800;
+    font-size: 18px;
+    text-shadow: 3px 3px 5px #515151;
+  }
+
   .subContenedor {
     margin-top: 20px;
   }

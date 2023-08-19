@@ -1,0 +1,63 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin-left: 12%;
+}
+.img{
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+}
+.userName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    width: 80%;
+    height: 80%;
+    margin-left: 40px;
+    color: rgb(50, 166, 139);
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.75);
+}
+.userMail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 4%;
+    width: 80%;
+    height: 80%;
+    margin-left: 40px;
+    color: rgb(50, 166, 139);
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.75);
+}
+.btn{
+    color: white;
+    background-color: rgb(50, 166, 139);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    overflow: hidden;
+    transition: 0.2s;
+}
+.btn:hover{
+    background: #72f355;
+    box-shadow: 0 0 10px #72f355, 0 0 40px #72f355, 0 0 80px #72f355;
+}
