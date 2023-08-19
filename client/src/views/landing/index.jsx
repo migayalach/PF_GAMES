@@ -4,6 +4,7 @@ import { gamesByGenders } from '../../redux/actions'
 import Encabezado from "../encabezado/encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Carousel from '../../components/Carousel/Carousel';
+import footer from "../../components/Footer/footer";
 
 export default function Landing() {
   const { action, sports, adventure } = useSelector(state => state.gamesByGenres);
@@ -25,6 +26,7 @@ export default function Landing() {
       <Carousel images={limitedActionImages} />
       <Carousel images={limitedAdventureImages} />
       <Carousel images={limitedSportsImages} />
+      <footer />
     </div>
   );
 }
