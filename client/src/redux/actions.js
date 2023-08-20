@@ -29,6 +29,7 @@ import {
   GET_RATING,
   POST_RATING,
   UPDATE_RATING,
+  GET_COMPRAS,
 } from "./action-type";
 import Swal from "sweetalert2";
 
@@ -406,5 +407,18 @@ export const updateRating = (payload) => async (dispatch) => {
       icon: 'error',
       confirmButtonText: 'entendido'
     })
+  }
+}
+
+
+export const getCompras = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/compras/sales`)
+    return dispatch({
+      type: GET_COMPRAS,
+      payload: data
+    });
+  } catch (error) {
+    console.log("Desde getCompraUser", error);
   }
 }

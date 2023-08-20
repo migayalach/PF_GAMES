@@ -28,6 +28,7 @@ import {
   GET_RATING,
   POST_RATING,
   UPDATE_RATING,
+  GET_COMPRAS
 } from "./action-type";
 
 const initialState = {
@@ -52,6 +53,7 @@ const initialState = {
   aprobado: false,
   agregado: false,
   ratings: [],
+  ventas: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -220,6 +222,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return{
         ...state,
         ratings: [...payload],
+      }
+    case GET_COMPRAS:
+      return{
+        ...state,
+        ventas: payload
       }
     default:
       return state;

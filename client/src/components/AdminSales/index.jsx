@@ -1,11 +1,17 @@
 import style from "./adminSale.module.css";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AdminCard from "../AdminCard";
 import Paginado from "../Paginado/Paginado";
+import { getCompras } from "../../redux/actions";
 
 export default function AdminSales() {
-  const sales = useSelector(state => state.comprasUser);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCompras());
+  }, [])
+  const sales = useSelector(state => state.ventas);
+  console.log("PROBANDO", sales);
   const [page, setPage] = useState(1);
   const start = (page - 1) * 10;
   const end = page * 10;
@@ -19,11 +25,12 @@ export default function AdminSales() {
         <div className={style.head}>
           <h2>ID</h2>
           <h2>Voucher</h2>
+          <h2>Amount</h2>
           <h2>Date</h2>
         </div>
         {
           viewSales && viewSales.map(sale => (
-            <AdminCard key={sale.idSale} data={sale} />
+            <AdminCard key={sale.idBought} data={sale} />
           ))
         }
         <Paginado cantidadPorPag={10} juegos={sales.length} paginado={handlePage} />
