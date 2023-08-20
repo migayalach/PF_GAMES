@@ -23,6 +23,7 @@ import Modal from "@mui/material/Modal"; // Importa el componente Modal de Mater
 import Button from "@mui/material/Button"; // Importa el componente Button de Material-UI
 import { useState } from "react"; // Importa el hook useState de React
 import ContactForm from "./Contact Form/ContactForm";
+import { Stack } from "@mui/system";
 
 const Footer = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -63,9 +64,11 @@ const Footer = () => {
         >
           <CenterContainer>
             <ContactForm onSubmit={toggleFormVisibility} />
-            <Button variant="contained" onClick={toggleFormVisibility}>
+            <Stack spacing={3} display="inline-flex" width={365}>
+            <Button variant="outlined" onClick={toggleFormVisibility}>
               Close
             </Button>
+            </Stack>
           </CenterContainer>
         </Modal>
         <ContactItem>

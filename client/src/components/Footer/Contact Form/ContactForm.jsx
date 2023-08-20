@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
+import style from './ContactForm.module.css';
 
 const ContactForm = () => {
   const [state, handleSubmit] = useForm("xqkvqawb");
@@ -7,14 +8,15 @@ const ContactForm = () => {
       return <p>Thanks for your message!</p>;
   }
   return (
-      <form onSubmit={handleSubmit}>
-      <label htmlFor="email">
+      <form className={style.formContainer} onSubmit={handleSubmit}>
+      <label className={style.label} htmlFor="email">
         Email
       </label>
       <input
         id="email"
         type="email" 
         name="email"
+        className={style.input}
       />
       <ValidationError 
         prefix="Email" 
@@ -24,13 +26,14 @@ const ContactForm = () => {
       <textarea
         id="message"
         name="message"
+        className={style.textarea}
       />
       <ValidationError 
         prefix="Message" 
         field="message"
         errors={state.errors}
       />
-      <button type="submit" disabled={state.submitting}>
+      <button className={style.btnSubmit} type="submit" disabled={state.submitting}>
         Submit
       </button>
     </form>
