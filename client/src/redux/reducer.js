@@ -45,7 +45,7 @@ const initialState = {
   comprasUser: [],
   aprobado: false,
   agregado: false,
-  ratings: {},
+  ratings: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -184,7 +184,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case POST_RATING:
       return{
         ...state,
-        ratings: payload,
+        ratings: [...state.ratings, payload],
       }
     case UPDATE_RATING:
       return{

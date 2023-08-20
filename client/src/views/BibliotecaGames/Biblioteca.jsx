@@ -19,6 +19,7 @@ const Biblioteca = () => {
         if (user) {
             dispatch(getComprasUser(currentUser[0]?.idUser));
         }
+        dispatch(getRating());
     }, [user, dispatch]);
 
     const compras = useSelector(state => state.comprasUser.boughts)
@@ -28,7 +29,7 @@ const Biblioteca = () => {
 
 
     const [pagActual, setPagActual] = useState(1);
-    const [cantidadPorPag] = useState(10);
+    const [cantidadPorPag] = useState(5);
     const ultimoIndice = pagActual * cantidadPorPag
     const primerIndice = ultimoIndice - cantidadPorPag
     const juegosActuales = juegosComprados?.slice(primerIndice, ultimoIndice)
@@ -37,9 +38,6 @@ const Biblioteca = () => {
         setPagActual(pageNumber)
     }
 
-    useEffect(() => {
-        dispatch(getRating());
-    }, [])
     
 
 
