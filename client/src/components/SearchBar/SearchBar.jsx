@@ -4,10 +4,13 @@ import { getGameByName, getGames } from "../../redux/actions";
 import estilo from './SearchBar.module.css'
 import Swal from "sweetalert2"; //Importación de la libreria sweetalert2 que permite mostrar alertas bien GG's
 import { Link } from "react-router-dom";
+import Loading from "../../utils/Loading/Loading";
+
 const SearchBar = () => {
 
     const [name, setName] = useState("");
     const [busqueda, setBusqueda] = useState(false);
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const juegos = useSelector((state) => state.games)
 
@@ -33,7 +36,9 @@ const SearchBar = () => {
                 confirmButtonText: "ok",
             });
         } else {
+            setLoading(true);
             dispatch(getGameByName(name));
+            setLoading(false);
             setBusqueda(true);
         }
     };
@@ -71,6 +76,7 @@ const SearchBar = () => {
                         : <></>
                 }
             </form>
+            {loading && <Loading />}
         </div>
     )
 }
