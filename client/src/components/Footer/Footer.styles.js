@@ -85,7 +85,6 @@ export const CenterContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  background-color: #fff;
   box-shadow: 24px;
   padding: 16px;
 `;
