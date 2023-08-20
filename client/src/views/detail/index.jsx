@@ -12,7 +12,7 @@ const Detail = () => {
   const { id } = useParams();
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.users.filter(index => index.email == user?.email))
+  const currentUser = useSelector(state => state.users?.filter(index => index.email == user?.email))
 
   useEffect(() => {
     if (user) {
