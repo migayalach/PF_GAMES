@@ -8,6 +8,7 @@ const {
   updateUser,
   delUser,
   searchUserEmail,
+  isAdmin,
 } = require("../Controllers/userController");
 
 //ANTES DE AUTH 0
@@ -43,16 +44,11 @@ const getUser = async (request, response) => {
   const { nameUser, email } = request.query;
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   try {
-    if (regex.test(email)) {
-      const result = await searchUserEmail(email);
-      result === "error"
-        ? (result = await createUser(nameUser, email)) &&
-          response.status(SUCCESS).json({ access: result })
-        : response.status(SUCCESS).json({ access: result });
+    if (nameUser && email && regex.test(email)) {
+      const result = await createUser(nameUser, email);
+      response.status(SUCCESS).json(result)
     } else {
-      const result = nameUser
-        ? await searchUserName(nameUser)
-        : await getAllUser();
+      const result = await getAllUser();
       response.status(SUCCESS).json(result);
     }
   } catch (error) {
@@ -97,10 +93,21 @@ const deleteUser = async (request, response) => {
   }
 };
 
+const isAdminUser = async (request, response) => {
+  const { idUser } = request.body;
+  try {
+    const result = await isAdmin(idUser);
+    response.status(SUCCESS).json(result);
+  } catch (error) {
+    response.status(ERROR).json({ error: error.message });
+  }
+}
+
 module.exports = {
   postUser,
   getUser,
   getUserId,
   putUser,
   deleteUser,
+  isAdminUser
 };

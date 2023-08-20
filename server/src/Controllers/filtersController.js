@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const filterByGender = async (gender) => {
   const gamesByGender = await genders.findOne({
     where: { nameGenders: gender },
-    include: [game]
+    include: [{ model: game, where: { available: true } }]
   });
   if (!gamesByGender.games) return [];
   return gamesByGender.games;
@@ -12,7 +12,7 @@ const filterByGender = async (gender) => {
 
 const filterByPrice = async (minPrice, maxPrice) => {
   const gamesByPrice = await game.findAll({
-    where: { cost: { [Op.between]: [minPrice, maxPrice] } },
+    where: { cost: { [Op.between]: [minPrice, maxPrice] }, available: true },
     include: [genders]
   });
   if (gamesByPrice.length === 0) return [];
@@ -22,7 +22,7 @@ const filterByPrice = async (minPrice, maxPrice) => {
 const filtersGames = async (gender, minPrice, maxPrice) => {
   const gamesByGender = await genders.findOne({
     where: { nameGenders: gender },
-    include: [game]
+    include: [{ model: game, where: { available: true } }]
   });
   if (!gamesByGender.games) return [];
   const gamesByPrice = gamesByGender.games.filter(game => game.cost >= minPrice && game.cost <= maxPrice);

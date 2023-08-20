@@ -8,7 +8,6 @@ import {
   FILTERS_ACTIVE,
   ORDER_NAME,
   ORDER_COST,
-  POST_GAME,
   DELETE_ITEM,
   DELETE_PRODUCTS,
   ADD_PRODUCTS,
@@ -22,6 +21,11 @@ import {
   APROBAR_PAGO,
   GET_USERS,
   AGREGADO_A_CARRITO,
+  POST_GAME,
+  PUT_GAME,
+  DELETE_GAME,
+  USER_IS_BAN,
+  USER_IS_ADMIN,
   GET_RATING,
   POST_RATING,
   UPDATE_RATING,
@@ -57,6 +61,54 @@ export const postGame = (game) => {
     }
   };
 };
+
+export const putGame = (idGame, game) => {
+  const formData = new FormData();
+  if (game.image) formData.append("image", game.image);
+  return async function (dispatch) {
+    try {
+      let obj;
+      if (game.image) {
+        const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${apiKeyIBB}`, formData);
+        obj = {
+          idGame,
+          updatedProps: {
+            ...game,
+            image: data.data.url
+          }
+        }
+      } else {
+        obj = {
+          idGame,
+          updatedProps: {
+            ...game
+          }
+        }
+      }
+      const response = await axios.put("/games", obj);
+      dispatch({
+        type: PUT_GAME,
+        payload: response.data
+      });
+    } catch (error) {
+      alert("No se hicieron los cambios");
+    }
+  }
+}
+
+export const deleteGame = (idGame) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.delete(`/games/${idGame}`);
+      dispatch({
+        type: DELETE_GAME,
+        payload: data
+      });
+    } catch (error) {
+      alert("No se borro el juego");
+    }
+  }
+}
 
 export const getGames = () => {
   return async function (dispatch) {
@@ -232,10 +284,8 @@ export const getComprasUser = (payload) => async (dispatch) => {
 export const checkUser = (nameUser, email) => {
   return async function (dispatch) {
     try {
-      const data = (
-        await axios.get(`/user?nameUser=${nameUser}&email=${email}`)
-      ).data;
-      dispatch({ type: CHECK_USER, payload: data });
+      const { data } = await axios.get(`/user?nameUser=${nameUser}&email=${email}`);
+      return dispatch({ type: CHECK_USER, payload: data });
     } catch (error) {
       console.log("hay error");
     }
@@ -251,7 +301,7 @@ export const getLevelUser = () => async (dispatch) => {
         payload: data
       });
   } catch (error) {
-     console.log('ERROR AL TRAER NIVELES DE USUARIO!',error.message) 
+    console.log('ERROR AL TRAER NIVELES DE USUARIO!',error.message) 
   }
 };
 
@@ -276,6 +326,30 @@ export const obtenerUsers = () => async (dispatch) => {
     console.log('ERROR AL OBTENER USUARIOS!', error.message) 
   }
 };
+
+export const userIsBan = (idUser) => async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`/user/${idUser}`);
+    return dispatch({
+      type: USER_IS_BAN,
+      payload: data
+    })
+  } catch (error) {
+    console.log('ERROR!', error.message);
+  }
+}
+
+export const userIsAdmin = (idUser) => async (dispatch) => {
+  try {
+    const { data } = await axios.put("/user/admin", { idUser });
+    return dispatch({
+      type: USER_IS_ADMIN,
+      payload: data
+    })
+  } catch (error) {
+    console.log('ERROR!', error.message);
+  }
+}
 
 export const agregadoACarrito = (payload) => {
   return {

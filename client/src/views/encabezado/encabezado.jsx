@@ -15,14 +15,13 @@ export default function Encabezado() {
 
   const { isAuthenticated, isLoading, user } = useAuth0();
   const dispatch = useDispatch();
-  const aux = useSelector((state) => state.levelUser);
-  const acceso = aux?.access;
+  const dbUser = useSelector((state) => state.user);
   
   useEffect(() => {
-    if (user && user.name && user.email) {
-      dispatch(checkUser(user.name, user.email));
+    if (user?.email) {
+      dispatch(checkUser(user?.name, user?.email));
     }
-  }, []);
+  }, [user]);
   if (isLoading) return <h1>Cargando ................</h1>;
   return (
     <div className={styles.enc}>
@@ -33,25 +32,18 @@ export default function Encabezado() {
         <h2>GAMING SHOP</h2>
       </div>
       <nav >
-        <a className={styles.encab}>
-          {
-            acceso === "admin" && (
-              <NavLink to="/formGame" style={{ textDecoration: "none", color: "black" }}>CREAR JUEGO</NavLink>
-            )}
-        </a>
-        <a className={styles.encab}>
-          <NavLink to="/soporte" style={{ textDecoration: "none", color: "black" }} >SOPORTE</NavLink>
-        </a>
-        <a className={styles.encab}>
-          {isAuthenticated && (
-            <NavLink to="/biblioteca" style={{ textDecoration: "none", color: "black" }}>BIBLIOTECA</NavLink>
+        {
+          dbUser?.level?.nameLevel === "admin" && (
+            <NavLink to="/admin" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>DASHBOARD</NavLink>
+          )
+        }
+        <NavLink to="/soporte" className={styles.encab} style={{ textDecoration: "none", color: "black" }} >SUPORT</NavLink>
+        {isAuthenticated && (
+            <NavLink to="/biblioteca" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>LIBRARY</NavLink>
           )}
-        </a>
-        <a className={styles.encab}>
-          {isAuthenticated && (
-            <NavLink to="/perfil" style={{ textDecoration: "none", color: "black" }}>PERFIL</NavLink>
+        {isAuthenticated && (
+            <NavLink to="/perfil" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>PROFILE</NavLink>
           )}
-        </a>
       </nav>
       {isAuthenticated ? <Logout /> : <Login />}
     </div>

@@ -12,7 +12,6 @@ const { getApi } = require('../Utils/getApi');
 
 const allGetGames = async () => {
   const resultDBB = await game.findAll({
-    where: { available: true },
     include: [genders],
   });
   if (resultDBB.length > 0) return resultDBB;
@@ -36,10 +35,8 @@ const allGetGames = async () => {
     }
   }
   const gamesResult = await game.findAll({
-    where: { available: true },
     include: [genders]
   });
-  // LIMPIAR RESULTADOS PARA DEVOLVER
   return gamesResult;
 };
 
@@ -82,7 +79,6 @@ const createGame = async (
   })
   await newGame.setGenders(gendersBD);
   const totalGames = await game.findAll({
-    where: { available: true },
     include: [genders]
   });
   return totalGames;
@@ -102,7 +98,6 @@ const updateGame = async (
   }
   await dbGame.update(updatedProps);
   const allGames = await game.findAll({
-    where: { available: true },
     include: [genders]
   });
   return allGames;
@@ -113,7 +108,6 @@ const delGame = async (idGame) => {
   const newAvailable = !dbGame.available;
   await dbGame.update({ available: newAvailable });
   const allGames = await game.findAll({
-    where: { available: true },
     include: [genders]
   });
   return allGames;

@@ -1,24 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { gamesByGenders } from '../../redux/actions'
+import { gamesByGenders } from "../../redux/actions";
 import Encabezado from "../encabezado/encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Carousel from '../../components/Carousel/Carousel';
 
 export default function Landing() {
-  const { action, sports, adventure } = useSelector(state => state.gamesByGenres);
   const dispatch = useDispatch();
+  const { rpg, sports, shooter } = useSelector(state => state.gamesByGenres);
   useEffect(() => {
-    dispatch(gamesByGenders("Action"));
+    dispatch(gamesByGenders("RPG"));
     dispatch(gamesByGenders("Sports"));
-    dispatch(gamesByGenders("Adventure"));
+    dispatch(gamesByGenders("Shooter"));
   }, []);
   return (
     <div>
       <Encabezado/>
       <NavBar/>
-      <Carousel images={action}/>
-      <Carousel images={adventure}/>
+      <Carousel images={rpg}/>
+      <Carousel images={shooter}/>
       <Carousel images={sports}/>
     </div>
   );

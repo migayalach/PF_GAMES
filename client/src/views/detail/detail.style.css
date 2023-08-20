@@ -187,8 +187,39 @@ button {
   opacity: 1;
 }
 
+.image-container {
+  position: relative; /* Para que los elementos internos se posicionen en relación con este contenedor */
+}
 
+.image-container img {
+  width: 100%; /* Asegurarse de que la imagen ocupe todo el espacio disponible */
+  height: auto; /* Altura automática para mantener la proporción original */
+}
 
-
-
-
+.price-overlay {
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  background-image: url("../../assets/Diseño\ sin\ título\ \(18\).png"); /* Ruta de la imagen de fondo */
+  color: rgb(255, 255, 255);
+  padding: 30px 50px;
+  border-radius: 3px;
+  animation: slide 3s infinite alternate; 
+}
+@keyframes slide {
+  0% {
+    transform: translateX(2);
+  }
+  50% {
+    transform: translateX(20px); /* Ajusta la distancia de desplazamiento */
+  }
+}
+.Generos{
+  font-size: 1.2rem;
+  margin-bottom: 1px;
+  background-color: #000000a2; /* Cambiar el color de fondo según tu preferencia */
+  padding: 5px; /* Añadir espaciado alrededor del texto */
+  color: #fff
+}

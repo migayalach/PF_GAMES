@@ -14,39 +14,42 @@ const { sendWelcomeEmail } = require("../Utils/emailBienvenida/emailDeBienvenida
 
 //CON AUTH0
 const createUser = async (nameUser, email) => {
-  const existsData = await userInfo.findOne({ where: { email } });
+  const existsData = await userInfo.findOne({ where: { email }, include: [level] });
   if (!existsData) {
     const cantRegister = await userInfo.count();
     if (cantRegister === 0) {
       await userInfo.create({ idLevel: 1, nameUser, email });
       sendWelcomeEmail(email, nameUser);
-      return { level: "admin" };
+      const newAdmin = await userInfo.findOne({
+        where: { nameUser },
+        include: [level]
+      });
+      return newAdmin;
     }
     await userInfo.create({ idLevel: 2, nameUser, email });
     sendWelcomeEmail(email, nameUser);
-    return { level: "standar" };
+    const newUser = await userInfo.findOne({
+        where: { nameUser },
+        include: [level]
+    });
+    return newUser;
   }
-  throw Error(`El email: ${email}, ya existe`);
+  return existsData;
 };
 
 const getAllUser = async () => {
-  const userBDD = await userInfo.findAll();
-  
+  const userBDD = await userInfo.findAll({
+    include: [level]
+  });
+  //const userBDD = await userInfo.findAll();
   return userBDD;
 };
 
 const searchUser = async (idUser) => {
-  const nameUser = await userInfo.findAll({
-    where: {
-      idUser,
-    },
-  });
-
-  if (nameUser.length > 0) {
-    return nameUser;
-  }
-
-  throw Error(`No se pudo encontrar el usuario buscado`);
+  const nameUser = await userInfo.findByPk(idUser, {
+    include: [level]
+  })
+  return nameUser;
 };
 
 const searchUserName = async (nameUser) => {
@@ -72,14 +75,11 @@ const searchUserEmail = async (email) => {
     where: {
       email,
     },
-    include: {
-      model: level,
-      attributes: ["nameLevel"],
-    },
+    include: [level],
   });
 
   if (nameUserBDD.length > 0) {
-    return clearArray(nameUserBDD)[0];
+    return nameUserBDD;
   }
 
   return "error";
@@ -87,44 +87,34 @@ const searchUserEmail = async (email) => {
 
 const updateUser = async (
   idUser,
-  idLevel,
-  nameUser,
-  email,
-  password,
-  image
+  updatedProps
 ) => {
-  console.log(idUser, idLevel, nameUser, email, password, image);
-  const [updatedRowsCount, updatedRows] = await userInfo.update(
-    { idLevel, nameUser, email, password, image },
-    { where: { idUser }, returning: true }
-  );
-
-  // devolver un obj nuevo;
-  if (updatedRowsCount > 0) {
-    return updatedRows[0].nameUser;
-  } else {
-    throw new Error(`No se encontró ningún usuario con el ID ${idUser}.`);
-  }
+  const dbUser = await userInfo.findByPk(idUser);
+  await dbUser.update(updatedProps);
+  const updatedUser = await userInfo.findByPk(idUser, {
+    include: [level]
+  });
+  return updatedUser;
 };
 
+const isAdmin = async (idUser) => {
+  const dbUser = await userInfo.findByPk(idUser, { include: [level] });
+  const dbLevel = await level.findOne({ where: { name: "admin" } });
+  await dbUser.setLevel(dbLevel);
+  const allUsers = await userInfo.findAll({
+    include: [level]
+  });
+  return allUsers;
+}
+
 const delUser = async (idUser) => {
-  const nameUser = await userInfo.findOne({
-    where: {
-      idUser,
-    },
+  const dbUser = await userInfo.findByPk(idUser);
+  const isBan = !dbUser.ban;
+  await dbUser.update({ ban: isBan });
+  const allUsers = await userInfo.findAll({
+    include: [level]
   });
-
-  if (!nameUser) {
-    throw Error`El usuario no se encuentra registrado`;
-  }
-
-  await userInfo.destroy({
-    where: {
-      idUser,
-    },
-  });
-
-  return `Se elimino correctamente el usuario`;
+  return allUsers;
 };
 
 module.exports = {
@@ -133,6 +123,7 @@ module.exports = {
   searchUser,
   searchUserName,
   updateUser,
-  delUser,
   searchUserEmail,
+  isAdmin,
+  delUser,
 };
