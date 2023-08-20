@@ -14,11 +14,10 @@ const Biblioteca = () => {
 
     const { user } = useAuth0();
     const dispatch = useDispatch();
-    const currentUser = useSelector(state => state.users.filter(index => index.email == user?.email))
-
+    const currentUser = useSelector(state => state.user);
     useEffect(() => {
         if (user) {
-            dispatch(getComprasUser(currentUser[0]?.idUser));
+            dispatch(getComprasUser(currentUser.idUser));
         }
         dispatch(getRating());
     }, [user, dispatch]);

@@ -22,11 +22,7 @@ const CheckoutForm = ({ productos }) => {
   //FIN
   const total = useSelector((state) => state.cartTotal);
   const { user } = useAuth0();
-  const userAct = useSelector((state) =>
-    state.users.filter((index) => index.email == user?.email)
-  );
-  //const userAct = useSelector(state => state.users)
-  // console.log("PRUEBA", userAct);
+  const userAct = useSelector((state) => state.user);
 
   
   //-----------------------Método handle--------------------------
@@ -58,7 +54,7 @@ const CheckoutForm = ({ productos }) => {
       productos.forEach((producto) => {
         dispatch(
           postCompraUser({
-            idUser: userAct[0]?.idUser,
+            idUser: userAct.idUser,
             idGame: producto.idGame,
             amount: mont,
           })

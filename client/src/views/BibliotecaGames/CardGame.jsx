@@ -12,8 +12,9 @@ const Card = (props) => {
 
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const { user } = useAuth0();
-    const currentUser = useSelector(state => state.users?.filter(index => index.email == user?.email))
-    const ratingsUser = useSelector(state => state.ratings?.filter(index => index.userInfoIdUser == currentUser[0]?.idUser));
+    const currentUser = useSelector(state => state.user)
+    console.log("HOLA; SOY EL USER", currentUser);
+    const ratingsUser = useSelector(state => state.ratings?.filter(index => index.userInfoIdUser == currentUser?.idUser));
     const ratingConditional = ratingsUser.filter(index => index.gameIdGame == props.id)
 
     const [comment, setComment] = useState(
@@ -41,7 +42,7 @@ const Card = (props) => {
 
     const agregarComentario = () => {
         dispatch(postRating({
-            idUser: currentUser[0].idUser,
+            idUser: currentUser.idUser,
             idGame: props.id,
             amountStars: rating,
             comment: comment,
@@ -55,7 +56,7 @@ const Card = (props) => {
 
     const editarComentario = () => {
         dispatch(updateRating({
-            userInfoIdUser: currentUser[0].idUser,
+            userInfoIdUser: currentUser.idUser,
             gameIdGame: props.id,
             amountStars: rating,
             comment: comment,

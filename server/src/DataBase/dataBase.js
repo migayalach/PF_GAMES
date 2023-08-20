@@ -52,8 +52,10 @@ detail.belongsTo(game, { foreignKey: "idGame" });
 userInfo.belongsToMany(game, { through: 'Compra'});
 game.belongsToMany(userInfo, { through: 'Compra'});
 
-rating.belongsToMany(game, { through: 'rating'});
-rating.belongsToMany(userInfo, {through: "rating"});
+// rating.belongsToMany(game, { through: 'rating'});
+// rating.belongsToMany(userInfo, {through: "rating"});
 
+game.hasMany(rating);
+userInfo.hasMany(rating); 
 
 module.exports = { sequelize, ...sequelize.models };
