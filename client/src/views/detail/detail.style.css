@@ -223,3 +223,12 @@ button {
   padding: 5px; /* Añadir espaciado alrededor del texto */
   color: #fff
 }
+
+.input[type="radio"] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
