@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import { getComprasUser } from '../../redux/actions';
+import { getComprasUser, getRating } from '../../redux/actions';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAccessStandar } from '../../hooks/useAccessStandar';
@@ -20,6 +20,7 @@ const Biblioteca = () => {
         if (user) {
             dispatch(getComprasUser(currentUser[0]?.idUser));
         }
+        dispatch(getRating());
     }, [user, dispatch]);
 
     const compras = useSelector(state => state.comprasUser.boughts)
@@ -28,7 +29,7 @@ const Biblioteca = () => {
     const juegosComprados = copia.filter(obj1 => compras?.some(obj2 => obj2.gameIdGame === obj1.idGame))
 
     const [pagActual, setPagActual] = useState(1);
-    const [cantidadPorPag] = useState(10);
+    const [cantidadPorPag] = useState(5);
     const ultimoIndice = pagActual * cantidadPorPag
     const primerIndice = ultimoIndice - cantidadPorPag
     const juegosActuales = juegosComprados?.slice(primerIndice, ultimoIndice)
@@ -37,7 +38,7 @@ const Biblioteca = () => {
         setPagActual(pageNumber)
     }
 
-    useAccessStandar();
+    //useAccessStandar();
     return (
         <>
             <Encabezado />

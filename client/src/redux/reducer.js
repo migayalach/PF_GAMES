@@ -25,6 +25,9 @@ import {
   DELETE_GAME,
   USER_IS_BAN,
   USER_IS_ADMIN,
+  GET_RATING,
+  POST_RATING,
+  UPDATE_RATING,
 } from "./action-type";
 
 const initialState = {
@@ -48,6 +51,7 @@ const initialState = {
   comprasUser: [],
   aprobado: false,
   agregado: false,
+  ratings: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -201,6 +205,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return{
         ...state,
         agregado: payload,
+      }
+    case GET_RATING:
+      return{
+        ...state,
+        ratings: payload,
+      }
+    case POST_RATING:
+      return{
+        ...state,
+        ratings: [...state.ratings, payload],
+      }
+    case UPDATE_RATING:
+      return{
+        ...state,
+        ratings: [...payload],
       }
     default:
       return state;
