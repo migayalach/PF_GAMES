@@ -14,11 +14,11 @@ export const Left = styled.div`
 `;
 
 export const Logo = styled.h1`
-font-weigth: 800;
-font-size: 40px;
-color: gray;
-text-shadow: 3px 3px 5px #000000;
-font-family: 'Roboto', sans-serif;
+  font-weigth: 800;
+  font-size: 40px;
+  color: gray;
+  text-shadow: 3px 3px 5px #000000;
+  font-family: "Roboto", sans-serif;
 `;
 
 export const Desc = styled.p`
@@ -75,6 +75,16 @@ export const ContactItem = styled.div`
 `;
 
 export const Payment = styled.img`
-    width: 65%;
-    margin-bottom: 20px;
+  width: 65%;
+  margin-bottom: 20px;
+`;
+export const CenterContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: ${({ theme }) => theme.palette.background.paper};
+  box-shadow: 24px;
+  padding: 16px;
 `;
