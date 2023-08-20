@@ -1,66 +1,91 @@
-import { NavLink } from "react-router-dom";
-import style from "./footer.module.css";
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import RoomIcon from "@mui/icons-material/Room";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import img from "../../assets/stripe-payment.png";
+import {
+  Container,
+  Left,
+  Logo,
+  Desc,
+  Social,
+  SocialIcon,
+  Right,
+  Title,
+  CenterContainer,
+  ContactItem,
+  Payment,
+} from "./Footer.styles";
+import Modal from "@mui/material/Modal"; // Importa el componente Modal de Material-UI
+import Button from "@mui/material/Button"; // Importa el componente Button de Material-UI
+import { useState } from "react"; // Importa el hook useState de React
+import ContactForm from "./Contact Form/ContactForm";
+import { Stack } from "@mui/system";
 
-export default function Footer() {
-  const brandLinkStyles = {
-    fontWeight: "bold",
-    color: "#fff",
-    width: "fit-content",
+const Footer = () => {
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
-    textDecoration: "none",
-    "&:hover": {
-      textDecoration: "none",
-    },
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
   };
+
   return (
-    <div className={style.footerContainer}>
-        <NavLink to="/">
-          <h6 className={style.marca}>GAMING SHOP</h6>
-        </NavLink>
-      <div>
-        <p>© 2023 GAMING SHOP, Inc.</p>
-      </div>
-      <div className={style.icons}>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={style.icon}
+    <Container>
+      <Left>
+        <Logo>Gaming Shop</Logo>
+        <Desc>Find all the latest digital games, here with us!</Desc>
+        <Social>
+          <SocialIcon color="3B5999">
+            <FacebookRoundedIcon />
+          </SocialIcon>
+          <SocialIcon color="E4405F">
+            <InstagramIcon />
+          </SocialIcon>
+          <SocialIcon color="55ACEE">
+            <TwitterIcon />
+          </SocialIcon>
+          <SocialIcon color="E60023">
+            <PinterestIcon />
+          </SocialIcon>
+        </Social>
+      </Left>
+      <Right>
+        <Title>Contact</Title>
+        <Button variant="contained" onClick={toggleFormVisibility}>
+          Send us a message
+        </Button>
+        <Modal
+          open={isFormVisible}
+          onClose={toggleFormVisibility}
+          aria-labelledby="contact-form-modal"
         >
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/733/733547.png"
-            alt="Facebook"
-            width="30px"
-            height="30px"
-          />
-        </a>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={style.icon}
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/174/174855.png"
-            alt="Instagram"
-            width="30px"
-            height="30px"
-          />
-        </a>
-        <a
-          href="https://twitter.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={style.icon}
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/128/2504/2504947.png"
-            alt="Twitter"
-            width="30px"
-            height="30px"
-          />
-        </a>
-      </div>
-    </div>
+          <CenterContainer>
+            <ContactForm onSubmit={toggleFormVisibility} />
+            <Stack spacing={3} display="inline-flex" width={365}>
+            <Button variant="outlined" onClick={toggleFormVisibility}>
+              Close
+            </Button>
+            </Stack>
+          </CenterContainer>
+        </Modal>
+        <ContactItem>
+          <RoomIcon style={{ marginRight: "10px" }} /> 503 Water St, California,
+          United States
+        </ContactItem>
+        <ContactItem>
+          <WhatsAppIcon style={{ marginRight: "10px" }} /> +1 (415)555-5678
+        </ContactItem>
+        <ContactItem>
+          <MailOutlineIcon style={{ marginRight: "10px" }} />{" "}
+          henry-devs@gmail.com
+        </ContactItem>
+        <Payment src={img} alt="stripe-payments" />
+      </Right>
+    </Container>
   );
-}
+};
+
+export default Footer;

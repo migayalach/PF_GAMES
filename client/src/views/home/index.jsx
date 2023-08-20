@@ -28,7 +28,7 @@ export default function Home(){
             <NavBar/>
             <CardList gamesList={juegosActuales}/>
             <Paginado cantidadPorPag={cantidadPorPag} juegos={allGames.length} paginado={paginado}/>
-            {/* <Footer/>  footer provisional (borrar al tener el de Kari)*/}
+            <Footer />
         </div>
     )
 
