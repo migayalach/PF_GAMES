@@ -33,3 +33,4 @@ export const AGREGADO_A_CARRITO = "AGREGADO_A_CARRITO";
 export const POST_RATING = "POST_RATING";
 export const GET_RATING = "GET_RATING";
 export const UPDATE_RATING = "UPDATE_RATING";
+export const GET_COMPRAS = "GET_COMPRAS";

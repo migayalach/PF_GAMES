@@ -33,10 +33,11 @@ export default function AdminCard({ data }) {
         </>
       }
       {
-        data.idSale && <>
-          <h2>{data.idSale}</h2>
-          <h2>{data.numVoucher}</h2>
-          <h2>{data.dataSale}</h2>
+        data.idBought && <>
+          <h2>{data.idBought}</h2>
+          <h2>{data.gameIdGame}</h2>
+          <h2>{data.amount}</h2>
+          <h2>{data.createdAt}</h2>
         </>
       }
     </div>

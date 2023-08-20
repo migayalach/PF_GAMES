@@ -16,7 +16,7 @@ export default function Encabezado() {
   const { isAuthenticated, isLoading, user } = useAuth0();
   const dispatch = useDispatch();
   const dbUser = useSelector((state) => state.user);
-  
+
   useEffect(() => {
     if (user?.email) {
       dispatch(checkUser(user?.name, user?.email));
@@ -37,13 +37,13 @@ export default function Encabezado() {
             <NavLink to="/admin" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>DASHBOARD</NavLink>
           )
         }
-        <NavLink to="/soporte" className={styles.encab} style={{ textDecoration: "none", color: "black" }} >SUPORT</NavLink>
+        <NavLink to="/soporte" className={styles.encab} style={{ textDecoration: "none", color: "black" }} >SUPPORT</NavLink>
         {isAuthenticated && (
-            <NavLink to="/biblioteca" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>LIBRARY</NavLink>
-          )}
+          <NavLink to="/biblioteca" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>LIBRARY</NavLink>
+        )}
         {isAuthenticated && (
-            <NavLink to="/perfil" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>PROFILE</NavLink>
-          )}
+          <NavLink to="/perfil" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>PROFILE</NavLink>
+        )}
       </nav>
       {isAuthenticated ? <Logout /> : <Login />}
     </div>
