@@ -14,7 +14,7 @@ export default function AdminCard({ data }) {
     <div className={style.card}>
       {
         data.idGame && <>
-          <h2>{data.idGame}</h2>
+          <h2>{data.idGame.slice(0,8)}</h2>
           <h2>{data.nameGame}</h2>
           <h2>{data.available ? "Available" : "Not Available"}</h2>
           <button onClick={handleEdit}>edit</button>
@@ -29,7 +29,7 @@ export default function AdminCard({ data }) {
           <h2>{data.email}</h2>
           <h2>{data.ban ? "Banned" : "Approved"}</h2>
           {data.level.nameLevel === "standar" ? <button onClick={() => dispatch(userIsAdmin(data.idUser))}>Make admin</button> : null}
-          <button onClick={() => dispatch(userIsBan(data.idUser))}>{data.ban ? "Unban" : "Ban"}</button>
+          {data.level.nameLevel === "standar" ? <button onClick={() => dispatch(userIsBan(data.idUser))}>{data.ban ? "Unban" : "Ban"}</button> : null}
         </>
       }
       {
