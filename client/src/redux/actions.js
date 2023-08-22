@@ -342,7 +342,7 @@ export const userIsBan = (idUser) => async (dispatch) => {
 
 export const userIsAdmin = (idUser) => async (dispatch) => {
   try {
-    const { data } = await axios.put("/user/admin", { idUser });
+    const { data } = await axios.put("/user/admin", idUser);
     return dispatch({
       type: USER_IS_ADMIN,
       payload: data
