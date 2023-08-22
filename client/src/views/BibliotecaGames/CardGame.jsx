@@ -9,11 +9,9 @@ import Swal from "sweetalert2";
 
 const Card = (props) => {
     const dispatch = useDispatch();
-
     const [isPopupVisible, setIsPopupVisible] = useState(false);
     const { user } = useAuth0();
     const currentUser = useSelector(state => state.user)
-    console.log("HOLA; SOY EL USER", currentUser);
     const ratingsUser = useSelector(state => state.ratings?.filter(index => index.userInfoIdUser == currentUser?.idUser));
     const ratingConditional = ratingsUser.filter(index => index.gameIdGame == props.id)
 
@@ -23,10 +21,6 @@ const Card = (props) => {
     const [rating, setRating] = useState(
         props.id === ratingConditional[0]?.gameIdGame ? ratingConditional[0]?.amountStars : 0
     );
-
-    console.log("USUARIO", currentUser, "IDGAME", props.id, "RATINGS", ratingsUser);
-    console.log("CONDICIONAL", ratingConditional[0]?.comment);
-
     const openPopup = () => {
         setIsPopupVisible(true);
     };
@@ -51,7 +45,6 @@ const Card = (props) => {
             title: "Se agregó el comentario!",
             icon: "success"
         })
-        setComment('');
     }
 
     const editarComentario = () => {
@@ -65,7 +58,6 @@ const Card = (props) => {
             title: "Se actualizó el comentario!",
             icon: "success"
         })
-        setComment('');
     }
 
     return (
