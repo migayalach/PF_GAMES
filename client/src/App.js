@@ -13,6 +13,7 @@ import Landing from "./views/landing";
 import Biblioteca from "./views/BibliotecaGames/Biblioteca";
 import Profile from './components/Profile/Profile';
 import Dashboard from './views/Dashboard';
+import Soporte from './components/soporte/soporte';
 // deploy
 axios.defaults.baseURL = "https://pfgames-production.up.railway.app/gaming";
 // local
@@ -36,6 +37,7 @@ function App() {
         <Route path="/biblioteca" element={<Biblioteca />} />
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/" element={<Landing />} />
+        <Route path="/soporte" element={<Soporte />} />
       </Routes>
     </div>
   );
