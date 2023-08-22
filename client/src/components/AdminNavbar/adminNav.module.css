@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #121258;
+  background-color: var(--color-2);
 }
 
 .nav a {
@@ -24,7 +24,7 @@
 }
 
 .nav a:hover {
-  color: #FFF;
+  color: var(--color-3);
 }
 
 .nav button {
@@ -41,9 +41,31 @@
 }
 
 .nav button:hover {
-  color: #FFF;
+  color: var(--color-3);
 }
 
 #active {
-  color: #FFF;
+  color: var(--color-3);
+}
+
+@media screen and (min-width: 800px) {
+  .nav {
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100vh;
+    flex-direction: column;
+  }
+  .nav a {
+    font-size: 25px;
+  }
+  .nav button {
+    font-size: 18px;
+  }
+  .nav button:hover {
+    border-bottom: 2px solid var(--color-3);
+  }
+  #active {
+    border-bottom: 2px solid var(--color-3);
+  }
 }
