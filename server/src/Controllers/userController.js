@@ -99,7 +99,7 @@ const updateUser = async (
 
 const isAdmin = async (idUser) => {
   const dbUser = await userInfo.findByPk(idUser, { include: [level] });
-  const dbLevel = await level.findOne({ where: { name: "admin" } });
+  const dbLevel = await level.findOne({ where: { nameLevel: "admin" } });
   await dbUser.setLevel(dbLevel);
   const allUsers = await userInfo.findAll({
     include: [level]
