@@ -12,21 +12,18 @@
   background-size: cover;
   background-position: center top; /* Cambia la posición para que se muestre en la mitad superior */
 }
-
 .container img {
   max-width: 50%;
   height: auto;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-
 .container h1 {
   font-size: 3rem;
   margin-bottom: 10px;
   font-family: "Tommy the cat", sans-serif;
   color: #fff
 }
-
 .container p {
   font-size: 1.2rem;
   margin-bottom: 10px;
@@ -34,7 +31,6 @@
   padding: 5px; /* Añadir espaciado alrededor del texto */
   color: #fff
 }
-
 .container h2 {
   font-size: 1.4rem;
   font-weight: bold;
@@ -42,11 +38,9 @@
   background-color: #ff0000a2;
   color: #fff
 }
-
 a {
   text-decoration: none;
 }
-
 button {
   padding: 10px 20px;
   font-size: 1rem;
@@ -56,7 +50,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
 .home-button {
   background-image:url(../../assets/Diseño\ sin\ título\ \(11\).png);
   background-size: cover;
@@ -84,7 +77,6 @@ button {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
-
 .cart-button {
   background-image: url("../../assets/Diseño\ sin\ título\ \(10\).png");
   background-size: cover;
@@ -98,7 +90,6 @@ button {
   cursor: pointer; 
   transition: transform 0.2s ease-in-out;
 }
-
 .cart-button::before {
   content: attr(title); /* Toma el valor del atributo title como contenido */
   position: absolute;
@@ -113,12 +104,9 @@ button {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
-
 .cart-button:hover::before {
   opacity: 1;
 }
-
-
 .check-button {
   background-image: url("../../assets/icons8-shelves-70.png");
   background-size: cover;
@@ -151,8 +139,6 @@ button {
 .check-button:hover::before {
   opacity: 1;
 }
-
-
 
 .agregado-button {
   background-image: url("../../assets/icons8-pagado-70.png");

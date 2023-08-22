@@ -73,7 +73,7 @@ const Detail = () => {
                 <li>{gm.nameGenders}</li>
               ))}</div>
             </ul>
-            <div>
+            <div className="ratings-container">
               {
                 ratings && (
                   <>
