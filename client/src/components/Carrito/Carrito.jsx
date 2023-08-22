@@ -74,18 +74,18 @@ const Cart = () => {
                                 </div>
 
                                 <button className={estilo.btnClearAll} onClick={clearCart}>
-                                    Empty Cart
+                                    Empty Cart 
                                 </button>
 
                                 <Link to={`/PayPage`}>
                                     <button className={estilo.btnClearAll}>
-                                        Go to pay
+                                        Go to pay 
                                     </button>
                                 </Link>
 
                             </>
                         ) : (
-                            <p className={estilo.cartEmpty}>The Cart It's Empty</p>
+                            <p className={estilo.cartEmpty}>The Cart It's Empty </p>
                         )}
                     </div>
                 </div>

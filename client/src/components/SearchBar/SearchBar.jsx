@@ -57,7 +57,7 @@ const SearchBar = () => {
                     onChange={(event) => handleChange(event)}
                     value={name}
                     className={estilo.inputSearch}
-                    placeholder="Search videogame..."
+                    placeholder="Search videogame... "
                 />
                 <Link to="/videogames">
                     <button
