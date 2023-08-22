@@ -1,0 +1,21 @@
+
+.soporteContainer {
+    margin-top: 80px;
+    text-align: inherit;
+    margin-bottom: 100px;
+  }
+  
+  .hr {
+    width: 60%;
+    margin: 0 auto;
+    height: 2px;
+    border: none;
+    background-color: #535353;
+  }
+  
+  .textContainer {
+    margin-top: 10px; 
+    margin-left: 20px;
+    
+  }
+  
