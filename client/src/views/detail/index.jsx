@@ -27,8 +27,7 @@ const Detail = () => {
   const comprobando = compras.boughts?.filter((index) => index.gameIdGame == id)
   const agregado = useSelector(state => state.agregado);
   const ratings = useSelector(state => state.ratings?.filter(rating => rating.gameIdGame == id));
-  
-  console.log("ESTOS SON LOS RATING", ratings);
+  const carrito = useSelector(state => state.cart?.filter(producto => producto.idGame == id));
 
   const handleAdd = (plan) => {
     if (!user) {
@@ -124,11 +123,18 @@ const Detail = () => {
                     title="Agregar al carrito"
                   ></div>
                 :
-                <div
-                  className="cart-button"
-                  onClick={() => handleAdd(game)}
-                  title="Agregar al carrito"
-                ></div>
+                carrito[0]?.idGame == id
+                  ?
+                  <div
+                    className="agregado-button"
+                    title="Agregar al carrito"
+                  ></div>
+                  :
+                  <div
+                    className="cart-button"
+                    onClick={() => handleAdd(game)}
+                    title="Agregar al carrito"
+                  ></div>
             }
           </div>
         )}
