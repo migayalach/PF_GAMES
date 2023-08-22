@@ -6,8 +6,7 @@ export function useAccessAdmin() {
   const navigate = useNavigate();
   const user = useSelector(state => state.user);
   useEffect(() => {
-    if (!user || (user && user.level?.nameLevel === 'standar')) {
-      navigate('/');
-    }
-  });
+    if (!user.idUser) navigate("/");
+    if (user.idUser && user.idLevel === 2) navigate("/");
+  }, []);
 }
