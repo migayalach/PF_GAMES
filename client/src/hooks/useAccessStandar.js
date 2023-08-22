@@ -6,7 +6,7 @@ export function useAccessStandar() {
   const navigate = useNavigate();
   const user = useSelector(state => state.user);
   useEffect(() => {
-    if (!user) {
+    if (!user.idUser) {
       navigate('/');
     }
   });
