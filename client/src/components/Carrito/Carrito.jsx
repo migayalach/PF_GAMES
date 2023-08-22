@@ -74,18 +74,18 @@ const Cart = () => {
                                 </div>
 
                                 <button className={estilo.btnClearAll} onClick={clearCart}>
-                                    Vaciar Carrito
+                                    Empty Cart
                                 </button>
 
                                 <Link to={`/PayPage`}>
                                     <button className={estilo.btnClearAll}>
-                                        Pasar a pagar
+                                        Go to pay
                                     </button>
                                 </Link>
 
                             </>
                         ) : (
-                            <p className={estilo.cartEmpty}>El carrito está vacío</p>
+                            <p className={estilo.cartEmpty}>The Cart It's Empty</p>
                         )}
                     </div>
                 </div>
