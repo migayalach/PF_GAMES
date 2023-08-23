@@ -94,6 +94,11 @@ emailjs.send(
        });
   }
 
+  useEffect(() => {
+        const newTotal = productos?.reduce((acc, product) => acc + product.cost, 0);
+        dispatch(countTotal(newTotal))
+    }, [productos]);
+
   return (
     <div className={estilo.contenedorPadre}>
       <div>
