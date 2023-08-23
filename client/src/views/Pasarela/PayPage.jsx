@@ -11,7 +11,7 @@ const Pay = () => {
     const dispatch = useDispatch()
 
     const deleteProductPay = (product) => {
-        dispatch(deleteItem(product.idGame));
+        dispatch(deleteItem(product));
         dispatch(agregadoACarrito(false));
     };
 

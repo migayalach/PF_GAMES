@@ -18,9 +18,10 @@ const Cart = () => {
         setCountProducts(productos.length)
     }, [productos]);
 
+    console.log("CARRITO", productos);
 
     const deleteProductCart = (product) => {
-        dispatch(deleteItem(product.idGame));
+        dispatch(deleteItem(product));
         dispatch(agregadoACarrito(false));
     };
 
