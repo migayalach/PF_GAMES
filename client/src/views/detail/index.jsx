@@ -10,6 +10,7 @@ import Encabezado from "../encabezado/encabezado";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 
+
 const Detail = () => {
   const { id } = useParams();
   const { user } = useAuth0();
@@ -75,15 +76,18 @@ const Detail = () => {
             </ul>
             <div className="ratings-container">
               {
+                
                 ratings && (
                   <>
                     {
                       ratings.map((index) => {
                         return (
-                          <>
+                          
+                          <div className="ratingItem" key={index.id}>
                             {
                               [...Array(5)].map(() => {
                                 return (
+
                                   <label>
                                     <input
                                       className="input"
@@ -99,7 +103,7 @@ const Detail = () => {
                             }
                             <p>{index.amountStars}</p>
                             <h2>{index.comment}</h2>
-                          </>
+                          </div>
                         )
                       })
                     }
