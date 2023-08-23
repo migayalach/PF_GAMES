@@ -8,7 +8,7 @@ import Footer from "../../components/Footer/footer";
 import CardList from "../../components/cardList/cardList";
 import { FaStar } from "react-icons/fa";
 import estilo from './landing.module.css'
-import tuImagen from '../../assets/hello (1).png'
+import tuImagen from '../../assets/hello (2).png'
 
 export default function Landing() {
   const allGames = useSelector((state) => state.games);
