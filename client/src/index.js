@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./StyleSheets/index.css";
 import App from "./App";
 import { BrowserRouter, redirect } from "react-router-dom";
 import { Provider } from "react-redux";
