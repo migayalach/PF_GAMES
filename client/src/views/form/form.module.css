@@ -1,0 +1,150 @@
+.create {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.head {
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.head a {
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  color: var(--color-1);
+  transition: all .3s;
+}
+
+.head a:hover {
+  color: var(--color-3);
+}
+
+.head h1 {
+  width: max-content;
+  height: max-content;
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--color-1);
+  margin: 0;
+  user-select: none;
+  border-bottom: 3px solid var(--color-1);
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+  background-color: #0006;
+  border: 3px solid var(--color-1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.form label {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form label span {
+  width: max-content;
+  height: max-content;
+  color: var(--color-3);
+  margin-bottom: 15px;
+}
+
+.form label input {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 40px;
+  background-color: var(--color-1);
+  border-radius: 10px;
+  padding: 6px;
+  opacity: 0.4;
+  color: var(--color-4);
+  font-size: 14px;
+  transition: all .3s;
+}
+
+.form label textarea {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 150px;
+  background-color: var(--color-1);
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  opacity: 0.4;
+  color: var(--color-4);
+  font-size: 14px;
+  transition: all .3s;
+}
+.form label input:hover, .form label input:focus, .form label textarea:hover, .form label textarea:focus {
+  opacity: 1;
+}
+
+.form p {
+  color: #D33;
+}
+
+.form ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.form ul li {
+  color: var(--color-1);
+}
+
+.form select {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 30px;
+  color: var(--color-4);
+  background-color: var(--color-1);
+  border-radius: 10px;
+  opacity: 0.4;
+  transition: all .3s;
+}
+
+.form select:hover, .form select:focus {
+  opacity: 1;
+}
+
+.form button {
+  width: 200px;
+  height: 40px;
+  background-color: var(--color-1);
+  color: var(--color-2);
+  opacity: 0.8;
+  transition: all .3s;
+}
+
+.form button:hover {
+  opacity: 1;
+}
+
+@media screen and (min-width: 600px) {
+  .form {
+    border-radius: 20px;
+  }
+}

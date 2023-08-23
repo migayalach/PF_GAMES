@@ -36,9 +36,9 @@
 .head a {
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-2);
+  color: var(--color-3);
   padding: 3px;
-  border: 2px solid var(--color-2);
+  border: 2px solid var(--color-3);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
