@@ -209,12 +209,44 @@ button {
   padding: 5px; /* Añadir espaciado alrededor del texto */
   color: #fff
 }
+.imageContainer {
+  text-align: center; /* Centra la imagen horizontalmente */
+  margin: 20px 0; /* Margen superior e inferior */
+  max-width: 500;
+}
 
-.input[type="radio"] {
-  display: none;
+.imageContainer img {
+  width: 30%;
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+  display: block;/* Mantiene la proporción de la imagen */
+  
+}
+/* Estilos para cada elemento de calificación */
+.ratingItem {
+  background-image: url('../../assets/Games.jpeg'); /* Ruta de la imagen de fondo */
+  background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-position: center center; 
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 10px; /* Borde redondeado */
+  padding: 10px; /* Espacio interno */
+  margin-bottom: 10px; /* Margen inferior entre elementos */
+  font-family: "Times New Roman", serif;
+    color: rgb(255, 250, 250);
+}
+
+/* Estilos para las estrellas */
+.starContainer {
+  display: flex; /* Muestra las estrellas en línea */
+  align-items: center; /* Centra verticalmente las estrellas */
+  margin-bottom: 20px; /* Espacio entre las estrellas y el párrafo de calificación */
 }
 
 .star {
-  cursor: pointer;
-  transition: color 200ms;
+  color: #ffc107; /* Color de las estrellas llenas */
+  font-size: 1.2rem; /* Tamaño de fuente de las estrellas */
+  margin-right: 5px; /* Espacio entre las estrellas */
 }
+
+
