@@ -78,25 +78,10 @@ const Detail = () => {
                     {
                       ratings.map((index) => {
                         return (
-                          
-                          <div className={style.ratingItem} key={index.id}>
-                            {
-                              [...Array(5)].map(() => {
-                                return (
-
-                                  <label>
-                                    <input
-                                      className={style.input}
-                                      type="radio"
-                                      disabled={true}
-                                    />
-                                    <FaStar
-                                      color={"#ffc107"}
-                                    />
-                                  </label>
-                                )
-                              })
-                            }
+                          <div className="ratingItem" key={index.id}>
+                            {[...Array(5)].map((_, starIndex) => (
+                              <FaStar key={starIndex} color={"#ffc107"} />
+                            ))}
                             <p>{index.amountStars}</p>
                             <h2>{index.comment}</h2>
                           </div>
