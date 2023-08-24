@@ -24,9 +24,9 @@ const CheckoutForm = ({ productos }) => {
   const { user } = useAuth0();
   const userAct = useSelector((state) => state.user);
 
-  
+
   //-----------------------Método handle--------------------------
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -60,44 +60,44 @@ const CheckoutForm = ({ productos }) => {
           })
         );
       });
-      sendEmail(); 
+      sendEmail();
       //---------PENDIENTE---------
-    
+
     } else {
       Swal.fire({
         title: "Error",
-        text: "Ups! algo salió mal",
+        text: "Oops! something went wrong",
         icon: "error",
       });
     }
   };
   //Fin método handle
-  
+
   const sendEmail = () => {
     const userName = user.name;
     const userEmail = user.email;
     let templateParams = {
       from_name: userName,
-      to_email : userEmail,
+      to_email: userEmail,
       user_email: userEmail,
     };
-    
-emailjs.send(
-          "service_yuf9stp",
-          "template_qptp1zr",
-          templateParams,
-          "V08KUVn8ox1Prhrh5"
-        ).then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-       }, function(error) {
-          console.log('FAILED...', error);
-       });
+
+    emailjs.send(
+      "service_yuf9stp",
+      "template_qptp1zr",
+      templateParams,
+      "V08KUVn8ox1Prhrh5"
+    ).then(function (response) {
+      console.log('SUCCESS!', response.status, response.text);
+    }, function (error) {
+      console.log('FAILED...', error);
+    });
   }
 
   useEffect(() => {
-        const newTotal = productos?.reduce((acc, product) => acc + product.cost, 0);
-        dispatch(countTotal(newTotal))
-    }, [productos]);
+    const newTotal = productos?.reduce((acc, product) => acc + product.cost, 0);
+    dispatch(countTotal(newTotal))
+  }, [productos]);
 
   return (
     <div className={estilo.contenedorPadre}>
@@ -106,18 +106,26 @@ emailjs.send(
           className={estilo.formPay}
           onSubmit={(event) => handleSubmit(event)}
         >
-          <label>Nombre del comprador</label>
+          <label>Name of the buyer</label>
           <h1>{user.name}</h1>
-          <label>Email al cual enviar factura</label>
+          <label>Email to send invoice</label>
           <p>{user.email}</p>
           <h3 className="text-center">TOTAL: $ {total}</h3>
           <div className={estilo.subContenedor}>
             <CardElement className="form-control" />
           </div>
-          <button className={estilo.btn}>CONFIRMAR COMPRA</button>
-          <Link to="/videogames">
-            <button>CASA</button>
-          </Link>
+          <div className={estilo.contenedorBtn}>
+            <br />
+            <button className={estilo.btn}>CONFIRM PURCHASE</button>
+            <br />
+            <h3>-------------------OR-------------------</h3>
+            <br />
+            <Link to="/videogames">
+              <button className={estilo.btn}>
+                CONTINUE SHOPPING
+              </button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

@@ -42,7 +42,7 @@ const Card = (props) => {
             comment: comment,
         }));
         Swal.fire({
-            title: "Se agregó el comentario!",
+            title: "Comment added!",
             icon: "success"
         })
     }
@@ -55,7 +55,7 @@ const Card = (props) => {
             comment: comment,
         }));
         Swal.fire({
-            title: "Se actualizó el comentario!",
+            title: "Comment updated!",
             icon: "success"
         })
     }
@@ -71,14 +71,14 @@ const Card = (props) => {
                 </Link>
                 {
                     props.id == ratingConditional[0]?.gameIdGame
-                        ? <button onClick={openPopup}>EDITAR</button>
-                        : <button onClick={openPopup}>CALIFICAR</button>
+                        ? <button onClick={openPopup}>EDIT</button>
+                        : <button onClick={openPopup}>RATE</button>
                 }
                 {isPopupVisible && (
                     <div className={styles.contenedorPadreRating}>
                         <div className={styles.subContenedorRating}>
                             <div>
-                                <h1 style={{ color: 'black' }}>Calificación</h1>
+                                <h1 style={{ color: 'black' }}>RATING</h1>
                                 <br />
                                 {[...Array(5)].map((star, i) => {
                                     const ratingValue = i + 1;
@@ -98,13 +98,13 @@ const Card = (props) => {
                                     )
                                 })}
                             </div>
-                            <input value={comment} onChange={event => handleComment(event)} style={{ height: "200px", }} type="text" placeholder='Deja un comentario...' />
+                            <input value={comment} onChange={event => handleComment(event)} style={{ height: "200px", }} type="text" placeholder='Leave a comment...' />
                             <div className={styles.contenedorInput}>
-                                <button onClick={closePopup}>Cerrar</button>
+                                <button onClick={closePopup}>CLOSE</button>
                                 {
                                     props.id == ratingConditional[0]?.gameIdGame
-                                        ? <button onClick={() => editarComentario()}>EDITAR</button>
-                                        : <button onClick={() => agregarComentario()}>Agregar</button>
+                                        ? <button onClick={() => editarComentario()}>EDIT</button>
+                                        : <button onClick={() => agregarComentario()}>ADD</button>
                                 }
                             </div>
                         </div>

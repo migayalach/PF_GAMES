@@ -8,8 +8,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import Carousel from '../../components/Carousel/Carousel';
 import Footer from "../../components/Footer/footer";
 import CardList from "../../components/cardList/cardList";
-import tuImagen from '../../assets/hello (2).png'
-
+import { FaStar } from "react-icons/fa";
+import estilo from './landing.module.css'
+import tuImagen from '../../assets/hello(2).png'
 export default function Landing() {
   const allGames = useSelector((state) => state.games);
   const { action, sports, adventure } = useSelector((state) => state.gamesByGenres);
@@ -18,7 +19,6 @@ export default function Landing() {
   
   useEffect(() => {
     dispatch(gamesByGenders("Action"));
-    //dispatch(gamesByGenders("Sports"));
     dispatch(getRating());
     dispatch(gamesByGenders("Adventure"));
     dispatch(obtenerUsers());
@@ -31,7 +31,7 @@ export default function Landing() {
   console.log("Ratings", ratings)
   console.log("USUARIOS", nombreUser);
 
-  //Solo modifique la vista de las imagenes, el resto quedo igual.
+  
   const limitedActionImages = action ? action.slice(12, 17, 20) : [];
   const limitedAdventureImages = adventure ? adventure.slice(6, 11) : [];
 
@@ -61,38 +61,26 @@ export default function Landing() {
 
       <CardList gamesList={limitedGames} currentIndex={currentIndex} />
       <Carousel images={limitedAdventureImages} />
-      {/* <Carousel images={limitedSportsImages} /> */}
-      {
-                ratings && (
+               {
+                ratings.length > 0 && (
                   <div className={estilo.ratingContainer}>
-                    {
-                      ratings.map((index) => {
-                        return (
-                          <>
-                          <h3>{nombreUser[0]?.nameUser}</h3>
-                            {
-                              [...Array(5)].map(() => {
-                                return (
-                                  <label>
-                                    <input
-                                      className="input"
-                                      type="radio"
-                                      disabled={true}
-                                    />
-                                    <FaStar
-                                      color={"#ffc107"}
-                                    />
-                                  </label>
-                                )
-                              })
-                            }
-                            <p>{index.amountStars}</p>
-                            <h3>{prueba[0]?.nameGame}</h3>
-                            <h2>{index.comment}</h2>
-                          </>
-                        )
-                      })
-                    }
+                        {
+                          ratings.slice(0, 4).map((index, commentIndex) => (
+                            <div key={commentIndex} className={estilo.commentContainer}>
+                              <div className={estilo.commentUser}>
+                                <h3>{nombreUser[commentIndex]?.nameUser}</h3>
+                              </div>
+                              <div className={estilo.commentContent}>
+                                <h3>{prueba[commentIndex]?.nameGame}</h3>
+                                {[...Array(5)].map((_, starIndex) => (
+                                  <FaStar key={starIndex} color={"#ffc107"} />
+                                ))}
+                                <p>{index.amountStars}</p>
+                                <h2>{index.comment}</h2>
+                              </div>
+                            </div>
+                          ))
+                        }
                   </div>
                 )
               }
