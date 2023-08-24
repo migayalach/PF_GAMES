@@ -16,9 +16,9 @@ import Profile from './components/Profile/Profile';
 import Dashboard from './views/Dashboard';
 import Soporte from './components/soporte/soporte';
 // deploy
-axios.defaults.baseURL = "https://pfgames-production.up.railway.app/gaming";
+//axios.defaults.baseURL = "https://pfgames-production.up.railway.app/gaming";
 // local
-// axios.defaults.baseURL = "http://localhost:3001/gaming";
+axios.defaults.baseURL = "http://localhost:3001/gaming";
 
 function App() {
   const user = useSelector(state => state.user);

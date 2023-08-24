@@ -9,7 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Encabezado from "../encabezado/encabezado";
 import { FaStar } from "react-icons/fa";
 import { useState } from "react";
-
+import imagenRating from '../../assets/RATINGS.png'
 
 const Detail = () => {
   const { id } = useParams();
@@ -73,6 +73,11 @@ const Detail = () => {
                 <li>{gm.nameGenders}</li>
               ))}</div>
             </ul>
+              {ratings && ratings.length > 0 && (
+                <div className="imagenRating">
+                  <img src={imagenRating} alt="imagen Rating" />
+                </div>
+              )}
             <div className="ratings-container">
               {
                 
