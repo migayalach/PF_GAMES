@@ -52,36 +52,36 @@ export default function Landing() {
       <Encabezado/>
       <NavBar/>
       <Carousel images={limitedActionImages} />
-              
+
       <div className={estilo.imageContainer}>
         <img src={tuImagen} alt="Tu Imagen" />
       </div>
 
       <CardList gamesList={limitedGames} currentIndex={currentIndex} />
       <Carousel images={limitedAdventureImages} />
-               {
-                ratings.length > 0 && (
-                  <div className={estilo.ratingContainer}>
-                        {
-                          ratings.slice(0, 4).map((index, commentIndex) => (
-                            <div key={commentIndex} className={estilo.commentContainer}>
-                              <div className={estilo.commentUser}>
-                                <h3>{nombreUser[commentIndex]?.nameUser}</h3>
-                              </div>
-                              <div className={estilo.commentContent}>
-                                <h3>{prueba[commentIndex]?.nameGame}</h3>
-                                {[...Array(5)].map((_, starIndex) => (
-                                  <FaStar key={starIndex} color={"#ffc107"} />
-                                ))}
-                                <p>{index.amountStars}</p>
-                                <h2>{index.comment}</h2>
-                              </div>
-                            </div>
-                          ))
-                        }
+      {
+        ratings.length > 0 && (
+          <div className={estilo.ratingContainer}>
+            {
+              ratings.slice(0, 4).map((index, commentIndex) => (
+                <div key={commentIndex} className={estilo.commentContainer}>
+                  <div className={estilo.commentUser}>
+                    <h3>{nombreUser[commentIndex]?.nameUser}</h3>
                   </div>
-                )
-              }
+                  <div className={estilo.commentContent}>
+                    <h3>{prueba[commentIndex]?.nameGame}</h3>
+                    {[...Array(5)].map((_, starIndex) => (
+                      <FaStar key={starIndex} color={"#ffc107"} />
+                    ))}
+                    <p>{index.amountStars}</p>
+                    <h2>{index.comment}</h2>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        )
+      }
       <Footer />
     </div>
   );
