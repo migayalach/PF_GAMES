@@ -1,4 +1,3 @@
-import estilo from './landing.module.css'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gamesByGenders, getRating, obtenerUsers } from '../../redux/actions';
