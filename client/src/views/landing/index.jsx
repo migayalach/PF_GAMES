@@ -8,7 +8,6 @@ import NavBar from "../../components/NavBar/NavBar";
 import Carousel from '../../components/Carousel/Carousel';
 import Footer from "../../components/Footer/footer";
 import CardList from "../../components/cardList/cardList";
-import { FaStar } from "react-icons/fa";
 import estilo from './landing.module.css'
 import tuImagen from '../../assets/hello(2).png'
 export default function Landing() {
