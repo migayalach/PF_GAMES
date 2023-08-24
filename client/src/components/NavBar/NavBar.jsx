@@ -28,7 +28,7 @@ const NavBar = () => {
             <NavButton>GAMES</NavButton></Link>
             <SearchBar/>
             {
-                verificacionPath
+                verificacionPath || location.pathname === '/'
                 ?
                 <></>
                 :
