@@ -1,3 +1,4 @@
+import style from './landing.module.css'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gamesByGenders, getRating, obtenerUsers } from '../../redux/actions';
@@ -7,7 +8,6 @@ import NavBar from "../../components/NavBar/NavBar";
 import Carousel from '../../components/Carousel/Carousel';
 import Footer from "../../components/Footer/footer";
 import CardList from "../../components/cardList/cardList";
-import estilo from './landing.module.css'
 import tuImagen from '../../assets/hello(2).png'
 export default function Landing() {
   const allGames = useSelector((state) => state.games);
@@ -48,12 +48,12 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className={estilo.landing}>
+    <div className={style.landing}>
       <Encabezado/>
       <NavBar/>
       <Carousel images={limitedActionImages} />
 
-      <div className={estilo.imageContainer}>
+      <div className={style.image}>
         <img src={tuImagen} alt="Tu Imagen" />
       </div>
 
@@ -61,18 +61,20 @@ export default function Landing() {
       <Carousel images={limitedAdventureImages} />
       {
         ratings.length > 0 && (
-          <div className={estilo.ratingContainer}>
+          <div className={style.rating}>
             {
               ratings.slice(0, 4).map((index, commentIndex) => (
-                <div key={commentIndex} className={estilo.commentContainer}>
-                  <div className={estilo.commentUser}>
+                <div key={commentIndex} className={style.container}>
+                  <div className={style.user}>
                     <h3>{nombreUser[commentIndex]?.nameUser}</h3>
                   </div>
-                  <div className={estilo.commentContent}>
+                  <div className={style.content}>
                     <h3>{prueba[commentIndex]?.nameGame}</h3>
-                    {[...Array(5)].map((_, starIndex) => (
-                      <FaStar key={starIndex} color={"#ffc107"} />
-                    ))}
+                    <div>
+                      {[...Array(5)].map((_, starIndex) => (
+                        <FaStar key={starIndex} color={"#ffc107"} />
+                      ))}
+                    </div>
                     <p>{index.amountStars}</p>
                     <h2>{index.comment}</h2>
                   </div>
