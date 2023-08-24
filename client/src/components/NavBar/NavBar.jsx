@@ -19,7 +19,7 @@ const NavBar = () => {
         }, 4000);
     }
     return (
-        <nav className={style.nav}> 
+        <div className={style.nav}> 
             <Link id={location.pathname === '/' ? style.active : null} to='/' onClick={handleLoading}>HOME</Link>
             <Link id={location.pathname === '/videogames' ? style.active : null} to='/videogames'>GAMES</Link>
             {location.pathname === '/videogames' ? <SearchBar/> : null}
@@ -30,7 +30,7 @@ const NavBar = () => {
             }
             <Cart/>
             {loading && <Loading/>}
-        </nav>
+        </div>
     )
 }
 
