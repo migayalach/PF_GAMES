@@ -73,7 +73,7 @@ const Detail = () => {
             </ul>
             <div className={style["ratings-container"]}>
               {
-                ratings || ratings.length > 0 && (
+                ratings && (
                   <>
                     <div className="imagenRating">
                       <img src={imagenRating} alt="imagen Rating" />
