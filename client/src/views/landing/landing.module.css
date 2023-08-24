@@ -1,4 +1,8 @@
   /* Estilos para cada elemento de calificación */
+  .landing {
+    width: 100%;
+  }
+
   .ratingItem {
     background-color: #fff; /* Fondo del elemento */
     border: 1px solid #ccc; /* Borde */
@@ -16,9 +20,9 @@
     max-width: 500;
     */
     
-     width: 100%;
-  max-width: 500px;
-  margin: 20px auto; /* Margen superior e inferior */
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto; /* Margen superior e inferior */
   }
   
   /* Estilos para la imagen */
