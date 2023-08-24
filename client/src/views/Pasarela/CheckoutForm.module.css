@@ -51,6 +51,12 @@
   }
   
   a button:hover {
-    color: #0056b3;
+    color: #b2c0cf;
   }
-  
+
+  .contenedorBtn{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+  }

@@ -21,7 +21,7 @@ const SearchBar = () => {
 
     if (busqueda === true && juegos.length === 0) {
         Swal.fire({
-            text: "No hay resultados de tu busqueda :c",
+            text: "No results found for your search...",
             icon: "info",
             confirmButtonText: "ok",
         });
@@ -31,7 +31,7 @@ const SearchBar = () => {
         setName("");
         if (!name.length) {
             Swal.fire({
-                text: "Debes ingresar un parametro de busqueda.",
+                text: "You must enter a search parameter",
                 icon: "info",
                 confirmButtonText: "ok",
             });

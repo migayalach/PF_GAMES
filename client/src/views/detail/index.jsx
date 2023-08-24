@@ -33,18 +33,18 @@ const Detail = () => {
   const handleAdd = (plan) => {
     if (!user) {
       Swal.fire({
-        title: "Debes iniciar sesión",
+        title: "You must log in...",
         icon: "info",
         showCloseButton: true,
-        confirmButtonText: "OK",
+        confirmButtonText: "got it",
         timer: 4000
       });
     } else {
       dispatch(addProducts(plan));
       dispatch(agregadoACarrito(true));
       Swal.fire({
-        title: "Se agregó el producto al carrito!",
-        text: "Revisa el carrito",
+        title: "Product added to the cart!",
+        text: "Checkout the cart",
         timer: 4000,
         icon: "success"
       });

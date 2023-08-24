@@ -233,10 +233,10 @@ export const postCheckoutId = (payload) => async (dispatch) => {
   try {
     const { data } = await axios.post("/compras", payload)
     Swal.fire({
-      title: 'COMPRADO!',
-      text: 'Su compra fue éxitosa',
+      title: 'PURCHASED!',
+      text: 'Your purchase was successful.',
       icon: 'success',
-      confirmButtonText: 'entendido'
+      confirmButtonText: 'got it'
     })
     return dispatch({
       type: POST_CHECKOUT_ID,
