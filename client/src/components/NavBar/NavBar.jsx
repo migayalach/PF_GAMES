@@ -2,7 +2,7 @@ import style from './nav.module.css'
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { filtersActive } from '../../redux/actions.js'
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import Cart from '../Carrito/Carrito.jsx'
 import Loading from '../../utils/Loading/Loading.jsx'
@@ -20,8 +20,8 @@ const NavBar = () => {
     }
     return (
         <nav className={style.nav}> 
-            <NavLink id={location.pathname === '/' ? style.active : null} to='/' onClick={handleLoading}>HOME</NavLink>
-            <NavLink id={location.pathname === '/videogames' ? style.active : null} to='/videogames'>GAMES</NavLink>
+            <Link id={location.pathname === '/' ? style.active : null} to='/' onClick={handleLoading}>HOME</Link>
+            <Link id={location.pathname === '/videogames' ? style.active : null} to='/videogames'>GAMES</Link>
             {location.pathname === '/videogames' ? <SearchBar/> : null}
             {
                 location.pathname === '/videogames'
