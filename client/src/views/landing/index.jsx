@@ -26,9 +26,6 @@ export default function Landing() {
   const prueba = allGames.filter(obj1 => ratings?.some(obj2 => obj2.gameIdGame === obj1.idGame));
   const allUsers = useSelector((state) => state.adminUsers);
   const nombreUser = allUsers.filter(obj1 => ratings?.some(obj2 => obj2.userInfoIdUser === obj1.idUser));
-  console.log("Ratings", ratings)
-  console.log("USUARIOS", nombreUser);
-
   
   const limitedActionImages = action ? action.slice(12, 17, 20) : [];
   const limitedAdventureImages = adventure ? adventure.slice(6, 11) : [];
