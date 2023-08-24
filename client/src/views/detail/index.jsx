@@ -1,14 +1,13 @@
+import style from "./detail.module.css";
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import "./detail.style.css"
 import { useDispatch, useSelector } from "react-redux";
 import { addProducts, agregadoACarrito, getById, getComprasUser, getRating } from "../../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
 import NavBar from "../../components/NavBar/NavBar";
 import Encabezado from "../encabezado/encabezado";
-import { FaStar } from "react-icons/fa";
-import { useState } from "react";
 
 
 const Detail = () => {
@@ -55,25 +54,23 @@ const Detail = () => {
 
   return (
     <>
-      {user ? <></> : <Encabezado />}
-      <NavBar />
-      <div className="container" style={{ backgroundImage: `url(${game?.image})` }}>
+      <div className={style.container} style={{ backgroundImage: `url(${game?.image})`, marginTop: "40px" }}>
         <Link to="/videogames">
-          <div className="home-button"></div>
+          <div className={style["home-button"]}></div>
         </Link>
 
         {game && (
-          <div className="content" key={game.id}>
+          <div className={style.content} key={game.id}>
             <h1>{game?.nameGame}</h1>
             <img src={game?.image} alt="imagen allGame" />
             <p>{game?.description}</p>
-            <div className="price-overlay">${game?.cost}</div>
+            <div className={style["price-overlay"]}>${game?.cost}</div>
             <ul>
-              <div className="Generos">{game.genders?.map(gm => (
+              <div className={style.Generos}>{game.genders?.map(gm => (
                 <li>{gm.nameGenders}</li>
               ))}</div>
             </ul>
-            <div className="ratings-container">
+            <div className={style["ratings-container"]}>
               {
                 
                 ratings && (
@@ -82,14 +79,14 @@ const Detail = () => {
                       ratings.map((index) => {
                         return (
                           
-                          <div className="ratingItem" key={index.id}>
+                          <div className={style.ratingItem} key={index.id}>
                             {
                               [...Array(5)].map(() => {
                                 return (
 
                                   <label>
                                     <input
-                                      className="input"
+                                      className={style.input}
                                       type="radio"
                                       disabled={true}
                                     />
@@ -112,30 +109,30 @@ const Detail = () => {
             </div>
             {
               user?.email && comprobando?.length && currentUser
-                ? currentUser.email == user.email && comprobando[0]?.gameIdGame == id
+                ? currentUser.email === user.email && comprobando[0]?.gameIdGame === id
                   ?
                   <Link to="/biblioteca">
                     <div
-                      className="check-button"
+                      className={style["check-button"]}
                       title="Ir a biblioteca"
                     ></div>
                   </Link>
                   :
                   <div
-                    className="cart-button"
+                    className={style["cart-button"]}
                     onClick={() => handleAdd(game)}
                     title="Agregar al carrito"
                   ></div>
                 :
-                carrito[0]?.idGame == id
+                carrito[0]?.idGame === id
                   ?
                   <div
-                    className="agregado-button"
+                    className={style["agregado-button"]}
                     title="Agregar al carrito"
                   ></div>
                   :
                   <div
-                    className="cart-button"
+                    className={style["cart-button"]}
                     onClick={() => handleAdd(game)}
                     title="Agregar al carrito"
                   ></div>

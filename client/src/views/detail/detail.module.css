@@ -207,7 +207,8 @@ button {
   margin-bottom: 1px;
   background-color: #000000a2; /* Cambiar el color de fondo según tu preferencia */
   padding: 5px; /* Añadir espaciado alrededor del texto */
-  color: #fff
+  color: #fff;
+  list-style: none;
 }
 .imageContainer {
   text-align: center; /* Centra la imagen horizontalmente */

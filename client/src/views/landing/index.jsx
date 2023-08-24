@@ -1,13 +1,13 @@
+import estilo from './landing.module.css'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { gamesByGenders, getRating, obtenerUsers } from '../../redux/actions';
+import { FaStar } from "react-icons/fa";
 import Encabezado from "../encabezado/encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Carousel from '../../components/Carousel/Carousel';
 import Footer from "../../components/Footer/footer";
 import CardList from "../../components/cardList/cardList";
-import { FaStar } from "react-icons/fa";
-import estilo from './landing.module.css'
 import tuImagen from '../../assets/hello (2).png'
 
 export default function Landing() {
@@ -50,14 +50,14 @@ export default function Landing() {
   }, []);
 
   return (
-    <div>
+    <div className={estilo.landing}>
       <Encabezado/>
       <NavBar/>
       <Carousel images={limitedActionImages} />
               
-        <div className={estilo.imageContainer}>
-          <img src={tuImagen} alt="Tu Imagen" />
-        </div>
+      <div className={estilo.imageContainer}>
+        <img src={tuImagen} alt="Tu Imagen" />
+      </div>
 
       <CardList gamesList={limitedGames} currentIndex={currentIndex} />
       <Carousel images={limitedAdventureImages} />

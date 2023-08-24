@@ -11,6 +11,7 @@ export default function AdminEdit({ dbGame, onEdit }) {
     nameGame: dbGame.nameGame,
     cost: dbGame.cost,
     description: dbGame.description,
+    namesGenders: []
   });
   const [errors, setErrors] = useState({});
 
@@ -114,6 +115,13 @@ export default function AdminEdit({ dbGame, onEdit }) {
                 </option>
               ))}
             </select>
+            <ul>
+              {
+                props.namesGenders.map(gn => (
+                  <li key={gn}>{gn}</li>
+                ))
+              }
+            </ul>
           </label>
           <label>
             <input

@@ -1,8 +1,8 @@
+import style from './SearchBar.module.css'
+import Swal from "sweetalert2"; //Importación de la libreria sweetalert2 que permite mostrar alertas bien GG's
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGameByName, getGames } from "../../redux/actions";
-import estilo from './SearchBar.module.css'
-import Swal from "sweetalert2"; //Importación de la libreria sweetalert2 que permite mostrar alertas bien GG's
 import { Link } from "react-router-dom";
 import Loading from "../../utils/Loading/Loading";
 
@@ -50,30 +50,27 @@ const SearchBar = () => {
     }
 
     return (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-            <form style={{ display: "flex", justifyContent: "center" }} action="">
+        <div className={style.search}>
+            <form className={style.form}>
                 <input
                     type="search"
                     onChange={(event) => handleChange(event)}
                     value={name}
-                    className={estilo.inputSearch}
+                    className={style.inputSearch}
                     placeholder="Search videogame... "
                 />
-                <Link to="/videogames">
-                    <button
-                        type="submit"
-                        onClick={() => handleSubmit()}
-                        className={estilo.btnSearch}
-                    />
-                </Link>
+                <span
+                    onClick={() => handleSubmit()}
+                    className={style.btnSearch}>
+                </span>
                 {
-                    juegos.length < 100?
-                        <button
+                    juegos.length < 100
+                        ? <button
                             type="submit"
                             onClick={(event) => handleClear(event)}
-                            className={estilo.btnClear}
+                            className={style.btnClear}
                         />
-                        : <></>
+                        : null
                 }
             </form>
             {loading && <Loading />}
