@@ -1,3 +1,4 @@
+import style from "./edit.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import validateAdmin from "../../utils/validateAdmin";
@@ -59,70 +60,70 @@ export default function AdminEdit({ dbGame, onEdit }) {
   };
 
   return (
-    <aside>
-      <div>
-        <h1>Edit Game</h1>
-        <form onSubmit={handleSubmit}>
+    <aside className={style.edit}>
+      <div className={style.contain}>
+        <div className={style.head}>
           <button type="button" onClick={onEdit}>✖</button>
-          <input
-            type="text"
-            name="nameGame"
-            value={props.nameGame}
-            onChange={handleChange}
-          />
+          <h1>Edit Game</h1>
+        </div>
+        <form className={style.form} onSubmit={handleSubmit}>
+          <label>
+            <input
+              type="text"
+              name="nameGame"
+              value={props.nameGame}
+              onChange={handleChange}
+            />
+          </label>
           {errors.nameGame && <p>{errors.nameGame}</p>}
-          <br />
-          <br />
-          <textarea
-            type="text"
-            name="description"
-            value={props.description}
-            onChange={handleChange}
-          ></textarea>
+          <label>
+            <textarea
+              type="text"
+              name="description"
+              value={props.description}
+              onChange={handleChange}
+            ></textarea>
+          </label>
           {errors.description && <p>{errors.description}</p>}
-          <br />
-          <br />
           <label htmlFor="image">
             <img src={dbGame.image} alt={props.nameGame} />
+            <input
+              type="file"
+              name="image"
+              onChange={handleImgChange}
+            />
           </label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleImgChange}
-          />
           {errors.image && <p>{errors.image}</p>}
-          <br />
-          <br />
           <label>
-            {
-              dbGame.genders.map(gn => (
-                <span key={gn.idGenders}>{gn.nameGenders}</span>
-              ))
-            }
+            <ul>
+              {
+                dbGame.genders.map(gn => (
+                  <li key={gn.idGenders}>{gn.nameGenders}</li>
+                ))
+              }
+            </ul>
+            <select name="namesGenders" onChange={handleChange}>
+              <option></option>
+              {genres?.map(gn => (
+                <option
+                  key={gn.idGenders}
+                  value={gn.nameGenders}
+                  onChange={handleChange}
+                >
+                  {gn.nameGenders}
+                </option>
+              ))}
+            </select>
           </label>
-          <select name="namesGenders" onChange={handleChange}>
-            <option></option>
-            {genres?.map(gn => (
-              <option
-                key={gn.idGenders}
-                value={gn.nameGenders}
-                onChange={handleChange}
-              >
-                {gn.nameGenders}
-              </option>
-            ))}
-          </select>
-          <br />
-          <br />
-          <input
-            type="text"
-            name="cost"
-            value={props.cost}
-            onChange={handleChange}
-          />
+          <label>
+            <input
+              type="text"
+              name="cost"
+              value={props.cost}
+              onChange={handleChange}
+            />
+          </label>
           {errors.cost && <p>{errors.cost}</p>}
-          <br />
-          <br />
           <button>Submit</button>
         </form>
       </div>

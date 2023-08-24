@@ -45,7 +45,7 @@ export const postGame = (game) => {
         namesGenders: game.genero,
         nameGame: game.nombre,
         image: data.data.url,
-        cost: game.costo,
+        cost: +game.costo,
         description: game.descripcion
       }
       const createGame = await axios.post(

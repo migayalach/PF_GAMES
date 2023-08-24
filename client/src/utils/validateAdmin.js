@@ -33,12 +33,10 @@ const validateAdmin = (data) => {
     errors.description = `La descripcion no puede tener mas de ${maxLengthRes} letras`;
   }
 
-  // LINK
-  // if (data.imagen.length === 0) {
-  //   errors.imagen = `Por favor ingrese una direccion URL para poder guardar la referencia`;
-  // } else if (!/^(https?:\/\/)?[\w\-]+(\.[\w\-]+)/.test(data.imagen)) {
-  //   errors.imagen = `El enlace no cumple los requirimientos solicitados, por favor verifique lo introducido`;
-  // }
+  // IMAGE
+  if (!data.imagen) {
+    errors.imagen = `Se necesita una imagen`;
+  }
 
   if (!/^(?!0*(\.0+)?$)(?!-)[0-9]+(\.[0-9]{1,2})?$/.test(data.cost)) {
     errors.cost = "El precio debe ser mayor a 0";

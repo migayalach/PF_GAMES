@@ -4,6 +4,7 @@
   --color-1: #01C38E;
   --color-2: #132D46;
   --color-3: #FFFFFF;
+  --color-4: #0D0D0D;
 }
 
 * {
@@ -18,12 +19,18 @@ body {
   overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(
-    -45deg,
-    var(--color-3) 0%,
-    var(--color-2) 100%
-  );
+  background-color: var(--color-2);
   text-align: center;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar {

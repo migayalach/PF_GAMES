@@ -1,5 +1,4 @@
 import './index.css';
-import "./StyleSheets/App.css";
 import Swal from 'sweetalert2';
 import axios from "axios";
 import React, { useEffect } from "react";

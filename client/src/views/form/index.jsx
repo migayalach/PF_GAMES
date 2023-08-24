@@ -1,9 +1,10 @@
+import style from "./form.module.css";
 import { useState } from "react";
-import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { postGame } from "../../redux/actions";
 import { useAccessAdmin } from "../../hooks/useAccessAdmin";
+import validation from "../../utils/validation";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,15 @@ const Form = () => {
     descripcion: "",
     imagen: null,
     genero: [],
-    costo: 0,
+    costo: "",
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    nombre: "",
+    descripcion: "",
+    imagen: null,
+    genero: [],
+    costo: "",
+  });
 
   const handleImgChange = (event) => {
     setData({
@@ -66,66 +73,72 @@ const Form = () => {
 
   useAccessAdmin();
   return (
-    <div>
-      <h1>Crear un juego</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nombre">Nombre del juego: </label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          value={data.nombre}
-          onChange={handleChange}
-        />
+    <div className={style.create}>
+      <div className={style.head}>
+        <NavLink to='/admin'>◀</NavLink>
+        <h1>Create Video Game</h1>
+      </div>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <label htmlFor="nombre">
+          <span>Videogame name</span>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={data.nombre}
+            onChange={handleChange}
+          />
+        </label>
         {errors.nombre && <p>{errors.nombre}</p>}
-        <br />
-        <br />
-        <label htmlFor="descripcion">Descripcion: </label>
-        <input
-          type="text"
-          name="descripcion"
-          value={data.descripcion}
-          onChange={handleChange}
-        />
+        <label htmlFor="descripcion">
+          <span>Description</span>
+          <textarea
+            name="descripcion"
+            value={data.descripcion}
+            onChange={handleChange}
+          ></textarea>
+        </label>
         {errors.descripcion && <p>{errors.descripcion}</p>}
-        <br />
-        <br />
-        <label htmlFor="imagen">Imagen: </label>
-        <input
-          type="file"
-          name="imagen"
-          onChange={handleImgChange}
-        />
+        <label htmlFor="imagen">
+          <span>Image</span>
+          <input
+            type="file"
+            name="imagen"
+            onChange={handleImgChange}
+          />
+        </label>
         {errors.imagen && <p>{errors.imagen}</p>}
-        <br />
-        <br />
-        <label htmlFor="genero">Genero: </label>
-        <select name="genero" onChange={handleChange}>
-          <option></option>
-          {resGenders.map(({ idGenders, nameGenders }) => (
-            <option
-              key={idGenders}
-              value={data.nameGenders}
-              onChange={handleChange}
-            >
-              {nameGenders}
-            </option>
-          ))}
-        </select>
-        {data.genero.length > 0 ? <p>{data.genero}</p> : <p>{errors.genero}</p>}
-        <br />
-        <br />
-        <label htmlFor="costo">Costo: </label>
-        <input
-          type="text"
-          name="costo"
-          value={data.costo}
-          onChange={handleChange}
-        />
+        <label htmlFor="genero">
+          <span>Genders</span>
+          <select name="genero" onChange={handleChange}>
+            <option></option>
+            {resGenders.map(({ idGenders, nameGenders }) => (
+              <option
+                key={idGenders}
+                value={data.nameGenders}
+                onChange={handleChange}
+              >
+                {nameGenders}
+              </option>
+            ))}
+          </select>
+        </label>
+        {data.genero.length > 0 ? <ul>
+          {
+            data.genero.map(gn => <li key={gn}>{gn}</li>)
+          }
+        </ul> : <p>{errors.genero}</p>}
+        <label htmlFor="costo">
+          <span>Cost</span>
+          <input
+            type="text"
+            name="costo"
+            value={data.costo}
+            onChange={handleChange}
+          />
+        </label>
         {errors.costo && <p>{errors.costo}</p>}
-        <br />
-        <br />
-        <button>Submit</button>
+        <button disabled={Object.keys(errors).length === 0 ? false : true}>Submit</button>
       </form>
     </div>
   );
