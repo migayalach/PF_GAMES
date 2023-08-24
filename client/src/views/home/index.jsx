@@ -1,3 +1,4 @@
+import style from "./home.module.css";
 import { useSelector } from "react-redux"
 import { useState } from "react";
 import CardList from "../../components/cardList/cardList";
@@ -5,7 +6,6 @@ import Encabezado from "../encabezado/encabezado";
 import NavBar from "../../components/NavBar/NavBar";
 import Paginado from "../../components/Paginado/Paginado";
 import Filters from '../../components/Filters'
-import "./home.styles.css"
 import Footer from "../../components/Footer/footer";
 
 export default function Home(){
@@ -22,7 +22,7 @@ export default function Home(){
     }
     
     return(
-        <div className="home-div">
+        <div className={style.home}>
             {filtersActive ? <Filters /> : null}
             <Encabezado/>
             <NavBar/>

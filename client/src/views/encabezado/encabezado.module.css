@@ -1,13 +1,14 @@
 .enc{
-    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    height: 90px;
     display: flex;
-    height: 60px;
     justify-content: space-between;
-    background-color: rgb(90, 102, 86);
     align-items: center;
-    padding: 10px;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(100, 130, 100);
+    padding: 0 15px;
   }
+  
   .image{
     width: 70px;
     height: 70px;
@@ -20,7 +21,11 @@
   }
   .encab{
     padding: 10px;
+    color: var(--color-2);
+    font-size: 16px;
+    font-weight: 700;
   };
+  
   .profileImage{
     width: 40px;
     height: 30px;

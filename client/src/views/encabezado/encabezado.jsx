@@ -25,13 +25,11 @@ export default function Encabezado() {
   if (isLoading) return <h1>Cargando ................</h1>;
   return (
     <div className={styles.enc}>
-
-
       <div className={styles.logo}>
         <img className={styles.image} src={imagen} alt="logo" />
         <h2>GAMING SHOP</h2>
       </div>
-      <nav >
+      <article>
         {
           dbUser?.level?.nameLevel === "admin" && (
             <NavLink to="/admin" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>DASHBOARD</NavLink>
@@ -44,7 +42,7 @@ export default function Encabezado() {
         {isAuthenticated && (
           <NavLink to="/perfil" className={styles.encab} style={{ textDecoration: "none", color: "black" }}>PROFILE</NavLink>
         )}
-      </nav>
+      </article>
       {isAuthenticated ? <Logout /> : <Login />}
     </div>
   );
