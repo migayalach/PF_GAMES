@@ -1,64 +1,60 @@
-  /* Estilos para cada elemento de calificación */
-  .ratingItem {
-    background-color: #fff; /* Fondo del elemento */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 5px; /* Borde redondeado */
-    padding: 10px; /* Espacio interno */
-    flex: 0 0 calc(33.333% - 20px);
-    /*margin-bottom: 10px; /* Margen inferior entre elementos */
-    margin-right: 20px;
-  }  
-  .imageContainer {
-    text-align: center; /* Centra la imagen horizontalmente */
-    margin: 20px 0; /* Margen superior e inferior */
-    max-width: 500;
-  }
-  
-  /* Estilos para la imagen */
-  .imageContainer img {
-    width: 30%;
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    display: block;/* Mantiene la proporción de la imagen */
-    
-  }
-  .ratingContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 20px;
-    margin: 20px 0;
-    font-family: "Times New Roman", serif;
-    color: rgb(255, 250, 250);
-    max-width: 200%; /* Ancho máximo del contenedor */
-    align-items: flex-start;
-  }
-   
-  .commentContainer {
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    width: 295px; /* Ancho de cada tarjeta de comentario */
-    height: 170px;
-    background-image: url('../../assets/giphy.gif'); /* URL de tu GIF como fondo */
-    background-size: cover;
-  }
-    
-    .commentUser {
-      flex: 1; /* Distribuye el espacio disponible de manera uniforme */
-    }
-    
-    .commentRating img {
-      width: 30px; /* Establece el tamaño de la imagen */
-      height: 30px;
-      margin-right: 5px; /* Espacio entre la imagen y las estrellas */
-    }
-    
-    .commentContent {
-      flex: 3; /* Distribuye más espacio para el contenido del comentario */
-      padding-left: 20px; /* Espacio a la izquierda del contenido */
-    }
-    
+.landing {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.image {
+  width: 100%;
+  max-width: 500px;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+}
+
+.rating {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+}
+
+.container {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-image: url("../../assets/giphy.gif");
+  padding: 5px;
+}
+
+.user {
+  width: 100%;
+}
+.user h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-3);
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.content h3, .content p, .content h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-3);
+  text-align: center;
+}

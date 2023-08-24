@@ -11,6 +11,7 @@ import Encabezado from "../encabezado/encabezado";
 import imagenRating from '../../assets/RATINGS.png'
 
 
+
 const Detail = () => {
   const { id } = useParams();
   const { user } = useAuth0();

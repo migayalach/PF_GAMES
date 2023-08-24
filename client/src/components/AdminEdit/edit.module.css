@@ -25,7 +25,7 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .head button {
@@ -99,6 +99,7 @@
   height: 40px;
   background-color: var(--color-1);
   border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .form ul {
@@ -109,4 +110,22 @@
   color: var(--color-2);
   padding: 3px;
   border-radius: 10px;
+}
+
+.form ul:empty {
+  display: none;
+}
+
+.form button {
+  width: 150px;
+  height: 30px;
+  background-color: var(--color-1);
+  font-size: 20px;
+  color: var(--color-2);
+  opacity: 0.8;
+  transition: all .3s;
+}
+
+.form button:hover {
+  opacity: 1;
 }

@@ -46,17 +46,17 @@ const Biblioteca = () => {
                 ?
                     <div className={estilo.contenedorPadre}>
                         <Link to="/videogames">
-                            <button>INICIO</button>
+                            <button>HOME</button>
                         </Link>
                         <Paginado cantidadPorPag={cantidadPorPag} juegos={juegosComprados.length} paginado={paginado}></Paginado>
                         <CardsGame gamesList={juegosActuales} />
                     </div>
                 : 
                     <div className={estilo.contenedorPadre}>
-                        <h1>Aún no registras compras...</h1>
+                        <h1>No purchases yet...</h1>
                         <img src="https://blog.fluidui.com/assets/images/posts/imageedit_1_9273372713.png" alt="" />
                         <Link to="/videogames">
-                            <button>INICIO</button>
+                            <button>HOME</button>
                         </Link>
                     </div>
             }
