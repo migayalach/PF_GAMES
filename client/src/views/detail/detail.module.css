@@ -231,8 +231,9 @@ button {
   background-position: center center; 
   border: 1px solid #ccc; /* Borde */
   border-radius: 10px; /* Borde redondeado */
-  padding: 10px; /* Espacio interno */
-  margin-bottom: 10px; /* Margen inferior entre elementos */
+  background-color: #00000057;
+  padding: 35px; /* Espacio interno */
+  margin-bottom: 20px; /* Margen inferior entre elementos */
   font-family: "Times New Roman", serif;
     color: rgb(255, 250, 250);
 }
@@ -250,4 +251,17 @@ button {
   margin-right: 5px; /* Espacio entre las estrellas */
 }
 
+.imagenRating {
+  text-align: center; /* Centra la imagen horizontalmente */
+  margin: 20px 0; /* Margen superior e inferior */
+  max-width: 500;
+}
+
+/* Estilos para la imagen */
+.imagenRating img {
+  width: 30%;
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+  display: block;/* Mantiene la proporción de la imagen */
+}
 

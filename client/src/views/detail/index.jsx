@@ -8,6 +8,8 @@ import { FaStar } from "react-icons/fa";
 import Swal from "sweetalert2";
 import NavBar from "../../components/NavBar/NavBar";
 import Encabezado from "../encabezado/encabezado";
+import imagenRating from '../../assets/RATINGS.png'
+
 
 
 const Detail = () => {
@@ -58,7 +60,6 @@ const Detail = () => {
         <Link to="/videogames">
           <div className={style["home-button"]}></div>
         </Link>
-
         {game && (
           <div className={style.content} key={game.id}>
             <h1>{game?.nameGame}</h1>
@@ -72,9 +73,11 @@ const Detail = () => {
             </ul>
             <div className={style["ratings-container"]}>
               {
-                
-                ratings && (
+                ratings || ratings.length > 0 && (
                   <>
+                    <div className="imagenRating">
+                      <img src={imagenRating} alt="imagen Rating" />
+                    </div>
                     {
                       ratings.map((index) => {
                         return (
