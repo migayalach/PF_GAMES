@@ -19,18 +19,33 @@ const NavBar = () => {
         }, 4000);
     }
     return (
-        <div className={style.nav}> 
-            <a id={location.pathname === '/' ? style.active : null} href='/' onClick={handleLoading}>HOME</a>
-            <a id={location.pathname === '/videogames' ? style.active : null} href='/videogames'>GAMES</a>
-            {location.pathname === '/videogames' ? <SearchBar/> : null}
-            {
-                location.pathname === '/videogames'
-                ? <button className={style.filter} onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
-                : null
-            }
-            <Cart/>
-            {loading && <Loading/>}
-        </div>
+       // <nav className={style.nav}> 
+        //     <NavLink id={location.pathname === '/' ? style.active : null} to='/' onClick={handleLoading}>HOME</NavLink>
+        //     <NavLink id={location.pathname === '/videogames' ? style.active : null} to='/videogames'>GAMES</NavLink>
+        //     {location.pathname === '/videogames' ? <SearchBar/> : null}
+        //     {
+        //         location.pathname === '/videogames'
+        //         ? <button className={style.filter} onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
+        //         : null
+        //     }
+        //     <Cart/>
+        //     {loading && <Loading/>}
+        // </nav>
+        
+<div style={{ display: "flex", justifyContent: "center", alignItems:"center" }}> 
+        <Link to='/' onClick={handleLoading}>
+        <button>HOME</button></Link>
+        <Link to='/videogames'>
+        <button>GAMES</button></Link>
+        <SearchBar/>
+        {
+            location.pathname === '/videogames'
+            ? <button id='btnFilter' onClick={() => dispatch(filtersActive())} style={{marginLeft: "40px", marginRight: "40px"}}>Filters</button>
+            : null
+        }
+        <Cart/>
+        {loading && <Loading/>}
+    </div>
     )
 }
 
