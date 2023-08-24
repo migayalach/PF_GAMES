@@ -20,8 +20,8 @@ const NavBar = () => {
     }
     return (
         <div className={style.nav}> 
-            <Link id={location.pathname === '/' ? style.active : null} to='/' onClick={handleLoading}>HOME</Link>
-            <Link id={location.pathname === '/videogames' ? style.active : null} to='/videogames'>GAMES</Link>
+            <a id={location.pathname === '/' ? style.active : null} href='/' onClick={handleLoading}>HOME</a>
+            <a id={location.pathname === '/videogames' ? style.active : null} href='/videogames'>GAMES</a>
             {location.pathname === '/videogames' ? <SearchBar/> : null}
             {
                 location.pathname === '/videogames'
